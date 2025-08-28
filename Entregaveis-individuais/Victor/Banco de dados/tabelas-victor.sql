@@ -46,4 +46,4 @@ create table captura (
   idCaptura int primary key auto_increment,
   valor decimal(5,2),
   dtRegistro datetime default current_timestamp
-);
+); 
