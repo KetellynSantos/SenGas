@@ -19,7 +19,7 @@ create table empresa_cliente (
     data_firma_contrato date,
     status_contrato tinyint
 
-	constraint chkStatusContrato check (status_contrato in (1, 2))
+	constraint chkStatusContrato check (status_contrato in (0, 1))
 );
 
 create table filial (
@@ -59,14 +59,4 @@ create table registro_vazamento (
     data_hora_inicio datetime default current_timestamp,
     data_hora_fim datetime
 );
-
--- INSERINDO DADOS
-insert into usuario (nome, email, senha, nivel_acesso) values 
-	('Marlon de Souza', 'marlon.souza@gmail.com', 'senha123', 1),
-	('Mateus Queiroz', 'mateus.queiroz@gmail.com', 'senha321', 2),
-	('Victor Lima', 'victor.lima@gmail.com', 'senha324', 2),
-	('Vinicius Silva', 'vinicius.silva@gmail.com', 'senha281', 2),
-	('Ricardo Perdigão', 'ricardo.perdigao@gmail.com', 'senha129', 3),
-	('Lucas Eiki', 'lucas.eiki@gmail.com', 'senha291', 3);
     
--- Inserir mais dados e fazer selects depois
