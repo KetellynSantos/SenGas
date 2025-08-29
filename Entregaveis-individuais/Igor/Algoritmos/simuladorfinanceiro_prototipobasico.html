@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SenGas - Simulador financeiro</title>
+</head>
+<body>
+    <h1>SenGas</h1>
+    <h2>Simulador financeiro</h2>
+    Quantos Nm³ você produz por dia? <br>
+    <input type="text" id="ipt_producao">
+    <button onclick="calcular()">Calcular</button><br><br>
+    <div id="div_msg"></div>
+</body>
+<script>
+    function calcular() {
+        var ax_dia = 2.45;
+        var ax_vazamento = 0.03;
+        var ax_solucao = 0.06;
+        var ax_producao = Number(ipt_producao.value);
+        var ax_total = ((ax_producao * ax_dia) * ax_vazamento) * 365;
+        var ax_totalsolucao = ((ax_producao * ax_dia) * ax_solucao) * 365;
+        div_msg.innerHTML = `Atualmente a média de vazamentos de gas que ocorre em sua empresa causa um impacto de <b style="color: red;">R$${ax_total.toFixed(2)}</b> por ano.<br>Com a nossa solução podemos reverter esta perda, com lucro estimado de <b style="color: green;">R$${ax_totalsolucao.toFixed(2)}</b> por ano!`
+    }
+</script>
+</html>
