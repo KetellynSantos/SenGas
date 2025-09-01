@@ -28,7 +28,7 @@ CREATE TABLE funcionario(
     telefone VARCHAR(15),
     nivelAcesso VARCHAR (20) CONSTRAINT chkNivel CHECK (nivelAcesso IN ('Baixo', 'Medio', 'Alto')),
     email VARCHAR (60)NOT NULL UNIQUE,
-    login VARCHAR (40) NOT NULL,
+    usuario VARCHAR (40) NOT NULL,
     senha VARCHAR (12) NOT NULL,
     dtCadastro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -50,7 +50,7 @@ INSERT INTO filial (logradouro, numero, cidade, uf, cep) VALUES
 	('Avenida das laranjas', '1000', 'São Paulo', 'SP', '01234-001'),
 	('Avenida das ameixas', '2000', 'Minas Gerais', 'MG', '43210-100'),
 	('Avenida dos limões', '3000', 'Rio de Janeiro', 'RJ', '34120-010');
-INSERT INTO funcionario (nome, sobrenome, dtNasc, telefone, nivelAcesso, email, login, senha) VALUES
+INSERT INTO funcionario (nome, sobrenome, dtNasc, telefone, nivelAcesso, email, usuario, senha) VALUES
 	('Victor', 'Domingo', '2000-02-03', '11-29002-0002', 'Alto', 'victor@vazgaz.com.br', 'victor.domingo', 'domingo'),
     ('Igor', 'Segunda', '1995-01-02', '11-19001-0001', 'Baixo', 'igor@vazgaz.com.br', 'igor.segunda', 'segundafeira'),
 	('Bianca', 'Terça', '2001-03-04', '11-19003-0003', 'Medio', 'bianca@vazgaz.com.br', 'bianca.terca', 'tercafeira');
@@ -61,5 +61,5 @@ INSERT INTO sensor (idSensor) VALUES
 SELECT nomeFantasia AS 'Nome Fantasia', concat(razaoSocial, ' ', cnpj) AS 'Razão social e CNPJ', contAtivo AS 'Contrato Ativo' FROM empresa;
 SELECT setor AS Setor FROM setores;
 SELECT concat(logradouro, ', ', numero, ' - ', cidade, ' - ' , uf, ' - ', cep) AS 'Endereço completo', complemento AS Complemento FROM filial;
-SELECT concat(nome, ' ', sobrenome, ' - ', dtNasc) AS 'Dados do funcionário (Nome completo e data de nascimento)', concat(telefone, ' / ', email, '/ ', login, ' / ', senha) AS 'Dados de acesso (telefne, e-mail, login e senha)', nivelAcesso AS 'Nivel de acesso', dtCadastro AS 'Data de cadastro' FROM funcionario;
+SELECT concat(nome, ' ', sobrenome, ' - ', dtNasc) AS 'Dados do funcionário (Nome completo e data de nascimento)', concat(telefone, ' / ', email, '/ ', usuario, ' / ', senha) AS 'Dados de acesso (telefne, e-mail, usuario e senha)', nivelAcesso AS 'Nivel de acesso', dtCadastro AS 'Data de cadastro' FROM funcionario;
 SELECT idSensor AS Sensor, dtDeteccao AS 'Data e horario da detecção' FROM sensor;
