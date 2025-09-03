@@ -72,14 +72,24 @@ INSERT INTO endereco (logradouro, numero, cidade, uf, cep) VALUES
 	('Avenida dos limões', '3000', 'Rio de Janeiro', 'RJ', '34120010');
 
 INSERT INTO usuario (nome, sobrenome, telefone, nivelAcesso, email, senha) VALUES
-	('Victor', 'Domingo', '11290020002',3, 'victor@vazgaz.com.br', 'domingo'),
+	('Victor', 'Domingo', '11290020002', 2, 'victor@biograss.com.br', 'domingofeira'),
     ('Igor', 'Segunda', '11190010001', 2, 'igor@vazgaz.com.br', 'segundafeira'),
 	('Bianca', 'Terça', '11190030003', 1, 'bianca@vazgaz.com.br', 'tercafeira');
+	('Clara', 'Quarta', '11190040004', 4, 'clara@vazgaz.com.br', 'quartafeira');
+	('Ricardo', 'Quinta', '11190060006', 5, 'ricardo@biograss.com.br', 'quintafeira');
+	('Mateus', 'Sexta', '11190050005', 3, 'mateus@vazgaz.com.br', 'sextafeira');
+	('Marlon', 'Sabado', '11190070007', 4, 'marlon@biograss.com.br', 'sabadofeira');
 
 INSERT INTO sensor (titulo) VALUES
-	('Sensor fabriacaçao'),
+	('Sensor fabricaçao'),
 	('Sensor tubulação'),
 	('Sensor armazenagem');
+    
+INSERT INTO captura (valor) VALUES
+	(10.07),
+	(99.05),
+	(24.62),
+	(30.19);
 
 SELECT nomeFantasia AS 'Nome Fantasia', 
   concat(razaoSocial, ' ', cnpj) AS 'Razão social e CNPJ', 
@@ -100,6 +110,6 @@ SELECT concat(nome, ' ', sobrenome) AS 'Dados do funcionário (Nome completo)',
   nivelAcesso AS 'Nivel de acesso' 
 FROM usuario;
 
-SELECT idSensor AS Sensor, 
+SELECT idCaptura AS Sensor, 
   dtRegistro AS 'Data e horario da detecção' 
 FROM captura;
