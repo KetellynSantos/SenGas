@@ -8,10 +8,13 @@
 <body>
     <h1>SenGás</h1>
     <h2>Simulador financeiro</h2>
-    Quantos Nm³ você produz por dia? <br>
+    Este simulador financeiro tem o objetivo de calcular custo dos vazamentos* em empresas de produção de biometano e com base em nossa solução reverter essa perda em ganhos para sua empresa.
+    <h5>*O calculo realizado é baseado nos dados fornecidos pela One Earth que estima um vazamento de 3% em relação ao total de gás já produzido e o valor de R$2,45, que é o menor valor de venda do biometano.</h5><br>
+    Quantos Nm³ (metros cubicos normais) de biometano você produz por dia? <br>
     <input type="text" id="ipt_producao">
     <button onclick="calcular()">Calcular</button><br><br>
     <div id="div_msg"></div>
+    <div></div>
 </body>
 <script>
     function calcular() {
@@ -21,7 +24,7 @@
         var ax_producao = Number(ipt_producao.value);
         var ax_total = ((ax_producao * ax_dia) * ax_vazamento) * 365;
         var ax_totalsolucao = ((ax_producao * ax_dia) * ax_solucao) * 365;
-        div_msg.innerHTML = `Atualmente a média de vazamentos de gás que ocorre em sua empresa causa um impacto de <b style="color: red;">R$${ax_total.toFixed(2)}</b> por ano.<br>Com a nossa solução podemos reverter esta perda, com lucro estimado de <b style="color: green;">R$${ax_totalsolucao.toFixed(2)}</b> por ano!`
+        div_msg.innerHTML = `Atualmente a média de vazamentos de gás que ocorre em sua empresa causa um impacto de <b style="color: red;">R$${ax_total.toFixed(2)}</b> por ano.<br>Com a nossa solução podemos reverter esta perda, com lucro estimado de <b style="color: green;">R$${ax_totalsolucao.toFixed(2)}</b> por ano!<br>Nossa solução visa também evitar multas por descumprimento da NR 20 que podem chegar até <b style="color:red;">R$144.000,00</b>.`
     }
 </script>
 </html>

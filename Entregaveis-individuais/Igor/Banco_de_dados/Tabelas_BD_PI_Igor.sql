@@ -61,5 +61,5 @@ INSERT INTO sensor (idSensor) VALUES
 SELECT nomeFantasia AS 'Nome Fantasia', concat(razaoSocial, ' ', cnpj) AS 'Razão social e CNPJ', contAtivo AS 'Contrato Ativo' FROM empresa;
 SELECT setor AS Setor FROM setores;
 SELECT concat(logradouro, ', ', numero, ' - ', cidade, ' - ' , uf, ' - ', cep) AS 'Endereço completo', complemento AS Complemento FROM filial;
-SELECT concat(nome, ' ', sobrenome, ' - ', date_format(dtNasc, '%d/%m/%Y')) AS 'Dados do funcionário (Nome completo e data de nascimento)', concat(telefone, ' / ', email, ' / ', usuario, ' / ', senha) AS 'Dados de acesso (telefne, e-mail, usuario e senha)', nivelAcesso AS 'Nivel de acesso', date_format(dtCadastro, '%d/%m/%Y %H:%i:%s') AS 'Data de cadastro' FROM funcionario;
+SELECT concat(nome, ' ', sobrenome, ' - ', date_format(dtNasc, '%d/%m/%Y')) AS 'Dados do funcionário (Nome completo e data de nascimento)', concat(telefone, ' / ', email, ' / ', usuario, ' / ', senha) AS 'Dados de acesso (telefone, e-mail, usuario e senha)', nivelAcesso AS 'Nivel de acesso', date_format(dtCadastro, '%d/%m/%Y %H:%i:%s') AS 'Data de cadastro' FROM funcionario;
 SELECT idSensor AS Sensor, date_format(dtDeteccao, '%d/%m/%Y %H:%i:%s') AS 'Data e horario da detecção' FROM sensor;
