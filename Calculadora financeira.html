@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora financeira</title>
+</head>
+<body> <h1>Sen gás - Calculadora financeira</h1><br>
+    <h2>Calculadora Financeira</h2><br> 
+    Veja como sua produção pode gerar ainda mais valor! <br>
+<P></P>
+<P>Calcule o potencial financeiro do biometano na sua operação e descubra como otimizar resultados com eficiencia e sustentabilidade!</P> <br>
+    Quantos Nm³ sua empresa produz por dia? <br>
+    <input id="ipt_nm3"><br><br>
+    Preço de venda médio do biogás (R$/Nm³) <br> <input id="ipt_dinheiro"><br><br>
+    <button onclick="calcular()">Simule conosco</button>
+    <div id="div_msg"></div>
+
+</body>
+<Script>
+    function calcular() {
+        var ax_nm3 = Number(ipt_nm3.value)
+        var ax_dinheiro = Number(ipt_dinheiro.value)
+        var ax_vazamento = 0.03
+        var ax_solucao = 0.05
+        var ax_vazamento_anual = ax_nm3 * 365
+        var ax_total_custo = ((ax_vazamento_anual * ax_dinheiro) * ax_vazamento);
+        var ax_total_solucao = ((ax_vazamento_anual * ax_dinheiro) * ax_solucao);
+        
+        div_msg.innerHTML = `Infelizmente sua empresa está perdendo <spam style='color: red'> ${ax_total_custo.toFixed(2)}R$</spam>. <br>E Parabéns, ao contratar a nossa solução, sua empresa economizará <spam style='color: blue'>${ax_total_solucao.toFixed(2)}R$ </spam>`
+    }
+
+</Script>
+</html>
