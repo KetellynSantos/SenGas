@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SenGás</title>
+</head>
+<body>
+    <h2>Simulador Financeiro</h2>
+
+    <div>
+        Informe sua produção diária de metâno (m³): <br> <input type="text" name="producaoDiaria" id="producaoDiaria">
+    </div>
+
+    <br>    
+
+    <div>
+        <button onclick="simular()">Simular</button>
+    </div>
+
+    <br>
+
+    <div id="msg">
+
+    </div>
+</body>
+
+<script>
+    function simular() {
+        var producao_diaria = Number(producaoDiaria.value);
+        var producao_anual = producao_diaria * 365;
+        var preco_metano_m3 = 2.45;
+        var receita_anual = producao_anual * preco_metano_m3;
+        var percentual_vazamento = 0.03;
+        var perda_financeira_anual = receita_anual * percentual_vazamento;
+        var eficiencia_solucao = 0.5;
+        var perda_evitada = perda_financeira_anual * eficiencia_solucao;
+
+        msg.innerHTML = 
+            "Perda anual estimada: <b style='color: red;'> R$" + perda_financeira_anual.toFixed(2) + "</b><br>" +
+            "Perda evitada com a implantação do nosso projeto: <b style='color: green;'> R$" + perda_evitada.toFixed(2);
+    }
+</script>
+
+</html>
