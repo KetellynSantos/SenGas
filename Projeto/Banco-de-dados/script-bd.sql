@@ -1,12 +1,11 @@
-DROP DATABASE sengas;
 CREATE DATABASE sengas;
 USE sengas;
 
 CREATE TABLE empresa (
   idEmpresa int primary key auto_increment,
-  razaoSocial varchar(80),
-  nomeFantasia varchar(80),
-  cnpj char(14),
+  razaoSocial varchar(80) not null,
+  nomeFantasia varchar(80) not null,
+  cnpj char(14) unique not null,
   dtFirma date,
   contratoAtivo tinyint,
   constraint chkContrato check (contratoAtivo in(0,1))
@@ -72,13 +71,13 @@ INSERT INTO endereco (logradouro, numero, cidade, uf, cep) VALUES
 	('Avenida dos limões', '3000', 'Rio de Janeiro', 'RJ', '34120010');
 
 INSERT INTO usuario (nome, sobrenome, telefone, nivelAcesso, email, senha) VALUES
-	('Victor', 'Domingo', '11290020002', 2, 'victor@biograss.com.br', 'domingofeira'),
-    ('Igor', 'Segunda', '11190010001', 2, 'igor@vazgaz.com.br', 'segundafeira'),
-	('Bianca', 'Terça', '11190030003', 1, 'bianca@vazgaz.com.br', 'tercafeira');
-	('Clara', 'Quarta', '11190040004', 4, 'clara@vazgaz.com.br', 'quartafeira');
-	('Ricardo', 'Quinta', '11190060006', 5, 'ricardo@biograss.com.br', 'quintafeira');
-	('Mateus', 'Sexta', '11190050005', 3, 'mateus@vazgaz.com.br', 'sextafeira');
-	('Marlon', 'Sabado', '11190070007', 4, 'marlon@biograss.com.br', 'sabadofeira');
+	('Victor', 'Silva', '11290020002', 2, 'victor@biograss.com.br', 'domingofeira'),
+    ('Igor', 'Dias', '11190010001', 2, 'igor@vazgaz.com.br', 'segundafeira'),
+	('Bianca', 'Iwata', '11190030003', 1, 'bianca@vazgaz.com.br', 'tercafeira'),
+	('Clara', 'Garcia', '11190040004', 4, 'clara@vazgaz.com.br', 'quartafeira'),
+	('Ricardo', 'Perdigão', '11190060006', 5, 'ricardo@biograss.com.br', 'quintafeira'),
+	('Mateus', 'Queiroz', '11190050005', 3, 'mateus@vazgaz.com.br', 'sextafeira'),
+	('Marlon', 'Sampaio', '11190070007', 4, 'marlon@biograss.com.br', 'sabadofeira');
 
 INSERT INTO sensor (titulo) VALUES
 	('Sensor fabricaçao'),
@@ -106,7 +105,7 @@ SELECT concat(logradouro, ', ', numero, ' - ', cidade, ' - ' , uf, ' - ', cep) A
 FROM endereco;
 
 SELECT concat(nome, ' ', sobrenome) AS 'Dados do funcionário (Nome completo)', 
-  concat(telefone, ' / ', email, ' / ', senha) AS 'Dados de acesso (telefone, e-mail e senha)', 
+  concat(telefone, ' / ', email) AS 'Dados de acesso (telefone e e-mail)', 
   nivelAcesso AS 'Nivel de acesso' 
 FROM usuario;
 
