@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+
+<body style="background-color: darkkhaki;">
+
+<img src="assets/Identidade visual SanGás-06.png" alt="" height="150px">
+
+<h1>Calculadora Financeira</h1>
+
+<b>Insira a quantidade de m³ (metros cúbicos) produzidos por dia</b><br>
+<input id="ipt_metro">
+<br><br>
+
+<button onclick="calcular()">Calcular</button>
+<br><br>
+
+<div id="div_msg"></div>
+
+</body>
+
+<script>
+    function calcular() {
+        var ax_metro = Number(ipt_metro.value) * 365;
+        var ax_produto = 2.45;       
+        var ax_perda = 0.03;
+        var ax_solucao = 0.06;       
+        var ax_total = (ax_metro * ax_produto) * ax_perda;
+        var ax_total_solucao = (ax_metro * ax_produto) * ax_solucao;
+
+        div_msg.innerHTML = `O valor da perda perante os vazamentos é de: <b style="color: red;"> ${ax_total.toFixed(2)}</b><br>
+                             Já o lucro que a empresa terá com a nossa solucão é de:<b style="color: green;"> ${ax_total_solucao.toFixed(2)}</b>`
+    }
+</script>
+</html>
