@@ -6,34 +6,46 @@
 </head>
 <body backgroundcolor="#EFE8E3">
 
-    <img src="Identidade visual SanGás-07.png" alt="logo_SenGas" width="100"></img>
-    <h2><span style="color: #7FA72D;">Veja como sua produção pode gerar ainda mais valor</span></h2>
+    <img src="../Assets/imagens/Identidade visual SanGás-FundoEscuro.png" alt="logo_SenGas" width="100"></img>
+    <h2><span style="color:#7FA72D;">Veja como sua produção pode gerar ainda mais valor</span></h2>
     <span style="color: #004830;">Calcule o potencial financeiro do biometano na sua operação e <br>
     descubra como otimizar resultados com eficiência e sustentabilidade. <br>
     <b><i>Insira seus dados e confira o impacto da SenGás!</i></b></SPan><br><br>
     
     
-    <span style="color:#7FA72D">Quantidade de Nm³ (metros cúbicos normais) de biometano sua planta produz por dia?</span><br>
+    <span style="color:#004830"><br><b>Quantidade de m³ (metros cúbicos) de biometano que sua planta produz por dia</b></span><br>
     <input id="iptProdDia"><br><br>
 
-    <span style="color:#7FA72D">Preço da venda do Nm³</span><br>
-    <input id="iptPrecoVenda"><br>
+    <span style="color:#004830"><b>Preço da venda do m³</b></span><br>
+    <input id="iptPrecoVenda"><br><br>
 
-    <button onclick="btnSimular()">Simule o ganho</button>
+    <button onclick="btnSimular()" style="color:#EFE8E3; background-color: #7FA72D;"><b>Simule o ganho</b></button>
     <div id="divSimular"></div>
 </body>
 <script>
-    function btnCalcular (){
+    function btnSimular (){
         var ax_ProdDia = Number (iptProdDia.value);
         var ax_PrecoVenda = Number (iptPrecoVenda.value);
 
-        var ax_ProdAno = ax_ProdDia * 365;
-        var ax_PrecoAno = ax_ProdAno * ax_PrecoVenda;
-        var ax_perda = ax_PrecoAno * 0.03;
-        var ax_lucro = ax_PrecoAno * 0.05;
-        // var ax_multa =
-         
+        var ax_ProdAno = ax_ProdDia * 365; // Produção de gas anual
+        var ax_PrecoAno = ax_ProdAno * ax_PrecoVenda; // Quanto ganha por ano 
 
+        var ax_perdaFinanceira = ax_PrecoAno * 0.03; // armazenamento (em dinheiro)
+        var ax_lucro = ax_PrecoAno * 0.05; // toda a produção (em dinheiro)
+        var ax_LucroPorcent = ax_lucro * 100 / ax_PrecoAno;
+
+        var ax_PerdaBiometano = ax_ProdAno * 0.03; // quanto perde biometano
+        var ax_PerdaMetano = ax_PerdaBiometano * 0.98; // quanto perde metano
+        var ax_MultaMetano = 15220700.152207;
+
+
+        divSimular.innerHTML = '<br>Faturamento anual atual<br><b>R$' + ax_ProdAno.toFixed(2) + '</b><br><br>Com a solução SenGás o lucro seria<br><b>R$' +  ax_lucro.toFixed(2) + '</b><br><i> representando<i> ' + ax_LucroPorcent + '% da produção anual';
+         
+        if (ax_PerdaMetano >= ax_MultaMetano){
+            var ax_mulda = ax_ProdAno * 0.03 // valor da multa
+            divSimular.innerHTML += '<br><br>Evite em média <b>R$' + ax_MultaMetano.toFixed(2) + '</b> em multas governamentais';
+        }
+          
 
     }
 </script>
