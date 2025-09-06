@@ -15,10 +15,11 @@ CONSTRAINT chk_tipoAcesso CHECK (tipoAcesso IN ('Visualização','Analista', 'Ge
 );
 
 INSERT INTO ctdFuncionario VALUES 
-('solita.uorak@sengas.com', '','','',''),
-('','','','',''),
-('','','','',''),
-('','','','','');
+('solita.uorak@sengas.com', 'Assistente', 'Financeiro', '2025-08-30 09:15:00', 'Visualização'),
+('carlos.monteiro@sengas.com', 'Analista de Dados', 'TI', '2025-08-28 14:30:00', 'Analista'),
+('mariana.silva@sengas.com', 'Gerente', 'Comercial', '2025-08-25 11:05:00', 'Gerencia'),
+('joao.pereira@sengas.com', 'Coordenador', 'Operações', '2025-08-29 16:50:00', 'Analista'),
+('ana.lopes@sengas.com', 'Assistente', 'RH', '2025-08-27 08:45:00', 'Visualização');
 
 DROP TABLE cdtFuncionario;
 
