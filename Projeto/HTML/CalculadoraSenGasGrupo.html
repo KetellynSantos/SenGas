@@ -24,34 +24,21 @@
 </body>
 <script>
     function btnSimular (){
-<<<<<<< HEAD
         var ax_ProdDia = Number (iptProdDia.value);
         var ax_PrecoVenda = Number (iptPrecoVenda.value);
 
         var ax_ProdAno = ax_ProdDia * 365; // Produção de gas anual
         var ax_PrecoAno = ax_ProdAno * ax_PrecoVenda; // Quanto ganha por ano 
-=======
-        var axProdDia = Number (iptProdDia.value);
-        var axPrecoVenda = Number (iptPrecoVenda.value);
-
-        var axProdAno = axProdDia * 365;
-        var axPrecoAno = axProdAno * axPrecoVenda;
-        var axPerda = axPrecoAno * 0.03;
-        var axLucro = axPrecoAno * 0.05;
-        // var ax_multa = 
-         
->>>>>>> ef2082778610c2a8e86ac641c08d51755bd2bf5c
 
         var ax_perdaFinanceira = ax_PrecoAno * 0.03; // armazenamento (em dinheiro)
         var ax_lucro = ax_PrecoAno * 0.05; // toda a produção (em dinheiro)
-        var ax_LucroPorcent = ax_lucro * 100 / ax_PrecoAno;
 
         var ax_PerdaBiometano = ax_ProdAno * 0.03; // quanto perde biometano
         var ax_PerdaMetano = ax_PerdaBiometano * 0.98; // quanto perde metano
         var ax_MultaMetano = 15220700.152207;
 
 
-        divSimular.innerHTML = '<br>Faturamento anual atual<br><b>R$' + ax_ProdAno.toFixed(2) + '</b><br><br>Com a solução SenGás o lucro seria<br><b>R$' +  ax_lucro.toFixed(2) + '</b><br><i> representando<i> ' + ax_LucroPorcent + '% da produção anual';
+        divSimular.innerHTML = '<br>Faturamento anual atual<br><b>R$' + ax_PrecoAno.toFixed(2) + '</b><br><br>Com a solução SenGás o lucro seria<br><b>R$' +  ax_lucro.toFixed(2) + '</b><br><i> representando 5% da produção anual</i>';
          
         if (ax_PerdaMetano >= ax_MultaMetano){
             var ax_mulda = ax_ProdAno * 0.03 // valor da multa
