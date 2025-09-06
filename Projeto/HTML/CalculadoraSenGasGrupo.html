@@ -1,0 +1,40 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador financeiro</title>
+</head>
+<body backgroundcolor="#EFE8E3">
+
+    <img src="Identidade visual SanGás-07.png" alt="logo_SenGas" width="100"></img>
+    <h2><span style="color: #7FA72D;">Veja como sua produção pode gerar ainda mais valor</span></h2>
+    <span style="color: #004830;">Calcule o potencial financeiro do biometano na sua operação e <br>
+    descubra como otimizar resultados com eficiência e sustentabilidade. <br>
+    <b><i>Insira seus dados e confira o impacto da SenGás!</i></b></SPan><br><br>
+    
+    
+    <span style="color:#7FA72D">Quantidade de Nm³ (metros cúbicos normais) de biometano sua planta produz por dia?</span><br>
+    <input id="iptProdDia"><br><br>
+
+    <span style="color:#7FA72D">Preço da venda do Nm³</span><br>
+    <input id="iptPrecoVenda"><br>
+
+    <button onclick="btnSimular()">Simule o ganho</button>
+    <div id="divSimular"></div>
+</body>
+<script>
+    function btnCalcular (){
+        var ax_ProdDia = Number (iptProdDia.value);
+        var ax_PrecoVenda = Number (iptPrecoVenda.value);
+
+        var ax_ProdAno = ax_ProdDia * 365;
+        var ax_PrecoAno = ax_ProdAno * ax_PrecoVenda;
+        var ax_perda = ax_PrecoAno * 0.03;
+        var ax_lucro = ax_PrecoAno * 0.05;
+        // var ax_multa =
+         
+
+
+    }
+</script>
+</html>
