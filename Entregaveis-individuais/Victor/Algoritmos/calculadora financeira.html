@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora VS</title>
+</head>
+
+<body>
+  <h1>Proposta Simulador</h1>
+  Simule aqui os beneficios que sua empresa pode obter conosco. <br><br>
+
+  Quantos Nm³ sua empresa produz por dia? <br>
+  <input id="iptNm3"><br><br>
+
+  Qual o preço de venda médio do gás produzido (em Reais)<br>
+  <input id="iptPreco"><br><br>
+
+  <button onclick="simular()">Simular</button><br><br>
+
+  <div id="divMsg"></div>
+</body>
+
+<script>
+  function simular() {
+    var axProduto = Number(iptNm3.value)
+    var axPrecoM3 = Number(iptPreco.value) * 365
+    var axValorProducao = axProduto * axPrecoM3
+    var axPerda = axValorProducao / .97 - axValorProducao
+    var axLucro = (axValorProducao / .97) * 1.02
+
+    divMsg.innerHTML = `Com base no dado da SEMIL da estimativa de que 3% da produção é perdida por vazamentos do gás, atualmente sua empresa está perdendo <b>R$${axPerda.toFixed(2)}</b> da receita anual de <i>R${axValorProducao.toFixed(2)}</i>. <br>
+    Com a nossa solução, além de resgatar esse valor estimamos ser possivel obter um retorno de <i>R$${(axLucro - axPerda).toFixed(2)}</i> totalizando <span style="color: green;">R$${axLucro.toFixed(2)}</span>.`
+  }
+</script>
+
+</html>
