@@ -54,3 +54,30 @@ nav a {
     height: 100%;
     object-fit: cover;
 }
+
+.heroText {
+    position: absolute;
+    right: 10%;
+    bottom: 40px;
+    font-size: 28px;
+    text-align: right;
+    font-weight: 500;
+}
+
+.about {
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 80px;
+}
+
+.aboutText {
+    width: 50%;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #355e3b;
+}
+
+.about image {
+    width: 100%;
+    border-radius: 8px;
+}
