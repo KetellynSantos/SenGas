@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulador Financeiro</title>
+  <style>
+
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f5f1e8;
+      color: #004830;
+      font-family: "Arial", sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #4a7c40;
+    }
+    header nav a {
+      margin-left: 20px;
+      color: #4a7c40;
+    }
+    header nav a.login {
+      border: 1px solid #4a7c40;
+      padding: 8px 12px;
+      border-radius: 4px;
+      color: #ffffff;
+      background-color: #7fa72d;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .simulador {
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+    }
+    .simulador h1 {
+      color: #7fa72d;
+      margin-bottom: 20px;
+    }
+    .simulador p {
+      margin-bottom: 20px;
+    }
+    .input-group {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .input-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 50px;
+      background-color: #e0e0e0; 
+    }
+
+    .simular-btn {
+      margin-top: 20px;
+      width: 100%;
+    }
+    .simular-btn button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 50px;
+      background-color: #7fa72d;
+      color: #ffffff;
+      font-size: 1.1rem; 
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .simular-btn button:hover {
+      background-color: #6c8e26;
+    }
+
+    #resultado {
+      margin-top: 30px;
+      text-align: left;
+      color: #004830;
+    }
+
+    footer {
+      background-color: #2b4a2c;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Sen Gás</div>
+    <nav>
+      <a href="#">Quem somos</a>
+      <a href="#">Serviços</a>
+      <a href="#">Orçamento</a>
+      <a href="#">Simulador Financeiro</a>
+      <a href="#" class="login">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="simulador">
+      <h1>Simulador Financeiro</h1>
+      <p>
+        <b> <h4> Veja como sua produção pode gerar ainda mais valor! </h4> </b> <br> <br>
+        Insira seus dados e calcule o potencial financeiro do biometano na sua operação e descubra como otimizar resultados com eficiência e sustentabilidade!
+      </p>
+
+      <div class="input-group">
+        <b>Quantidade de metano (em m³) produzido por dia </b> <br> <br> <input id="iptMetano"> 
+      </div>
+      <div class="input-group">
+        <b>Preço médio de venda (R$)</b> <br> <br> <input id="iptPreco"> <br><br>
+      </div>
+
+      <div class="simular-btn">
+        <button onclick="simular()">Simular</button>
+      </div>
+
+      <div id="resultado"></div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Sen Gás. Todos os direitos reservados.
+  </footer>
+
+  <script>
+    function simular() {
+      var metano = Number(iptMetano.value);
+      var preco = Number(iptPreco.value);
+      var resultadoDiv = ("resultado");
+
+      if(metano == '' || preco == '' || metano < 0 || preco < 0) {
+        resultadoDiv.innerHTML = '<p style="color: red;">Por favor, insira valores válidos.</p>';
+      }
+
+      var producaoAno = metano * 365;
+      var receitaAno = producaoAno * preco;
+
+      var perdaFinanceira = receitaAno * 0.03;
+      var lucro = receitaAno * 0.05;
+      var multa = producaoAno * 0.05;
+
+      resultadoDiv.innerHTML = `
+        <p><b>Perda estimada:</b> R$ ${perdaFinanceira.toFixed(2)}</p>
+        <p><b>Lucro com a solução Sen Gás:</b> R$ ${lucro.toFixed(2)} <i>(5% da produção anual)</i></p>
+        <p><b>Multa estimada:</b> R$ ${multa.toFixed(2)}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
