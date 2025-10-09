@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./tela.orcamento.css">
+    <script src="./tela.orcamento.js"></script>
+
+
+    <title> Sen Gás </title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="./logo.png" alt="">
+        </div>
+
+        <div class="nav-bar">
+            <div class="nav-item">
+                <a href="PROJETO06/SenGas/Entregaveis-individuais/ViniciusFrancelino/www/html/index.html"> Home </a>
+            </div>
+            <div class="nav-item">
+                <a href="">Quem Somos</a>
+            </div>
+            <div class="nav-item">
+                <a href="">Orçamento </a>
+            </div>
+            <div class="nav-item">
+                <a href="PROJETO06/SenGas/Entregaveis-individuais/BrenoAlves/telaSimuladorV1.html"> Simulador Financeiro
+                </a>
+            </div>
+        </div>
+        <div class="nav-button">
+            <button class="buttons"> Login </button>
+        </div>
+    </header>
+    <div class="nav-central">
+        <h1>Solicite seu orçamento <br><br><br></h1>
+    </div>
+    <div class="textos">
+        <h4> * Nome </h4>
+        <input type="nome" id="nome">
+        <h4> * Email </h4>
+        <input type="email" id="email">
+        <h4> * Texto </h4>
+        <input type="text" id="texto">
+        <h4> Autoriza um contato telefônico? </h4>
+        <input type="radio" name="contato" value="sim"> Sim
+        <input type="radio" name="contato" value="nao"> Não
+        <h4> Telefone empresarial </h4>
+        <input type="tel" id="telefone">
+        <h4> Celular</h4>
+        <input type="celular" id="celular"><br><br><br><br>
+    </div>
+    <button class="enviar" onclick="enviar()"> Enviar </button>
+</body>
+<footer>
+
+</footer>
+
+</html>
