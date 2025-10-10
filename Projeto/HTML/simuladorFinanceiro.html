@@ -2,18 +2,15 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="../Assets/imagens/favicon.ico" type="image/x-icon">
-    <title>SenGas - Home</title>
+    
+    <title> Simulador Financeiro </title>
 
-    <!-- Estilização da Pagina -->
-    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-    <!-- Header -->
     <header>
         <div class="logo">
             <img src="./logoSemFundo.png" alt="">
@@ -39,56 +36,32 @@
         </div>
     </header>
 
-    <!-- Hero -->
-    <section class="hero">
-        <img src="../img/Fabrica.png" alt="Imagem de fazenda com painéis solares e turbinas eólicas">
-        <div class="heroText">
-            <h2>Soluções em<br>vazamento de gás</h2>
-        </div>
-    </section>
-
-    <!-- Info - Sobre -->
-    <section class="about">
-        <div class="aboutText">
+    <main>
+        <div class="simulador">
+            <h1>Simulador Financeiro</h1>
             <p>
-                Desenvolvemos sistemas inteligentes de monitoramento em tempo real para identificar vazamentos de gás
-                metano.
-                Com sensores de alta precisão, integração via IoT e dashboards interativos, oferecemos dados confiáveis
-                para que nossos
-                clientes tomem decisões estratégicas e mantenham suas operações seguras e rentáveis.
+                <b>
+                    <h4> Veja como sua produção pode gerar ainda mais valor! </h4>
+                </b> <br> <br>
+                Insira seus dados e calcule o potencial financeiro do biometano na sua operação e descubra como otimizar
+                resultados com eficiência e sustentabilidade!
             </p>
-        </div>
 
-        <div class="image">
-            <img src="../img/Plataforma.png" alt="Imagem de planta industrial">
-        </div>
-    </section>
+            <div class="input-group">
+                <b>Quantidade de metano (em m³) produzido por dia </b> <br> <br> <input id="iptMetano">
+            </div>
+            <div class="input-group">
+                <b>Preço médio de venda (R$)</b> <br> <br> <input id="iptPreco"> <br><br>
+            </div>
 
-    <!-- Beneficios -->
-    <section class="benefit">
-        <div class="card">
-            <img src="../img/Card1.png" alt="">
-            <h3>Redução de perdas financeiras</h3>
-            <p>Evite prejuízos causados por vazamentos</p>
-        </div>
-        <div class="card">
-            <img src="../img/Card2.png" alt="">
-            <h3>Sustentatabilidade garantida</h3>
-            <p>Minimize emissões de metano, um dos principais gases do efeito estufa</p>
-        </div>
-        <div class="card">
-            <img src="../img/Card3.png" alt="">
-            <h3>Segurança para colaboradores</h3>
-            <p>Monitore riscos e previna acidentes</p>
-        </div>
-        <div class="card">
-            <img src="../img/Card4.png" alt="">
-            <h3>Controle total da produção</h3>
-            <p>Dados em tempo real, históricos de ocorrências e alertas inteligentes</p>
-        </div>
-    </section>
+            <div class="simular-btn">
+                <button onclick="simular()">Simular</button>
+            </div>
 
-    <!-- Rodapé -->
+            <div id="resultado"></div>
+        </div>
+    </main>
+
     <footer>
         <div class="footer-container">
             <div class="footer-logo">
@@ -127,8 +100,30 @@
         </div>
     </footer>
 
-    <script src="../js/script.js"></script>
+    <script>
+        function simular() {
+            var metano = Number(iptMetano.value);
+            var preco = Number(iptPreco.value);
+            var resultadoDiv = ("resultado");
 
+            if (metano == '' || preco == '' || metano < 0 || preco < 0) {
+                resultadoDiv.innerHTML = '<p style="color: red;">Por favor, insira valores válidos.</p>';
+            }
+
+            var producaoAno = metano * 365;
+            var receitaAno = producaoAno * preco;
+
+            var perdaFinanceira = receitaAno * 0.03;
+            var lucro = receitaAno * 0.05;
+            var multa = producaoAno * 0.05;
+
+            resultadoDiv.innerHTML = `
+        <p><b>Perda estimada:</b> R$ ${perdaFinanceira.toFixed(2)}</p>
+        <p><b>Lucro com a solução Sen Gás:</b> R$ ${lucro.toFixed(2)} <i>(5% da produção anual)</i></p>
+        <p><b>Multa estimada:</b> R$ ${multa.toFixed(2)}</p>
+      `;
+        }
+    </script>
 </body>
 
 </html>
