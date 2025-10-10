@@ -231,7 +231,7 @@ header {
     border: 1px;
     padding: 25px 80px;
     margin-bottom: 35px;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
 }
 .ctxButton:hover {
