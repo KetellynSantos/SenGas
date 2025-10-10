@@ -11,5 +11,5 @@
 
 
         resultado.innerHTML = '<br>Perda estimada<br><b>R$' + ax_perdaFinanceira.toFixed(2) + '</b><br><br>Com a solução SenGás o lucro seria<br><b>R$' +  ax_lucro.toFixed(2) + '</b><br><i> representando 5% da produção anual</i>' + '<br><br>Caso não exista sistema de monitoramento, você está sujeito a perder <b>R$' + ax_multa.toFixed(2) + '</b>, de acordo com o Sistema Brasileiro de Comércio de Emissões de Gases de Efeito Estufa (SBCE)';     
-
+        
  }
