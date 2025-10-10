@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../CSS/style.css">
+    <script src="../js/simuladorFinanceiro.js"></script>
     <link rel="icon" href="../Assets/imagens/favicon.ico" type="image/x-icon">
     
     <title> Simulador Financeiro </title>
@@ -13,21 +15,21 @@
 <body>
     <header>
         <div class="logo">
-            <img src="./logoSemFundo.png" alt="">
+            <img src="../Assets/imagens/logoSemFundo.png" alt="">
         </div>
 
         <div class="nav-bar">
             <div class="nav-item">
-                <a href="PROJETO06/SenGas/Entregaveis-individuais/ViniciusFrancelino/www/html/home.html"> Home </a>
+                <a href="./home.html"> Home </a>
             </div>
             <div class="nav-item">
                 <a href="">Quem Somos</a>
             </div>
             <div class="nav-item">
-                <a href="./tela.orcamento.html"> Orçamento </a>
+                <a href="./orcamento.html"> Orçamento </a>
             </div>
             <div class="nav-item">
-                <a href="PROJETO06/SenGas/Entregaveis-individuais/BrenoAlves/telaSimuladorV1.html"> Simulador Financeiro
+                <a href="./simuladorFinanceiro.html"> Simulador Financeiro
                 </a>
             </div>
         </div>
@@ -41,17 +43,18 @@
             <h1>Simulador Financeiro</h1>
             <p>
                 <b>
-                    <h4> Veja como sua produção pode gerar ainda mais valor! </h4>
-                </b> <br> <br>
+                    <h6> Veja como sua produção pode gerar ainda mais valor! </h6> </b> <br> <br>
+                <div class="introducao"> 
                 Insira seus dados e calcule o potencial financeiro do biometano na sua operação e descubra como otimizar
                 resultados com eficiência e sustentabilidade!
+                </div>
             </p>
 
             <div class="input-group">
-                <b>Quantidade de metano (em m³) produzido por dia </b> <br> <br> <input id="iptMetano">
+                <b>Quantidade de metano (em m³) <br> produzido por dia </b> <br> <br> <input id="iptProdDia">
             </div>
             <div class="input-group">
-                <b>Preço médio de venda (R$)</b> <br> <br> <input id="iptPreco"> <br><br>
+                <b>Preço médio de venda (R$)</b> <br> <br> <input id="iptPrecoVenda"> <br><br>
             </div>
 
             <div class="simular-btn">
@@ -65,7 +68,7 @@
     <footer>
         <div class="footer-container">
             <div class="footer-logo">
-                <img src="./logoLetraBranca.png" alt="SenGás">
+                <img src="../Assets/imagens/logoLetraBranca.png" alt="SenGás">
                 <div class="social-icons">
                     <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
@@ -99,31 +102,6 @@
             <p>© 2025 SenGás All Rights Reserved</p>
         </div>
     </footer>
-
-    <script>
-        function simular() {
-            var metano = Number(iptMetano.value);
-            var preco = Number(iptPreco.value);
-            var resultadoDiv = ("resultado");
-
-            if (metano == '' || preco == '' || metano < 0 || preco < 0) {
-                resultadoDiv.innerHTML = '<p style="color: red;">Por favor, insira valores válidos.</p>';
-            }
-
-            var producaoAno = metano * 365;
-            var receitaAno = producaoAno * preco;
-
-            var perdaFinanceira = receitaAno * 0.03;
-            var lucro = receitaAno * 0.05;
-            var multa = producaoAno * 0.05;
-
-            resultadoDiv.innerHTML = `
-        <p><b>Perda estimada:</b> R$ ${perdaFinanceira.toFixed(2)}</p>
-        <p><b>Lucro com a solução Sen Gás:</b> R$ ${lucro.toFixed(2)} <i>(5% da produção anual)</i></p>
-        <p><b>Multa estimada:</b> R$ ${multa.toFixed(2)}</p>
-      `;
-        }
-    </script>
 </body>
 
 </html>
