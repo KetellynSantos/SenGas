@@ -1,49 +1,113 @@
+/* HEARDER */
 * {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: "Montserrat", sans-serif;
+
 }
 
 body {
-    background-color: #f7f3ed;
-    color: #2d2d2d;
-}
-
-.topo {
+    margin: 0px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f5f1e8;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    padding: 15px 80px;
-    border-bottom: 1px solid #ddd;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    padding: 25px;
+    background-color: #f5f1e8;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.topo img {
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-right: 100px;
+    margin-left: 165px;
+
+}
+
+.logo {
     display: flex;
-    width: 160px;
-    height: 70px;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 105%;
 }
 
-nav ul {
+.nav-bar {
     display: flex;
-    list-style:none;
-    gap: 25px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40%;
 }
 
-nav a {
+.nav-item a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin-right: 50px;
+    margin-left: 50px;
+    color: #004830;
     text-decoration: none;
-    color: #2d2d2d;
-    font-weight: 500;
+    font-size: 15px;
+    display: inline-block;
+    transition: all 1s ease;
+
 }
 
-.loginBtn {
-    background-color: #7cb342;
-    color: #fff;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 5px;
-    cursor: pointer;
+.nav-item:hover a {
+    color: #7fa72d;
+    transform: scale(1.2);
 }
+
+
+.nav-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 4px;
+    margin-right: 5%;
+    margin-left: -19%;
+}
+
+.buttons {
+    width: 70%;
+    height: 45px;
+    border: none;
+    border-radius: 8px;
+    background-color: #7fa72d;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    transition: all 1s ease;
+}
+
+.buttons:hover {
+    background-color: #004830;
+    transform: scale(1.2);
+}
+
+/* HOME SCREEN */
 
 .hero {
     position: relative;
@@ -86,15 +150,13 @@ nav a {
     border-radius: 8px;
 }
 
-/* Beneficios */
-.benefit{
+.benefit {
     display: flex;
     justify-content: space-around;
     padding: 60px 80px;
     background-color: #f2efe9;
 }
 
-/* Cards */
 .card {
     width: 22%;
     text-align: center;
@@ -104,46 +166,429 @@ nav a {
     border-radius: 6px;
 }
 
-.card h3{
+.card h3 {
     font-size: 16px;
     margin-top: 10px;
 }
 
-.card p{
+.card p {
     font-size: 14px;
     margin-top: 8px;
     line-height: 1.4;
 }
 
-/* Footer */
-footer {
-    background-color: #1b3b27;
-    color: #fff;
-    padding: 30px 80px;
-}
-
-footer img {
-    display: flex;
-    justify-content: flex-start;
-    height: 35px;
-}
-
-.footerContent {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.links {
+/* CONTEXTO */
+.nav-inicio {
     display: flex;
     justify-content: center;
-    gap: 80px;
-    font-size: 14px;
-    line-height: 1.6;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.rightsReserved {
+.imagemTopo {
+    width: 100%;
+    height: 150vh;
+    margin-bottom: -150px;
+    margin-top: -290px;
+    object-fit: contain;
+
+}
+
+.texto {
+    position: absolute;
+    right: 10%;
+    margin-right: 10px;
+    bottom: 40px;
+    color: #f5f1e8;
+    text-align: right;
+    font-size: 60px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.nav-meio1 {
+    background-color: #f5f1e8;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 9px;
+    font-size: 30px;
+}
+
+.nav-meio1 h4 {
+    width: 50%;
+    margin-top: 5%;
+    margin-left: 10%;
+    color: #7fa72d;
+    font-family: "Montserrat", sans-serif;
+}
+
+.nav-meio1 h5 {
+    text-align: justify;
+    width: 50%;
+    margin-left: 10%;
+    color: #004830;
+    font-family: "Montserrat", sans-serif;
+}
+
+.nav-meio1 img {
+    width: 12%;
+    padding: 1px;
+    margin-left: 72%;
+    align-items: center;
+
+}
+
+.imagem1 {
+    margin: -200px 50px 95px;
+
+}
+
+.nav-meio2 {
+    background-color: #7FA72D;
+    width: 100%;
+    height: 100%;
+    padding: 9px;
+    font-size: 30px;
+}
+
+.nav-meio2 h4 {
+    width: 50%;
+    top: 10%;
+    left: 10%;
+    color: #f5f1e8;
+    font-family: "Montserrat", sans-serif;
+}
+
+.nav-meio2 h5 {
+    width: 50%;
+    top: 10%;
+    left: 10%;
+    color: #004830;
+    font-family: "Montserrat", sans-serif;
+}
+
+.imagem2 {
+    margin: -200px 50px 95px;
+
+}
+
+.nav-meio3 {
+    background-color: #f5f1e8;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 9px;
+    font-size: 30px;
+}
+
+.nav-meio3 h4 {
+    width: 50%;
+    top: 10%;
+    left: 10%;
+    color: #7FA72D;
+    font-family: "Montserrat", sans-serif;
+}
+
+.nav-meio3 h5 {
+    width: 50%;
+    top: 10%;
+    left: 10%;
+    color: #004830;
+    font-family: "Montserrat", sans-serif;
+}
+
+.imagem3 {
+    margin: -210px 50px 95px;
+
+}
+
+.nav-meio4 {
+    background-color: #7FA72D;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 9px;
+    font-size: 30px;
+}
+
+.nav-meio4 h4 {
+    width: 50%;
+    top: 10%;
+    left: 10%;
+    color: #f5f1e8;
+    font-family: "Montserrat", sans-serif;
+}
+
+.nav-meio4 h5 {
+    width: 50%;
+    top: 10%;
+    left: 10%;
+    color: #004830;
+    font-family: "Montserrat", sans-serif;
+}
+
+.imagem4 {
+    margin: -210px 50px 95px;
+
+}
+
+.nav-meio5 {
+    background-color: #f5f1e8;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 9px;
+    font-size: 30px;
+}
+
+.nav-meio5 h4 {
+    width: 50%;
+    top: 10%;
+    left: 10%;
+    color: #7FA72D;
+    font-family: "Montserrat", sans-serif;
+}
+
+.nav-meio5 h5 {
+    width: 50%;
+    top: 10%;
+    left: 10%;
+    color: #004830;
+    font-family: "Montserrat", sans-serif;
+}
+
+.nav-meio5 button {
+    background-color: #7aa334;
+    color: #f5f1e8;
+    border: none;
+    padding: 10px 20px;
+    height: 60px;
+    font-weight: bold;
+    border-radius: 3px;
+    margin-left: 155px;
+    cursor: pointer;
+    margin-top: 90px;
+    font-family: "Montserrat", sans-serif;
+    transition: background-color 0.5s ease;
+}
+
+.nav-meio5 button:hover {
+    background-color: #004830;
+}
+
+.nav-meio5 .imagem5 {
+    margin: -500px 50px 95px;
     display: flex;
-    justify-content: flex-end;
-    font-size: 10px;
+    width: 600px;
+    height: 550px;
+    max-width: 8000px;
+    margin-top: -450px;
+    margin-left: 750px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* QUEM SOMOS */
+
+
+/* ORÇAMENTO */
+.nav-central {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    color: #004830;
+}
+
+.textos h4 {
+    color: #004830;
+    font-size: 25px;
+}
+
+input[type="nome"],
+input[type="email"],
+input[type="tel"],
+input[type="celular"] {
+    width: 1000px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+input[type="text"] {
+    width: 880px;
+    padding: 70px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+
+input[type="radio"] {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.enviar {
+    width: 20%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #9bb23c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.5s ease;
+}
+
+.enviar:hover {
+    background-color: #004830;
+}
+
+/* SIMULADOR FINANCEIRO */
+.simulador {
+    width: 90%;
+    margin-top: 100px;
+    max-width: 600px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.simulador h1 {
+    color: #7fa72d;
+    margin-bottom: 80px;
+}
+
+.simulador b {
+    margin-bottom: 20px;
+    font-size: 15px;
+    text-align: center;
+    color: #004d3b;
+}
+
+.introducao {
+    margin-bottom: 60px;
+    font-size: 16px;
+    text-align: center;
+    color: #004d3b;
+}
+
+.input-group {
+    margin-bottom: 70px;
+    text-align: center;
+    color: #004d3b;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    background-color: #e0e0e0;
+}
+
+.simular-btn {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.simular-btn button {
+    width: 50%;
+    padding: 14px;
+    margin-bottom: 300px;
+    border: none;
+    border-radius: 5px;
+    background-color: #7fa72d;
+    color: #ffffff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.simular-btn button:hover {
+    background-color: #004830;
+}
+ 
+#resultado {
+    margin-top: -150px;
+    margin-bottom: 100px;
+    text-align: left;
+    color: #004830;
+}
+
+/* FOOTER */
+footer {
+    width: 100%;
+    background-color: #004d3b;
+    color: #d4af37;
+    padding: 30px 80px;
+    font-family: "Poppins", sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-logo img {
+    width: 160px;
+    object-fit: cover;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    margin-right: 100px;
+    margin-left: -155px;
+}
+
+.social-icons a {
+    color: white;
+    margin-right: 10px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.footer-column h4 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #d4af37;
+}
+
+.footer-column p,
+.footer-column a {
+    font-size: 13px;
+    color: #EFE8E3;
+    margin: 5px 0;
+    text-decoration: none;
+}
+
+.footer-column a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid #f5f1e8;
+    text-align: right;
+    padding-top: 10px;
+    margin-top: 20px;
+}
+
+.footer-bottom p {
+    color: #f5f1e8;
+    font-size: 12px;
+    margin-right: 5%;
 }
