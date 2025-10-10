@@ -167,9 +167,12 @@
       var multa = producaoAno * 0.05;
 
       resultadoDiv.innerHTML = `
-        <p><b>Perda estimada:</b> R$ ${perdaFinanceira.toFixed(2)}</p>
-        <p><b>Lucro com a solução Sen Gás:</b> R$ ${lucro.toFixed(2)} <i>(5% da produção anual)</i></p>
-        <p><b>Multa estimada:</b> R$ ${multa.toFixed(2)}</p>
+        <p><b>Perda estimada:</b> R$ ${perdaFinanceira.toLocaleString('pt-BR', {
+                    style: 'currency', currency: 'BRL'})}</p>
+        <p><b>Lucro com a solução Sen Gás:</b> R$ ${lucro.toLocaleString('pt-BR', {
+                    style: 'currency', currency: 'BRL'})} <i>(5% da produção anual)</i></p>
+        <p><b>Multa estimada:</b> R$ ${multa.toLocaleString('pt-BR', {
+                    style: 'currency', currency: 'BRL'})}</p>
       `;
     }
   </script>
