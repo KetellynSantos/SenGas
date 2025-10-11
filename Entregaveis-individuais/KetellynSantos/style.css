@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.container {
+    padding: 0px 50px;
+}
+
+body {
+    background-color: #EFE8E3;
+    /* margin-left: 200px;
+    margin-right: 200px;*/
+    /*Kitty é linda demais, amo*/
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px;
+}
+
+.lista-header,
+.lista-menu {
+    display: flex;
+    list-style-type: none;
+    margin: 15px;
+    justify-content: center;
+    gap: 32px;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.lista-header,
+.info-footer a:hover,
+.lista-header,
+.info-footer a:focus {
+    color: #F2AE31;
+}
+
+a {
+    text-decoration: none;
+    color: #004830;
+    font-family: "Montserrat", sans-serif;
+}
+
+.img-site {
+    height: auto;
+    width: auto;
+}
+
+.btn-login {
+    background-color: #7FA62D;
+    padding: 24px;
+    border-radius: 8px;
+    color: white;
+}
+
+.secao-principal {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    padding-top: 60px;
+}
+
+.secoes {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    padding-top: 150px;
+    padding-bottom: 150pxb ;
+}
+
+.titulo-principal {
+    font-size: 35px;
+    color: #7FA72D;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bolder;
+}
+
+p {
+    font-size: 40px;
+    font-family: "Montserrat", sans-serif;
+    color: #004830;
+    line-height: 150%;
+}
+
+.paragrafo-um {
+    font-size: 30px;
+}
+
+.paragrafo-dois {
+    color: #004830;
+    font-weight: 600;
+}
+
+.card {
+    display: flex;
+    gap: 45px;
+    flex-wrap: wrap;
+
+}
+
+.cards {
+    background-color: #7FA72D;
+    padding: 40px 25px;
+    flex: 1 1 45%;
+    border-radius: 16px;
+}
+
+h1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    color: #004830;
+    font-size: 60px;
+}
+
+.paragrafo-card {
+    color: #004830;
+    font-family: "Montserrat", sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.titulo-card {
+    color: #EFE8E3;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.titulo-footer {
+    color: #F2AE31;
+    font-family: "Montserrat", sans-serif;
+}
+
+.info-footer {
+    color: #7FA72D;
+    font-size: 32px;
+    line-height: 150%;
+}
+
+.footer-final {
+    display: flex;
+    gap: 15px;
+    padding: 80px 32px;
+    justify-content: space-between;
+}
+
+ul {
+    text-decoration: none;
+    list-style-type: none;
+}
