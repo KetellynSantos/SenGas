@@ -124,14 +124,14 @@ header {
     height: 150vh;
     object-fit: cover;
     margin-bottom: -205px;
-    margin-top: -285px;
+    margin-top: -295px;
 }
 
 .heroText {
     position: absolute;
     right: 10%;
     margin-right: -20px;
-    margin-bottom: 109px;   
+    margin-bottom: 109px;
     bottom: 40px;
     color: #f5f1e8;
     font-size: 60px;
@@ -147,11 +147,10 @@ header {
 
 .aboutText h2 {
     font-size: 30px;
-    margin-bottom: 15px;
+    margin-bottom: 100px;
     color: #355e3b;
     font-family: "Montserrat", sans-serif;
     text-align: center;
-
 }
 
 .aboutText {
@@ -162,6 +161,7 @@ header {
     color: #355e3b;
     font-family: "Montserrat", sans-serif;
     text-align: justify;
+    margin-bottom: 30px;
     margin-top: 50px;
 }
 
@@ -184,68 +184,67 @@ header {
     width: 300px;
     padding: 20px;
     margin: 10px;
-    background-color: #8bc34a;
+    background-color: #7FA72D;
     color: #efe8e3;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    font-family: Arial, sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .card #card1 {
-    font-size: 14px;
-    color: #efe8e3;
-    margin-top: 35px;
+    margin-top: 40px;
     margin-bottom: 10px;
 }
 
 .card #card2 {
-    font-size: 12px;
-    color: #efe8e3;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .card #card3 {
-    font-size: 14px;
-    color: #efe8e3;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .card #card4 {
-    font-size: 14px;
-    color: #efe8e3;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .card h3 {
-    font-size: 30px;
-    margin-top: 10px;
+    font-size: 22px;
     font-weight: bold;
-    color: #1b3b27;
-    margin-bottom: 12px;
+    color: #efe8e3;
+    margin-bottom: 30px;
+    margin-top: 60px;
 }
 
-.card span {
+.card p {
     font-size: 22px;
     line-height: 2.0;
-    display: block;
-    color: #efe8e3;
-    margin-bottom: 50px;
+    display: flex;
+    color: #00271A;
+    margin-bottom: 80px;
+    text-align: center;
 }
 
 .ctxButton {
     display: inline-block;
-    background-color: #7cb342;
-    font-size: 25px;
+    text-align: center;
+    background-color: #7fa72d;
+    width: 50%;
+    font-size: 1.1rem;
     color: #efe8e3;
     border: none;
-    padding: 25px 80px;
-    margin-bottom: 70px;
-    border-radius: 10px;
+    padding: 14px 80px;
+    margin-bottom: 100px;
+    margin-top: 70px;
+    margin-right: 100px;
+    border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
+    transition: background-color 0.5s ease;
 }
 
 .ctxButton:hover {
@@ -274,7 +273,7 @@ header {
     position: absolute;
     right: 10%;
     margin-right: -20px;
-    margin-bottom: 29px; 
+    margin-bottom: 29px;
     bottom: 40px;
     color: #f5f1e8;
     text-align: right;
@@ -299,7 +298,7 @@ header {
     font-family: "Montserrat", sans-serif;
 }
 
-.nav-meio1 h5 {
+.nav-meio1 p {
     text-align: justify;
     width: 50%;
     margin-left: 10%;
@@ -336,7 +335,7 @@ header {
     font-family: "Montserrat", sans-serif;
 }
 
-.nav-meio2 h5 {
+.nav-meio2 p {
     width: 50%;
     top: 10%;
     left: 10%;
@@ -366,7 +365,7 @@ header {
     font-family: "Montserrat", sans-serif;
 }
 
-.nav-meio3 h5 {
+.nav-meio3 p {
     width: 50%;
     top: 10%;
     left: 10%;
@@ -396,7 +395,7 @@ header {
     font-family: "Montserrat", sans-serif;
 }
 
-.nav-meio4 h5 {
+.nav-meio4 p {
     width: 50%;
     top: 10%;
     left: 10%;
@@ -468,19 +467,150 @@ header {
 
 /* QUEM SOMOS */
 
+.secao-principal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    padding: 100px;
+}
+
+.primeira-img {
+    width: 600px;
+    height: auto;
+    object-fit: cover;
+    margin-left: -80px;
+}
+
+.titulo-principal {
+    font-size: 35px;
+    color: #7FA72D;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bolder;
+    display: block;
+    margin-bottom: 50px;
+
+}
+
+.paragrafo-titulo-principal {
+    font-size: 22px;
+    font-family: "Montserrat", sans-serif;
+    text-align: justify;
+    color: #004830;
+    line-height: 1.8;
+    max-width: 600px;
+}
+
+.secoes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    padding: 100px;
+}
+
+.paragrafo-um {
+    font-size: 22px;
+    color: #004830;
+    font-family: "Montserrat", sans-serif;
+    text-align: justify;
+    display: block;
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+.paragrafo-dois {
+    font-size: 22px;
+    font-family: "Montserrat", sans-serif;
+    text-align: justify;
+    color: #004830;
+    line-height: 150%;
+    max-width: 600px;
+}
+
+.segunda-img {
+    width: 600px;
+    height: auto;
+    object-fit: cover;
+
+}
+
+.valores {
+    /* padding: 60px 120px; */
+    background-color: #f5f1e8;
+    padding: 60px 0;
+    /* espaçamento vertical */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.valores h1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    text-align: left;
+    color: #004830;
+    font-size: 40px;
+    margin-bottom: 30px;
+
+}
+
+.card-container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 500px);
+    gap: 25px 60px;
+    justify-items: stretch;
+    font-family: "Montserrat", sans-serif;
+
+}
+
+.cards-sobre-nos {
+    background-color: #7FA72D;
+    padding: 50px 25px;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 5px;
+    margin-bottom: 70px;
+
+}
+
+.paragrafo-card {
+    color: #004830;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: left;
+    margin-left: 20px;
+
+}
+
+.titulo-card {
+    color: #EFE8E3;
+    font-weight: bold;
+    font-size: 32px;
+    text-align: left;
+    margin-bottom: 20px;
+    margin-top: -20px;
+    margin-left: 20px;
+}
+
 
 /* ORÇAMENTO */
 .nav-central {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 100px;
     color: #004830;
+    margin-bottom: 50px;
 }
 
-.textos h4 {
+.textos p {
     color: #004830;
     font-size: 25px;
+    margin-bottom: 5px;
 }
 
 input[type="nome"],
@@ -493,6 +623,7 @@ input[type="celular"] {
     border: 1px solid #ccc;
     background-color: #e0e0e0;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 input[type="text"] {
@@ -508,13 +639,14 @@ input[type="text"] {
 input[type="radio"] {
     margin-right: 5px;
     cursor: pointer;
+    font-family: "Montserrat", sans-serif;
 }
 
 .enviar {
     width: 20%;
-    padding: 12px;
+    padding: 14px;
     margin-top: 20px;
-    background-color: #9bb23c;
+    background-color: #7fa72d;
     color: white;
     border: none;
     border-radius: 8px;
@@ -539,15 +671,15 @@ input[type="radio"] {
 }
 
 .simulador h1 {
-    color: #7fa72d;
+    color: #004830;
     margin-bottom: 80px;
 }
 
 .simulador b {
     margin-bottom: 20px;
-    font-size: 15px;
-    text-align: center;
-    color: #004d3b;
+    font-size: 20px;
+    text-align: justify;
+    color: #7fa72d;
 }
 
 .introducao {
@@ -612,7 +744,7 @@ footer {
     background-color: #004d3b;
     color: #d4af37;
     padding: 30px 80px;
-    font-family: "Poppins", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .footer-container {
