@@ -23,25 +23,25 @@ function simular() {
        if (PrecoVenda < 0)
               erro1 += '* Este campo só pode ser preenchido com valores positivos acima de zero.';
        if (erro != '' || erro1 != '') {
-              div_msg.innerHTML = '<b><span style = color:green;>' + erro + '</span></b>';
-              div_msg1.innerHTML = "<b><span style = color:green;>" + erro1 + "</span></b>";
+              div_msg.innerHTML =  `${erro}`;
+              div_msg1.innerHTML = `${erro1}`;
        }
        else {
-              resultado.innerHTML = ` <b> Resultado da Simulação </b><br><br>
-              <b>Receita anual:</b> ${PrecoAno.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}<br><br>
+              resultado.innerHTML = `
+              <b>Receita anual:</b> ${PrecoAno.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}<br>
+              <i>(valor produzido por dia * dias no ano * preço de venda)</i><br><br>
 
               <b>Perdas estimadas em 3%:</b> ${perdaFinanceira.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}<br>
-              <i><b>Por que 3%?</b> Estima-se que empresas sem controle eficiente percam cerca de <b>3% da receita</b> 
-              devido a vazamentos e desperdício de gás.<br><br></i><br>
+              <i>Por que 3%? Estima-se que empresas sem controle eficiente percam cerca de 3% da receita devido a vazamentos e desperdício de gás.<br></i><br>
 
               <b>Multa ambiental de 5%:</b> ${multa.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}<br>
-              <i><b>Por que 5%?</b> Baseado em penalidades do <b>Sistema Brasileiro de Comércio de Emissões de Gases de Efeito Estufa (SBCE)</b> por emissões não controladas de metano.<br><br></i><br>
+              <i>Por que 5%? Baseado em penalidades do Sistema Brasileiro de Comércio de Emissões de Gases de Efeito Estufa (SBCE) por emissões não controladas de metano.<br></i><br>
 
               <b> Economia com SenGás: </b> ${economiaComSenGas.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}<br>
               <i> Valor que sua empresa deixaria de perder ao adotar o sistema SenGás.</i><br><br>
 
                <b>Lucro com SenGás:</b> ${lucro.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}<br>
-               <i> Com o sistema SenGás, sua operação reduz perdas, evita multas, otimiza processo de compressão e armazenamento e ainda pode aumenta a eficiência da produção em <b>5%</b>.</i>`
+               <i> Com o sistema SenGás, sua operação reduz perdas, evita multas, otimiza processo de compressão e armazenamento e ainda pode aumenta a eficiência da produção em 5%.</i>`
 
               }
 } 

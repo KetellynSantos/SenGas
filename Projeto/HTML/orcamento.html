@@ -42,29 +42,31 @@
             <button class="buttons"> Login </button>
         </div>
     </header>
-    <div class="nav-central">
-        <h1>Solicite seu orçamento </h1>
-    </div>
-    <div class="textos">
-        <p> * Nome </p> <br>
-        <input type="nome" id="nome"><br><br>
-        <div id="div_msg"></div><br>
-        <p> * Email </p><br>
-        <input type="email" id="email"><br><br>
-        <div id="div_msg1"></div><br>
-        <p> * Texto </p><br>
-        <input type="text" id="texto"><br><br>
-        <div id="div_msg2"></div><br>
-        <p> Autoriza um contato telefônico? </p><br><br>
-        <input type="radio" name="contato" value="sim"> Sim
-        <input type="radio" name="contato" value="nao"> Não <br><br><br>
-        <p> Telefone empresarial </p><br>
-        <input type="tel" id="telefone"><br><br>
-        <p> Celular</p><br>
-        <input type="celular" id="celular"><br><br><br><br>
-    </div>
-    <button class="enviar" onclick="enviar()"> Enviar </button><br><br><br><br>
 
+    <main class="caixa-orcamento">
+        <div class="nav-central">
+            <h1>Solicite seu orçamento </h1>
+        </div>
+        <div class="textos">
+            <p> * Nome: </p> <br>
+            <input type="nome" id="nome"><br><br>
+            <div id="msg"></div><br>
+            <p> * Email: </p><br>
+            <input type="email" id="email"><br><br>
+            <div id="msg1"></div><br>
+            <p>* Texto: </p><br>
+            <input type="text" id="texto"><br><br>
+            <div id="msg2"></div><br>
+            <p> Autoriza um contato telefônico? </p><br>
+            <input type="radio" name="contato" value="sim"> Sim
+            <input type="radio" name="contato" value="nao"> Não <br><br><br>
+            <p> Telefone empresarial: </p><br>
+            <input type="tel" id="telefone"><br><br>
+            <p> Celular:</p><br>
+            <input type="celular" id="celular"><br><br><br><br>
+        </div>
+        <button class="enviar" onclick="enviar()"> Enviar </button><br><br><br><br>
+    </main>
     <footer>
         <div class="footer-container">
             <div class="footer-logo">
