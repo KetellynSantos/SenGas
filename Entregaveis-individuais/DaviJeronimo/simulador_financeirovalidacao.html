@@ -139,7 +139,7 @@
             div_msg1.innerHTML = "<b><span style = color:green;>" + erro1 + "</span></b>";
         }
         else {
-            resultado.innerHTML = '<br>Perda estimada<br><b>' + ax_perdaFinanceira.toLocaleString(pt - BR, { style: "currency", currency: 'BRL' }) + '</b><br><br>Com a solução SenGás o lucro seria<br><b>' + ax_lucro.toLocaleString(pt - BR, { style: "currency", currency: 'BRL' }) + '</b><br><i> representando 5% da produção anual</i>' + '<br><br>Caso não exista sistema de monitoramento, você está sujeito a perder <b>' + ax_multa.toLocaleString(pt - BR, { style: "currency", currency: 'BRL' }) + '</b>, de acordo com o Sistema Brasileiro de Comércio de Emissões de Gases de Efeito Estufa (SBCE)';
+            resultado.innerHTML = '<br>Perda estimada<br><b>' + ax_perdaFinanceira.toLocaleString('pt-br', { style: "currency", currency: 'BRL' }) + '</b><br><br>Com a solução SenGás o lucro seria<br><b>' + ax_lucro.toLocaleString('pt-br', { style: "currency", currency: 'BRL' }) + '</b><br><i> representando 5% da produção anual</i>' + '<br><br>Caso não exista sistema de monitoramento, você está sujeito a perder <b>' + ax_multa.toLocaleString('pt-br', { style: "currency", currency: 'BRL' }) + '</b>, de acordo com o Sistema Brasileiro de Comércio de Emissões de Gases de Efeito Estufa (SBCE)';
         }
     }
 
