@@ -5,6 +5,15 @@
 
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #0b5f43;
+    border-radius: 10px;
+}
+
 body {
     margin: 0px;
     display: flex;
@@ -672,10 +681,13 @@ input[type="radio"] {
 .enviar:hover {
     background-color: #004830;
 }
-#msg, #msg1 {
+
+#msg,
+#msg1 {
     color: red;
     margin-top: -25px;
 }
+
 #msg2 {
     color: red;
     margin-top: -10px;
@@ -825,9 +837,11 @@ footer {
     flex-wrap: wrap;
     gap: 40px;
 }
-.footer-column{
+
+.footer-column {
     min-width: 180px;
 }
+
 .footer-logo img {
     width: 160px;
     object-fit: cover;
@@ -836,18 +850,19 @@ footer {
 }
 
 .social-icons {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 .social-icons a {
     color: white;
     font-size: 18px;
-     transition: 0.3s;
+    transition: 0.3s;
 }
+
 .social-icons a:hover {
-  color: #7fa72d;
-  transform: scale(1.1);
+    color: #7fa72d;
+    transform: scale(1.1);
 }
 
 .footer-column h4 {

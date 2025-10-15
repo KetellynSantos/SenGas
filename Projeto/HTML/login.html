@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../CSS/login.css">
+	<link rel="icon" href="../Assets/imagens/favicon.ico" type="image/x-icon">
+	<script src="../js/teste.js"></script>
     <title>Login</title>
 </head>
 <body>
@@ -19,10 +21,10 @@
 				<br>
 				<h1 class="Entrar">Entrar</h1>
 				<br>
-				<input type="email" placeholder="Email" name="email" maxlength="95"/>
-				<input type="password" placeholder="Senha" name="password" maxlength="25"/>
+				<input id="iptEmail" type="email" placeholder="Email" name="email" maxlength="95"/>
+				<input id="iptSenha" type="password" placeholder="Senha" name="password" maxlength="25"/>
 				<a href="" class="a">Esqueceu sua senha?</a>
-				<button type="submit" class="bubu">Entrar</button>
+				<button onclick="entrar()" type="submit" class="bubu">Entrar</button>
 				
 		</div>
 
