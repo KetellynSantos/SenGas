@@ -14,14 +14,14 @@ function simular() {
        let erro1 = ''; // Variável criada para validação dos campos
 
        // Validações dos campos
-       if (ProdDia == 0)
-              erro += '* Este campo é obrigatório.';
-       if (PrecoVenda == 0)
-              erro1 += '* Este campo é obrigatório.';
-       if (ProdDia < 0)
-              erro += '* Este campo só pode ser preenchido com valores positivos acima de zero.';
-       if (PrecoVenda < 0)
-              erro1 += '* Este campo só pode ser preenchido com valores positivos acima de zero.';
+       if (ProdDia == 0){
+              erro += '* Este campo é obrigatório.';}
+       if (PrecoVenda == 0){
+              erro1 += '* Este campo é obrigatório.';}
+       if (ProdDia < 0){
+              erro += '* Este campo só pode ser preenchido com valores positivos acima de zero.';}
+       if (PrecoVenda < 0){
+              erro1 += '* Este campo só pode ser preenchido com valores positivos acima de zero.'}
        if (erro != '' || erro1 != '') {
               div_msg.innerHTML =  `${erro}`;
               div_msg1.innerHTML = `${erro1}`;
