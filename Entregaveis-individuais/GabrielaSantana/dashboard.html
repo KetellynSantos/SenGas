@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard - Sen Gás</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <i class="fa-solid fa-circle-user"></i>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <img class="logo-img" src="./logoLetraBranca.png" alt="Sen Gás logo">
+    </div>
+
+    <nav class="nav">
+      <ul>
+        <li><a class="active" href="#">Dados Capturados </a></li>
+        <li><a href="#">Histórico</a></li>
+        <li><a href="./tela.setores.html">Setores</a></li>
+      </ul>
+    </nav>
+
+      <p class="reserved">© 2025 SenGás All Rights Reserved</p>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button id="toggleSidebar" class="toggle-btn" aria-label="Abrir/Fechar menu">☰</button>
+        <h1>Dashboard</h1>
+      </div>
+      <div class="user">
+        <span> Empresa Xpto </span>
+        <img src="./circle-user-solid-full.svg" alt="Usuária" class="avatar">
+      </div>
+    </header>
+
+    <section class="cards">
+      <div class="card"><p>Captação total do mês</p><h2>75%</h2></div>
+      <div class="card"><p>Filiais ativas</p><h2>3</h2></div>
+    </section>
+
+    <section class="chart-section">
+      <div class="chart-header">
+        <h3>Média de Setores</h3>
+        <div>
+          <select aria-label="Período">
+            <option>Últimos 30 dias</option>
+            <option>7 dias</option>
+            <option>1 ano</option>
+          </select>
+        </div>
+      </div>
+      <div class="chart-placeholder">
+        <canvas id="graficoSetores" width="800" height="340"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+
+    const ctx = document.getElementById('graficoSetores');
+    if (ctx && window.Chart) {
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['01/Jan', '02/Jan','03/Jan', '04/Jan', '05/Jan','06/Jan','07/Jan','08/Jan','09/Jan','10/Jan'],
+          datasets: [
+            { label: 'Captação de Vazamento', data: [53.33,  32.33, 19.67, 13.67, 9.33, 31.67, 20.67, 35, 28.33, 17 ], borderColor: '#0099cc', fill:false, tension:0.0 },
+          ]
+        },
+      });
+    }
+  </script>
+</body>
+</html>
