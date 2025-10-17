@@ -1,72 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Histórico - Sen Gás</title>
-  <link rel="stylesheet" href="../css/tela.historico.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Histórico - Sen Gás</title>
+    <link rel="stylesheet" href="../css/tela.historico.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-  <aside class="sidebar">
-    <div class="sidebar-top">
-      <img class="logo-img" src="../img/logoLetraBranca.png" alt="Sen Gás logo">
-    </div>
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <img class="logo-img" src="../img/logoLetraBranca.png" alt="Sen Gás logo">
+        </div>
 
-    <nav class="nav">
-      <ul>
-        <li><a href="./dashboard.html">Dados Capturados</a></li>
-        <li><a class="active" href="./tela.historico.html">Histórico</a></li>
-        <li><a href="../html/tela.setores.html">Setores</a></li>
-      </ul>
-    </nav>
-    <button class="button-sair" onclick="window.location.href='./home.html'"> 
-        <i class="fa-solid fa-right-from-bracket" style="color: #fcfcfd;"></i> Sair </button>
-    <p class="reserved">© 2025 SenGás All Rights Reserved</p>
-  </aside>
+        <nav class="nav">
+            <ul>
+                <li><a href="./dashboard.html">Dados Capturados</a></li>
+                <li><a class="active" href="./tela.historico.html">Histórico</a></li>
+                <li><a href="../html/tela.setores.html">Setores</a></li>
+            </ul>
+        </nav>
+        <button class="button-sair" onclick="window.location.href='./home.html'">
+            <i class="fa-solid fa-right-from-bracket" style="color: #fcfcfd;"></i> Sair </button>
+        <p class="reserved">© 2025 SenGás All Rights Reserved</p>
+    </aside>
 
-  <main class="historico">
-    <h1>Histórico</h1>
-    <table class="tabela">
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Hora</th>
-          <th>Setor</th>
-          <th>Valor</th>
-        </tr>
-      </thead>
-      <tbody id="dadosTabela">
-      </tbody>
-    </table>
-  </main>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
 
-  <script>
-    const historicoDados = [
-      { data: "30/04/2025", hora: "14:30", setor: "Setor Captação", valor: "6,8" },
-      { data: "29/04/2025", hora: "07:45", setor: "Setor Extração", valor: "9,2"},
-      { data: "28/04/2025", hora: "12:30", setor: "Setor Purificação", valor: "5,1"},
-      { data: "27/04/2025", hora: "09:10", setor: "Setor Armazenagem", valor: "8,5" },
-      { data: "26/04/2025", hora: "10:20", setor: "Setor Extração", valor: "7,4" },
-      {data: "23/09/2024", hora: "12:12", setor: "Setor Captação", valor: "3,0"}
-    ];
+                <h1>Histórico</h1>
+            </div>
+            <div class="user">
+                <span> Empresa Xpto </span>
+                <img src="../img/iconeUsuario.svg" alt="Usuária" class="avatar">
+            </div>
+        </header>
 
-    const tbody = dadosTabela;
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Setor</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody id="dadosTabela">
+            </tbody>
+        </table>
+    </main>
 
-    tbody.innerHTML = "";
+    <script>
+        const historicoDados = [
+            { data: "30/04/2025", hora: "14:30", setor: "Setor Captação", valor: "6,8" },
+            { data: "29/04/2025", hora: "07:45", setor: "Setor Extração", valor: "9,2" },
+            { data: "28/04/2025", hora: "12:30", setor: "Setor Purificação", valor: "5,1" },
+            { data: "27/04/2025", hora: "09:10", setor: "Setor Armazenagem", valor: "8,5" },
+            { data: "26/04/2025", hora: "10:20", setor: "Setor Extração", valor: "7,4" },
+            { data: "23/09/2024", hora: "12:12", setor: "Setor Captação", valor: "3,0" },
+            { data: "30/04/2025", hora: "14:30", setor: "Setor Captação", valor: "6,8" },
+            { data: "29/04/2025", hora: "07:45", setor: "Setor Extração", valor: "9,2" },
+            { data: "28/04/2025", hora: "12:30", setor: "Setor Purificação", valor: "5,1" },
+            { data: "27/04/2025", hora: "09:10", setor: "Setor Armazenagem", valor: "8,5" },
+            { data: "26/04/2025", hora: "10:20", setor: "Setor Extração", valor: "7,4" },
+            { data: "23/09/2024", hora: "12:12", setor: "Setor Captação", valor: "3,0" },
+            { data: "30/04/2025", hora: "14:30", setor: "Setor Captação", valor: "6,8" },
+            { data: "29/04/2025", hora: "07:45", setor: "Setor Extração", valor: "9,2" },
+            { data: "28/04/2025", hora: "12:30", setor: "Setor Purificação", valor: "5,1" },
+            { data: "27/04/2025", hora: "09:10", setor: "Setor Armazenagem", valor: "8,5" },
+            { data: "26/04/2025", hora: "10:20", setor: "Setor Extração", valor: "7,4" }
+        ];
 
-    let contador = 0;
-    while (contador < historicoDados.length) {
-      const dado = historicoDados[contador];
-      let classeStatus = "";
+        const tbody = dadosTabela;
 
-      if (dado.status === "Crítico") classeStatus = "critico";
-      else if (dado.status === "Analisar") classeStatus = "analisar";
+        tbody.innerHTML = "";
 
-     
-      tbody.innerHTML += `
+        let contador = 0;
+        while (contador < historicoDados.length) {
+            const dado = historicoDados[contador];
+            let classeStatus = "";
+
+            if (dado.status === "Crítico") classeStatus = "critico";
+            else if (dado.status === "Analisar") classeStatus = "analisar";
+
+
+            tbody.innerHTML += `
         <tr>
           <td>${dado.data}</td>
           <td>${dado.hora}</td>
@@ -74,8 +97,9 @@
           <td>${dado.valor}</td>
         </tr>
       `;
-      contador++;
-    }
-  </script>
+            contador++;
+        }
+    </script>
 </body>
+
 </html>

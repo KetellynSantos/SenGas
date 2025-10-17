@@ -11,10 +11,11 @@ body {
 
 body {
     font-family: "Montserrat", sans-serif;
-    background: #f7f6f3;
+    background: #f5f1e8;
     color: #004830;
     min-height: 100vh;
 }
+
 
 .sidebar {
     position: fixed;
@@ -96,24 +97,43 @@ body {
     color: #aee0d7;
 }
 
-.historico {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.main-content {
+    margin-left: 260px;
+    padding: 28px;
+    min-height: 100vh;
 }
 
-.historico h1 {
-    text-align: center;
-    margin-top: 50px;
-    margin-left: 15%;
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
 }
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
 
 .tabela {
-    width: 70%;
-    margin-left: 25%;
-    margin-top: 10%;
+    width: 100%;
+    margin-top: 3%;
     background: #fff;
     border-collapse: collapse;
     border-radius: 8px;
