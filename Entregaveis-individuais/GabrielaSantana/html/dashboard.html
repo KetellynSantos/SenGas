@@ -34,7 +34,7 @@
       </div>
       <div class="user">
         <span> Empresa Xpto </span>
-        <img src="./circle-user-solid-full.svg" alt="Usuária" class="avatar">
+        <img src="../img/circle-user-solid-full.svg" alt="Usuária" class="avatar">
       </div>
     </header>
 
@@ -45,7 +45,7 @@
 
     <section class="chart-section">
       <div class="chart-header">
-        <h3>Média de Setores</h3>
+        <h3>Média de Todos os Setores</h3>
         <div>
           <select aria-label="Período">
             <option>Últimos 30 dias</option>
@@ -70,7 +70,10 @@
         data: {
           labels: ['01/Jan', '02/Jan','03/Jan', '04/Jan', '05/Jan','06/Jan','07/Jan','08/Jan','09/Jan','10/Jan'],
           datasets: [
-            { label: 'Captação de Vazamento', data: [53.33,  32.33, 19.67, 13.67, 9.33, 31.67, 20.67, 35, 28.33, 17 ], borderColor: '#0099cc', fill:false, tension:0.0 },
+                { label: 'Setor de Captação', data: [20, 35, 30, 40, 20, 30, 35, 20, 17, 14], borderColor: '#0099cc', fill: false, tension: 0.0 },
+             { label: 'Setor de Extração', data: [63, 53, 44, 38, 32, 27, 26, 23, 10, 14], borderColor: '#ffa500', fill: false, tension: 0.0 },
+              { label: 'Setor de Purificação', data: [15, 12, 16, 5, 7, 25, 30, 40, 25, 17], borderColor: '#008000', fill: false, tension: 0.0 },
+             { label: 'Setor de Armazenagem', data: [1, 12, 16, 50, 7, 25, 30, 40, 25, 57], borderColor: '#9d9d33', fill: false, tension: 0.0 },
           ]
         },
       });

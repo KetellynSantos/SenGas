@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Dashboard - Sen Gás</title>
+    <title>Setores- Sen Gás</title>
     <link rel="stylesheet" href="../css/tela.setores.css">
     <i class="fa-solid fa-circle-user"></i>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
 </head>
 
@@ -24,7 +25,7 @@
                 <li><a href="../html/tela.setores.html">Setores</a></li>
             </ul>
         </nav>
-            <p class="reserved">© 2025 SenGás All Rights Reserved</p>
+        <p class="reserved">© 2025 SenGás All Rights Reserved</p>
     </aside>
 
     <main class="main-content">
@@ -34,13 +35,13 @@
             </div>
             <div class="user">
                 <span> Empresa Xpto </span>
-                <img src="./circle-user-solid-full.svg" alt="Usuária" class="avatar">
+                <img src="../img/circle-user-solid-full.svg" alt="Usuária" class="avatar">
             </div>
         </header>
 
         <section class="chart-section">
             <div class="chart-header">
-                <h3>Sensor 1</h3>
+                <h3> Setor de Captação</h3>
                 <div>
                     <select aria-label="Período">
                         <option>Últimos 30 dias</option>
@@ -54,9 +55,9 @@
             </div>
         </section>
 
-             <section class="chart-section">
+        <section class="chart-section">
             <div class="chart-header">
-                <h3>Sensor 2</h3>
+                <h3> Setor de Extração</h3>
                 <div>
                     <select aria-label="Período">
                         <option>Últimos 30 dias</option>
@@ -70,9 +71,9 @@
             </div>
         </section>
 
-             <section class="chart-section">
+        <section class="chart-section">
             <div class="chart-header">
-                <h3>Sensor 3</h3>
+                <h3> Setor de Purificação</h3>
                 <div>
                     <select aria-label="Período">
                         <option>Últimos 30 dias</option>
@@ -86,14 +87,30 @@
             </div>
         </section>
 
+        <section class="chart-section">
+            <div class="chart-header">
+                <h3> Setor de Armazenagem</h3>
+                <div>
+                    <select aria-label="Período">
+                        <option>Últimos 30 dias</option>
+                        <option>7 dias</option>
+                        <option>1 ano</option>
+                    </select>
+                </div>
+            </div>
+            <div class="chart-placeholder">
+                <canvas id="graficoSetores4" width="800" height="340"></canvas>
+            </div>
+        </section>
+
 
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <script>
 
-        const ctx1 = document.getElementById('graficoSetores1');
+        const ctx1 = "graficoSetores1"
         if (ctx1 && window.Chart) {
             new Chart(ctx1, {
                 type: 'line',
@@ -106,27 +123,40 @@
             });
         }
 
-        const ctx2 = document.getElementById('graficoSetores2');
+        const ctx2 = "graficoSetores2"
         if (ctx2 && window.Chart) {
             new Chart(ctx2, {
                 type: 'line',
                 data: {
                     labels: ['01/Jan', '02/Jan', '03/Jan', '04/Jan', '05/Jan', '06/Jan', '07/Jan', '08/Jan', '09/Jan', '10/Jan'],
                     datasets: [
-                        { label: 'Captação de Vazamento', data: [63, 53, 44, 38, 32, 27, 26, 23, 10, 14], borderColor: '#0099cc', fill: false, tension: 0.0 },
+                        { label: 'Captação de Vazamento', data: [63, 53, 44, 38, 32, 27, 26, 23, 10, 14], borderColor: '#ffa500', fill: false, tension: 0.0 },
                     ]
                 },
             });
         }
 
-                const ctx3 = document.getElementById('graficoSetores3');
+        const ctx3 = "graficoSetores3"
         if (ctx3 && window.Chart) {
             new Chart(ctx3, {
                 type: 'line',
                 data: {
                     labels: ['01/Jan', '02/Jan', '03/Jan', '04/Jan', '05/Jan', '06/Jan', '07/Jan', '08/Jan', '09/Jan', '10/Jan'],
                     datasets: [
-                        { label: 'Captação de Vazamento', data: [15, 12, 16, 5, 7, 25, 30, 40, 25, 17], borderColor: '#0099cc', fill: false, tension: 0.0 },
+                        { label: 'Captação de Vazamento', data: [15, 12, 16, 5, 7, 25, 30, 40, 25, 17], borderColor: '#008000', fill: false, tension: 0.0 },
+                    ]
+                },
+            });
+        }
+
+        const ctx4 =  "graficoSetores4"
+        if (ctx4 && window.Chart) {
+            new Chart(ctx4, {
+                type: 'line',
+                data: {
+                    labels: ['01/Jan', '02/Jan', '03/Jan', '04/Jan', '05/Jan', '06/Jan', '07/Jan', '08/Jan', '09/Jan', '10/Jan'],
+                    datasets: [
+                        { label: 'Captação de Vazamento', data: [1, 12, 16, 50, 7, 25, 30, 40, 25, 57], borderColor: '#9d9d33', fill: false, tension: 0.0 },
                     ]
                 },
             });
