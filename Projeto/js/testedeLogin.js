@@ -6,6 +6,6 @@ function entrar() {
         window.location.href = 'home.html';
       } 
       else {
-        alert('Email ou senha incorretos. Tente: teste@teste.com / 1234');
+        alert('Email ou senha incorretos');
       }
     }

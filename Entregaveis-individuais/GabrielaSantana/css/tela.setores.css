@@ -70,6 +70,25 @@ body {
     color: #2da980;
 }
 
+.button-sair {
+    align-items: center;
+    color: #dfeee8;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 19px;
+    border: none;
+    background-color: #004830;
+    font-size: 15px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.button-sair:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: #2da980;
+}
+
 .reserved {
     text-align: center;
     font-size: 9px;
