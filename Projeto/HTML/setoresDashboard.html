@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../CSS/dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -19,20 +19,20 @@
 
         <nav class="nav-dashboard">
             <ul>
-                <li><a class="active" href="./dashboard.html">Dados Capturados</a></li>
+                <li><a href="./dashboard.html">Dashboard</a></li>
+                <li><a class="active" href="./setoresDashboard.html">Setores</a></li>
                 <li><a href="./historicoDashboard.html">Histórico</a></li>
-                <li><a href="./setoresDashboard.html">Setores</a></li>
             </ul>
         </nav>
-        <button class="button-sair" onclick="window.location.href='./home.html'"> 
-        <i class="fa-solid fa-right-from-bracket" style="color: #fcfcfd;"></i> Sair </button>
+        <button class="button-sair" onclick="window.location.href='./home.html'">
+            <i class="fa-solid fa-right-from-bracket" style="color: #fcfcfd;"></i> Sair </button>
         <p class="reserved">© 2025 SenGás All Rights Reserved</p>
     </aside>
 
     <main class="main-content">
         <header class="topbar">
             <div class="topbar-left">
-                <h1>Dashboard</h1>
+                <h1>Setores</h1>
             </div>
             <div class="user">
                 <span> Empresa Xpto </span>
@@ -150,7 +150,7 @@
             });
         }
 
-        const ctx4 =  "graficoSetores4"
+        const ctx4 = "graficoSetores4"
         if (ctx4 && window.Chart) {
             new Chart(ctx4, {
                 type: 'line',

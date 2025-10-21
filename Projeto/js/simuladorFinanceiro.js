@@ -39,9 +39,12 @@ function simular() {
 
               <b> Economia com SenGás: </b> ${economiaComSenGas.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}<br>
               <i> Valor que sua empresa deixaria de perder ao adotar o sistema SenGás.</i><br><br>
-
-               <b>Lucro com SenGás:</b> ${lucro.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}<br>
-               <i> Com o sistema SenGás, sua operação reduz perdas, evita multas, otimiza processo de compressão e armazenamento e ainda pode aumenta a eficiência da produção em 5%.</i>`
-
+              <div class="lucro">
+               <b>Lucro com SenGás: ${lucro.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}</b><br>
+               <i> Com o sistema SenGás, sua operação reduz perdas, evita multas, otimiza processo de compressão e armazenamento e ainda pode aumenta a eficiência da produção em 5%.</i>
+              <div/>
+               <br>   <div class="simular-orc">
+                <button onclick=""> Solitar Orçamento!</button>
+            </div>`
               }
 } 
