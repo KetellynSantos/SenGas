@@ -802,6 +802,7 @@ input[type="radio"] {
     margin-top: 20px;
     width: 100%;
     text-align: center;
+    border: none;
 }
 
 .simular-orc {
@@ -847,8 +848,6 @@ input[type="radio"] {
     color: #004830;
     margin-top: 500px;
 }
-
-
 
 .lucro{
     background-color: #9ad02c;
