@@ -44,7 +44,7 @@ function simular() {
                <i> Com o sistema SenGás, sua operação reduz perdas, evita multas, otimiza processo de compressão e armazenamento e ainda pode aumenta a eficiência da produção em 5%.</i>
               <div/>
                <br>   <div class="simular-orc">
-                <button onclick=""> Solitar Orçamento!</button>
+                <button onclick=""> Solicitar Orçamento!</button>
             </div>`
               }
 } 
