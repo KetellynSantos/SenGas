@@ -541,6 +541,13 @@ header {
 
 }
 
+.frasemulher{
+    margin: -70px 50px;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: bold;
+}
+
 .valores {
     background-color: #f5f1e8;
     padding: 60px 0;
@@ -838,11 +845,7 @@ input[type="radio"] {
     font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.5s ease;
-  
 }
-
-
-
 
 #resultado .lucro i{
     color: #004830;
