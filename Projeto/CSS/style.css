@@ -655,14 +655,17 @@ input[type="celular"] {
     margin-bottom: 10px;
 }
 
-input[type="text"] {
-    width: 880px;
-    padding: 70px;
+textarea[type="text"] {
+    width: 1000px;
+    padding: 10px;
     border-radius: 20px;
     border: 1px solid #ccc;
     background-color: #e0e0e0;
     cursor: pointer;
+    resize: none;
 }
+
+
 
 
 input[type="radio"] {
