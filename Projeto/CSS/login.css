@@ -44,7 +44,7 @@ h2.h2 {
 	color: #FFFFFF;
 	font-weight: bold;
 	font-size: 22px;
-	margin:34% 31.5% 5%;
+	margin:38% 31.4% 5%;
 }
 
 p {
@@ -105,6 +105,7 @@ button {
 
 
 
+
 button.bubu {
 	border-radius: 20px;
 	border: 1px solid #004830;
@@ -121,9 +122,15 @@ button.bubu {
     cursor: pointer;
 }
 
+
+button:hover{
+	background-color: #5a7a19; 
+	
+}
+
 button.bubu:hover {
 	background-color: #5a7a19; 
-	color: #FFFFFF; 
+	
 }
 
 
