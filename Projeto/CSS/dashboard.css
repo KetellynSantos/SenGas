@@ -169,10 +169,14 @@ body {
 }
 
 .cartao h2 {
-    color: #00796b;
+    color: rgb(251, 36, 36);
     font-size: 28px;
 }
 
+.cartao .quatro {
+    color: #00796b;
+    font-size: 28px;
+}
 
 .chart-section1 {
    

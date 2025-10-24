@@ -20,7 +20,7 @@
         <nav class="nav-dashboard">
             <ul>
                 <li><a href="./dashboard.html">Dashboard </a></li>
-                 <li><a href="./setoresDashboard.html">Setores</a></li>
+                <li><a href="./setoresDashboard.html">Setores</a></li>
                 <li><a class="active" href="./historicoDashboard.html">Histórico</a></li>
             </ul>
         </nav>
@@ -48,6 +48,7 @@
                     <th>Hora</th>
                     <th>Setor</th>
                     <th>Valor</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody id="dadosTabela">
@@ -57,23 +58,23 @@
 
     <script>
         const historicoDados = [
-            { data: "30/04/2025", hora: "14:30", setor: "Setor Captação", valor: "6,8" },
-            { data: "29/04/2025", hora: "07:45", setor: "Setor Extração", valor: "9,2" },
-            { data: "28/04/2025", hora: "12:30", setor: "Setor Purificação", valor: "5,1" },
-            { data: "27/04/2025", hora: "09:10", setor: "Setor Armazenagem", valor: "8,5" },
-            { data: "26/04/2025", hora: "10:20", setor: "Setor Extração", valor: "7,4" },
-            { data: "23/09/2024", hora: "12:12", setor: "Setor Captação", valor: "3,0" },
-            { data: "30/04/2025", hora: "14:30", setor: "Setor Captação", valor: "6,8" },
-            { data: "29/04/2025", hora: "07:45", setor: "Setor Extração", valor: "9,2" },
-            { data: "28/04/2025", hora: "12:30", setor: "Setor Purificação", valor: "5,1" },
-            { data: "27/04/2025", hora: "09:10", setor: "Setor Armazenagem", valor: "8,5" },
-            { data: "26/04/2025", hora: "10:20", setor: "Setor Extração", valor: "7,4" },
-            { data: "23/09/2024", hora: "12:12", setor: "Setor Captação", valor: "3,0" },
-            { data: "30/04/2025", hora: "14:30", setor: "Setor Captação", valor: "6,8" },
-            { data: "29/04/2025", hora: "07:45", setor: "Setor Extração", valor: "9,2" },
-            { data: "28/04/2025", hora: "12:30", setor: "Setor Purificação", valor: "5,1" },
-            { data: "27/04/2025", hora: "09:10", setor: "Setor Armazenagem", valor: "8,5" },
-            { data: "26/04/2025", hora: "10:20", setor: "Setor Extração", valor: "7,4" }
+            { data: "30/04/2025", hora: "14:30", setor: "Setor Captação", valor: "6,8 %", status: "Estável" },
+            { data: "29/04/2025", hora: "07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
+            { data: "28/04/2025", hora: "12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
+            { data: "27/04/2025", hora: "09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Estável" },
+            { data: "26/04/2025", hora: "10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" },
+            { data: "23/09/2024", hora: "12:12", setor: "Setor Captação", valor: "3,0 %", status: "Estável" },
+            { data: "30/04/2025", hora: "14:30", setor: "Setor Captação", valor: "6,8 %", status: "Instável" },
+            { data: "29/04/2025", hora: "07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
+            { data: "28/04/2025", hora: "12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
+            { data: "27/04/2025", hora: "09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Instável" },
+            { data: "26/04/2025", hora: "10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" },
+            { data: "23/09/2024", hora: "12:12", setor: "Setor Captação", valor: "3,0 %", status: "Estável" },
+            { data: "30/04/2025", hora: "14:30", setor: "Setor Captação", valor: "6,0 %", status: "Estável" },
+            { data: "29/04/2025", hora: "07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
+            { data: "28/04/2025", hora: "12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
+            { data: "27/04/2025", hora: "09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Instável" },
+            { data: "26/04/2025", hora: "10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" }
         ];
 
         const tbody = dadosTabela;
@@ -83,10 +84,13 @@
         let contador = 0;
         while (contador < historicoDados.length) {
             const dado = historicoDados[contador];
-            let classeStatus = "";
+            let corStatus;
 
-            if (dado.status === "Crítico") classeStatus = "critico";
-            else if (dado.status === "Analisar") classeStatus = "analisar";
+            if (dado.status === "Estável") {
+                corStatus = "green";
+            } else {
+                corStatus = "red";
+            }
 
 
             tbody.innerHTML += `
@@ -95,6 +99,7 @@
           <td>${dado.hora}</td>
           <td>${dado.setor}</td>
           <td>${dado.valor}</td>
+           <td style="color: ${corStatus}; font-weight: bold;">${dado.status}</td>
         </tr>
       `;
             contador++;
