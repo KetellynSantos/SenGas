@@ -173,13 +173,27 @@ body {
     font-size: 28px;
 }
 
-.chart-section {
+
+.chart-section1 {
+   
     margin-top: 20px;
     background: #fff;
     padding: 18px;
     border-radius: 10px;
     box-shadow: 0 4px 14px rgba(15, 20, 15, 0.04);
 }
+
+
+.chart-section {
+    width: 40%;
+    margin-top: 20px;
+    margin: 4% 0% 0% 6%;
+    background: #fff;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(15, 20, 15, 0.04);
+}
+
 
 .chart-header {
     display: flex;
@@ -189,7 +203,14 @@ body {
 }
 
 .chart-header h3 {
-    margin-left: 500px;
+    margin-left: 7px;
+}
+
+.central{
+     display: flex;
+}
+.central2{
+    display: flex;
 }
 
 select {

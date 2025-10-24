@@ -541,6 +541,13 @@ header {
 
 }
 
+.frasemulher{
+    margin: -70px 50px;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: bold;
+}
+
 .valores {
     background-color: #f5f1e8;
     padding: 60px 0;
@@ -648,15 +655,15 @@ input[type="celular"] {
     margin-bottom: 10px;
 }
 
-input[type="text"] {
-    width: 880px;
-    padding: 70px;
+textarea[type="text"] {
+    width: 1000px;
+    padding: 10px;
     border-radius: 20px;
     border: 1px solid #ccc;
     background-color: #e0e0e0;
     cursor: pointer;
+    resize: none;
 }
-
 
 input[type="radio"] {
     margin-right: 5px;
@@ -802,6 +809,7 @@ input[type="radio"] {
     margin-top: 20px;
     width: 100%;
     text-align: center;
+    border: none;
 }
 
 .simular-orc {
@@ -837,18 +845,12 @@ input[type="radio"] {
     font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.5s ease;
-  
 }
-
-
-
 
 #resultado .lucro i{
     color: #004830;
     margin-top: 500px;
 }
-
-
 
 .lucro{
     background-color: #9ad02c;
