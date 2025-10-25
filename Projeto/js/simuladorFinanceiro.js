@@ -43,8 +43,9 @@ function simular() {
                <b>Lucro com SenGás: ${lucro.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}</b><br>
                <i> Com o sistema SenGás, sua operação reduz perdas, evita multas, otimiza processo de compressão e armazenamento e ainda pode aumenta a eficiência da produção em 5%.</i>
               <div/>
-               <br>   <div class="simular-orc">
-                <button onclick=""> Solicitar Orçamento!</button>
+               <br>  
+               <div class="simular-orc">
+                <button onclick="window.location.href='./orcamento.html'"> Solicitar Orçamento!</button>
             </div>`
               }
 } 
