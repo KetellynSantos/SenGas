@@ -44,8 +44,7 @@
         <table class="tabela">
             <thead>
                 <tr>
-                    <th>Data</th>
-                    <th>Hora</th>
+                    <th>Data/Hora</th>
                     <th>Setor</th>
                     <th>Valor</th>
                     <th>Status</th>
@@ -58,23 +57,23 @@
 
     <script>
         const historicoDados = [
-            { data: "30/04/2025", hora: "14:30", setor: "Setor Captação", valor: "6,8 %", status: "Estável" },
-            { data: "29/04/2025", hora: "07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
-            { data: "28/04/2025", hora: "12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
-            { data: "27/04/2025", hora: "09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Estável" },
-            { data: "26/04/2025", hora: "10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" },
-            { data: "23/09/2024", hora: "12:12", setor: "Setor Captação", valor: "3,0 %", status: "Estável" },
-            { data: "30/04/2025", hora: "14:30", setor: "Setor Captação", valor: "6,8 %", status: "Instável" },
-            { data: "29/04/2025", hora: "07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
-            { data: "28/04/2025", hora: "12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
-            { data: "27/04/2025", hora: "09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Instável" },
-            { data: "26/04/2025", hora: "10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" },
-            { data: "23/09/2024", hora: "12:12", setor: "Setor Captação", valor: "3,0 %", status: "Estável" },
-            { data: "30/04/2025", hora: "14:30", setor: "Setor Captação", valor: "6,0 %", status: "Estável" },
-            { data: "29/04/2025", hora: "07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
-            { data: "28/04/2025", hora: "12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
-            { data: "27/04/2025", hora: "09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Instável" },
-            { data: "26/04/2025", hora: "10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" }
+            { data: "30/04/2025 14:30", setor: "Setor Captação", valor: "6,8 %", status: "Estável" },
+            { data: "29/04/2025 07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
+            { data: "28/04/2025 12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
+            { data: "27/04/2025 09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Estável" },
+            { data: "26/04/2025 10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" },
+            { data: "23/09/2024 12:12", setor: "Setor Captação", valor: "3,0 %", status: "Estável" },
+            { data: "30/04/2025 14:30", setor: "Setor Captação", valor: "6,8 %", status: "Instável" },
+            { data: "29/04/2025 07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
+            { data: "28/04/2025 12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
+            { data: "27/04/2025 09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Instável" },
+            { data: "26/04/2025 10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" },
+            { data: "23/09/2024 12:12", setor: "Setor Captação", valor: "3,0 %", status: "Estável" },
+            { data: "30/04/2025 14:30", setor: "Setor Captação", valor: "6,0 %", status: "Estável" },
+            { data: "29/04/2025 07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
+            { data: "28/04/2025 12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
+            { data: "27/04/2025 09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Instável" },
+            { data: "26/04/2025 10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" }
         ];
 
         const tbody = dadosTabela;
@@ -96,7 +95,6 @@
             tbody.innerHTML += `
         <tr>
           <td>${dado.data}</td>
-          <td>${dado.hora}</td>
           <td>${dado.setor}</td>
           <td>${dado.valor}</td>
            <td style="color: ${corStatus}; font-weight: bold;">${dado.status}</td>
