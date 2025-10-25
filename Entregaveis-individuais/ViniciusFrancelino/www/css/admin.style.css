@@ -1,0 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #f5f7f5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Cabeçalho superior */
+header {
+    background-color: #004332;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 40px;
+    height: 80px;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+header nav div {
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+header nav div:hover {
+    opacity: 0.8;
+}
+
+header nav i {
+    display: block;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+/* Layout principal */
+.container {
+    display: flex;
+    flex: 1;
+}
+
+/* Menu lateral */
+aside {
+    width: 210px;
+    background-color: #e6f0e2;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    height: 100%;
+}
+
+aside .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    color: #004332;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+aside .menu-item:hover {
+    background-color: #d8e7d4;
+}
+
+aside i {
+    font-size: 20px;
+}
+
+/* Conteúdo principal */
+main {
+    flex: 1;
+    padding: 40px;
+}
+
+h1 {
+    text-align: center;
+    color: #004332;
+    margin-bottom: 30px;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 10px;
+}
+
+.top-bar input {
+    width: 420px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.top-bar button {
+    background-color: #004332;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.top-bar button:hover {
+    background-color: #046043;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 12px 15px;
+}
+
+thead {
+    background-color: #004332;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+tbody tr:hover {
+    background-color: #e6f0e2;
+}
+
+td.actions {
+    text-align: center;
+}
+
+td.actions button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 5px;
+    transition: transform 0.2s;
+}
+
+td.actions button:hover {
+    transform: scale(1.2);
+}
+
+.edit-btn {
+    color: #007f4e;
+}
+
+.delete-btn {
+    color: #c0392b;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    aside {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .top-bar input {
+        width: 65%;
+    }
+}
