@@ -10,10 +10,10 @@ function entrar() {
     } else if (email == "davi@sengas.com.br" && pass == "123@Davi") {
       window.location.href = 'dashboard.html';
       break;
-    } else if (email == "gabriela@sengas.com.br" && pass == "123@Gabriela") {
+    } else if (email == "gabriela@sengas.com.br" && pass == "123@Gabi") {
       window.location.href = 'dashboard.html';
       break;
-    } else if (email == "manuela@sengas.com.br" && pass == "123@Manuela") {
+    } else if (email == "manuela@sengas.com.br" && pass == "123@Manu") {
       window.location.href = 'dashboard.html';
       break;
     } else if (email == "ketellyn@sengas.com.br" && pass == "123@Ketellyn") {
