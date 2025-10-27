@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="../CSS/admin.css">
+    <link rel="icon" href="../Assets/imagens/logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7a5f1c2488.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Menu lateral -->
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <img class="logo-img" src="../Assets/imagens/logoLetraBranca.png.png" alt="Sen Gás logo">
+            </div>
+
+            <nav class="nav-dashboard">
+                <ul>
+                    <li><a class="active" href="./dashboard.html">Dashboard </a></li>
+                    <li><a href="./setoresDashboard.html">Setores</a></li>
+                    <li><a href="./historicoDashboard.html">Histórico</a></li>
+
+                </ul>
+            </nav>
+            <button class="button-sair" onclick="window.location.href='./home.html'">
+                <i class="fa-solid fa-right-from-bracket" style="color: #fcfcfd;"></i> Sair </button>
+            <p class="reserved">© 2025 SenGás All Rights Reserved</p>
+        </aside>
+
+        <!-- Conteúdo -->
+        <main>
+            <h1>Painel Administrativo</h1>
+
+            <div class="top-bar">
+                <input type="text" id="search" placeholder="Busque por usuário...">
+                <button id="addUser">Cadastrar usuário</button>
+            </div>
+
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Nível</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Breno</td>
+                        <td>Alves</td>
+                        <td>breno@sengas.com.br</td>
+                        <td>11990030003</td>
+                        <td>5</td>
+                        <td class="actions">
+                            <button class="edit-btn" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="delete-btn" title="Excluir"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Davi</td>
+                        <td>Jeronimo</td>
+                        <td>Davi@sengas.com</td>
+                        <td>11987654321</td>
+                        <td>2</td>
+                        <td class="actions">
+                            <button class="edit-btn" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="delete-btn" title="Excluir"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Gabriela</td>
+                        <td>Santana</td>
+                        <td>gabriela@sengas.com.br</td>
+                        <td>1199040004</td>
+                        <td>4</td>
+                        <td class="actions">
+                            <button class="edit-btn" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="delete-btn" title="Excluir"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>ketellyn</td>
+                        <td>Santos</td>
+                        <td>ketellyn@sengas.com</td>
+                        <td>11987654321</td>
+                        <td>3</td>
+                        <td class="actions">
+                            <button class="edit-btn" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="delete-btn" title="Excluir"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Manuela</td>
+                        <td>Garcia</td>
+                        <td>manuela@sengas.com</td>
+                        <td>11987654321</td>
+                        <td>2</td>
+                        <td class="actions">
+                            <button class="edit-btn" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="delete-btn" title="Excluir"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Vinicius</td>
+                        <td>Francelino</td>
+                        <td>vinicius@sengas.com</td>
+                        <td>11987654321</td>
+                        <td>1</td>
+                        <td class="actions">
+                            <button class="edit-btn" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button class="delete-btn" title="Excluir"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+<script src="../js/admin.js"></script>
+
+</html>
