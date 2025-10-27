@@ -65,7 +65,7 @@ primary key (idLimite, fkSensorLimite),
 limiteCliente decimal (5,2),
 constraint fk_Sensor_Limite
 foreign key(fkSensorLimite)
-references Sensor(idSensor)
+references sensor(idSensor)
 );
 
 CREATE TABLE captura (
