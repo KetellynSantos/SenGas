@@ -25,6 +25,9 @@ function entrar() {
     } else if (email == "teste@sengas.com.br" && pass == "123@Teste") {
       window.location.href = 'dashboard.html';
       break;
+    } else if (email == "teste@teste.com" && pass == "1234") {
+      window.location.href = 'dashboard.html';
+      break;
     } else {
       tentativas--;
       console.log(tentativas);

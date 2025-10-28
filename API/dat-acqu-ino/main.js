@@ -19,8 +19,8 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'aluno',
-            password: 'Sptech#2024',
+            user: 'apinsert',
+            password: '2024@Ap_Insert',
             database: 'sengas',
             port: 3307
         }
@@ -60,21 +60,21 @@ const serial = async (
 
             // Insert do sensor primario na tabela "captura"
             await poolBancoDados.execute(
-                'INSERT INTO captura (valor, fkSensor) VALUES (?, 5)',
+                'INSERT INTO captura (valor, fkSensor) VALUES (?, 1)',
                 [sensorAnalogico]
             );
             console.log("valores inseridos no banco: ", sensorAnalogico);
 
             // Insert do "segundo" sensor na tabela "captura"
             await poolBancoDados.execute(
-                'INSERT INTO captura (valor, fkSensor) VALUES (?, 6)',
+                'INSERT INTO captura (valor, fkSensor) VALUES (?, 2)',
                 [sensorAnalogico + 2.00]
             );
             console.log("valores inseridos no banco: ", sensorAnalogico + 2);
 
             // Insert do "terceiro" sensor na tabela "captura"
             await poolBancoDados.execute(
-                'INSERT INTO captura (valor, fkSensor) VALUES (?, 7)',
+                'INSERT INTO captura (valor, fkSensor) VALUES (?, 3)',
                 [sensorAnalogico + 4.00]
             );
             console.log("valores inseridos no banco: ", sensorAnalogico - 2);
