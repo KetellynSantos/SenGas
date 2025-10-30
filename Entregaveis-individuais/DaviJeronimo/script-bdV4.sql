@@ -166,7 +166,7 @@ FROM
     
     SELECT 
     us.nome AS ' Dados do funcionário (nome completo)',
-    CONCAT(us.telefone, ' ', us.email) AS 'Dados para contato (telefone e e-mail)',
+    CONCAT(us.telefone, ' ', us.email) AS 'Dados para cont  ato (telefone e e-mail)',
     us.nivelAcesso AS 'Nível de acesso',
     e.nomeFantasia AS 'Nome Fantasia',
     CONCAT(e.razaoSocial, ' ', cnpj) AS 'Razão social e CNPJ',
