@@ -1,4 +1,4 @@
-var usuarioModel = require("../models/usuarioModel");
+const usuarioModel = require("../models/usuarioModel");
 var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
@@ -15,7 +15,7 @@ function autenticar(req, res) {
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`);
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
@@ -48,47 +48,42 @@ function autenticar(req, res) {
                 }
             );
     }
-
 }
 
 function cadastrar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
-    var fkEmpresa = req.body.idEmpresaVincularServer;
+    var nome = req.body.nome;
+    var telefone = req.body.telefone;
+    var email = req.body.email;
+    var senha = req.body.senha;
+    var nivelAcesso = req.body.nivelAcesso;
+    var fkEmpresaUsuario = req.body.fkEmpresaUsuario;
 
-    // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
+    } else if (telefone == undefined) {
+        res.status(400).send("Seu telefone está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (fkEmpresa == undefined) {
-        res.status(400).send("Sua empresa a vincular está undefined!");
+    } else if (nivelAcesso == undefined) {
+        res.status(400).send("O nível de acesso está undefined!");
+    } else if (fkEmpresaUsuario == undefined) {
+        res.status(400).send("A empresa vinculada está undefined!");
     } else {
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, fkEmpresa)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+        usuarioModel.cadastrar(nome, telefone, email, senha, nivelAcesso, fkEmpresaUsuario)
+            .then(function (resultado) {
+                res.json(resultado);
+            })
+            .catch(function (erro) {
+                console.log("\n Erro ao cadastrar:", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
     }
 }
 
 module.exports = {
     autenticar,
     cadastrar
-}
+};
