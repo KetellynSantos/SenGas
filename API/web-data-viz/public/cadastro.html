@@ -5,14 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/cadastro.css">
-  <link rel="icon" href="../Assets/imagens/logo.png" type="image/x-icon">
+  <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <title>Cadastro</title>
 </head>
 
 <body>
 
   <div class="container" id="container">
-    <img src="../public/assets/imgs/sengas.png" class="loga" alt="">
+    <img src="./assets/imgs/sengas.png" class="loga" alt="">
     <br>
     <h1>Crie sua conta</h1>
     <br>
@@ -33,7 +35,7 @@
     <button class="botao" onclick="window.location.href='./login.html'">Entrar</button>
   </div>
 
-<div id="mensagem_erro"></div>
+  <div id="mensagem_erro"></div>
 </body>
 
 </html>
@@ -45,7 +47,7 @@
 
   function cadastrar() {
     // aguardar();
-    
+
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nomeVar = iptNome.value;
@@ -58,7 +60,7 @@
     if (nomeVar == "" || telefoneVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
       alert("Preencha todos os campos!")
       return;
-    } 
+    }
 
     if (senhaVar !== confirmacaoSenhaVar) {
       alert("As senhas não coincidem!");
@@ -87,21 +89,34 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+          Swal.fire({
+            icon: "success",
+            title: "Cadastro realizado!",
+            text: "Redirecionando para o login...",
+            showConfirmButton: false,
+            timer: 1500
+          });
 
           setTimeout(() => {
             window.location = "login.html";
           }, "1000");
 
-          
+
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+          Swal.fire({
+          icon: "error",
+          title: "Erro",
+          text: "Não foi possível realizar o cadastro."
+        });
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
+         Swal.fire({
+        icon: "error",
+        title: "Erro inesperado",
+        text: "Ocorreu um problema na conexão."
+      });
       });
 
     return false;

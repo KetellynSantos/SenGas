@@ -20,15 +20,15 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
-                        aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].idEmpresa)
+                        aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
                             .then((resultadoAquarios) => {
                                 if (resultadoAquarios.length > 0) {
                                     res.json({
                                         id: resultadoAutenticar[0].id,
-                                        nome: resultadoAutenticar[0].nome,
                                         email: resultadoAutenticar[0].email,
-                                        telefone: resultadoAutenticar[0].telefone,
-                                        senha: resultadoAutenticar[0].senha
+                                        nome: resultadoAutenticar[0].nome,
+                                        senha: resultadoAutenticar[0].senha,
+                                        aquarios: resultadoAquarios
                                     });
                                 } else {
                                     res.status(204).json({ aquarios: [] });
@@ -51,21 +51,12 @@ function autenticar(req, res) {
 }
 
 function cadastrar(req, res) {
-<<<<<<< HEAD
     var nome = req.body.nome;
     var telefone = req.body.telefone;
     var email = req.body.email;
     var senha = req.body.senha;
     var nivelAcesso = req.body.nivelAcesso;
     var fkEmpresaUsuario = req.body.fkEmpresaUsuario;
-=======
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var telefone = req.body.telefoneServer;
-    var senha = req.body.senhaServer;
-    var fkEmpresaUsuario = req.body.idEmpresaVincularServer;
->>>>>>> ec9b1360d37070da35192927f41627d4eeefeb08
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -73,11 +64,8 @@ function cadastrar(req, res) {
         res.status(400).send("Seu telefone está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (telefone == undefined) {
-        res.status(400).send("Seu telefone está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-<<<<<<< HEAD
     } else if (nivelAcesso == undefined) {
         res.status(400).send("O nível de acesso está undefined!");
     } else if (fkEmpresaUsuario == undefined) {
@@ -92,28 +80,6 @@ function cadastrar(req, res) {
                 console.log("\n Erro ao cadastrar:", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             });
-=======
-    } else if (fkEmpresaUsuario == undefined) {
-        res.status(400).send("Sua empresa a vincular está undefined!");
-    } else {
-
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, telefone, senha, fkEmpresaUsuario)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
->>>>>>> ec9b1360d37070da35192927f41627d4eeefeb08
     }
 }
 
