@@ -6,7 +6,7 @@ function listar() {
 }
 
 function deletar(idUsuario) {
-    const sql = `DELETE FROM usuario WHERE id = ${idUsuario}`;
+    const sql = `DELETE FROM usuario WHERE idUsuario = ${idUsuario}`;
     return database.executar(sql);
 }
 
