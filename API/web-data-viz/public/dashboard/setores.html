@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Setores- Sen Gás</title>
+    <link rel="stylesheet" href="../CSS/dashboard.css">
+    <link rel="icon" href="../assets/imgs/logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <aside class="sidebar">
+            <div class="sidebar-top">
+                <img class="logo-img" src="../assets/imgs/logoLetraBranca.png.png" alt="Sen Gás logo">
+            </div>
+
+            <nav class="nav-dashboard">
+                <ul>
+                    <li><a class="active" href="./dashboard.html">Dashboard </a></li>
+                    <li><a href="./setores.html">Setores</a></li>
+                    <li><a href="./historicoDashboard.html">Histórico</a></li>
+
+                </ul>
+            </nav>
+            <button class="button-sair" onclick="window.location.href='../index.html'">
+                <i class="fa-solid fa-right-from-bracket" style="color: #fcfcfd;"></i> Sair </button>
+            <p class="reserved">© 2025 SenGás All Rights Reserved</p>
+        </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1>Setores</h1>
+            </div>
+            <div class="user">
+                <span> Empresa Xpto </span>
+                <img src="../assets/imgs/iconeUsuario.svg" alt="Usuária" class="avatar" onclick="window.location.href='admin.html'">
+            </div>
+        </header>
+        <div class=" central">
+            <section class="chart-section">
+                <div class="chart-header">
+                    <h3> Setor de Captação</h3>
+                    <div>
+                        <select aria-label="Período">
+                            <option>Últimos 30 dias</option>
+                            <option>7 dias</option>
+                            <option>1 ano</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="chart-placeholder">
+                    <canvas id="graficoSetores1" width="800" height="340"></canvas>
+                </div>
+            </section>
+
+            <section class="chart-section">
+                <div class="chart-header">
+                    <h3> Setor de Extração</h3>
+                    <div>
+                        <select aria-label="Período">
+                            <option>Últimos 30 dias</option>
+                            <option>7 dias</option>
+                            <option>1 ano</option>
+                        </select>
+                    </div>
+                </div>      
+                <div class="chart-placeholder">
+                    <canvas id="graficoSetores2" width="800" height="340"></canvas>
+                </div>
+            </section>
+        </div>    
+        <div class=" central2">
+            <section class="chart-section">
+                <div class="chart-header">
+                    <h3> Setor de Purificação</h3>
+                    <div>
+                        <select aria-label="Período">
+                            <option>Últimos 30 dias</option>
+                            <option>7 dias</option>
+                            <option>1 ano</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="chart-placeholder">
+                    <canvas id="graficoSetores3" width="800" height="340"></canvas>
+                </div>
+            </section>
+
+            <section class="chart-section">
+                <div class="chart-header">
+                    <h3> Setor de Armazenagem</h3>
+                    <div>
+                        <select aria-label="Período">
+                            <option>Últimos 30 dias</option>
+                            <option>7 dias</option>
+                            <option>1 ano</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="chart-placeholder">
+                    <canvas id="graficoSetores4" width="800" height="340"></canvas>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+        const ctx1 = "graficoSetores1"
+        if (ctx1 && window.Chart) {
+            new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: ['01/Jan', '02/Jan', '03/Jan', '04/Jan', '05/Jan', '06/Jan', '07/Jan', '08/Jan', '09/Jan', '10/Jan'],
+                    datasets: [
+                        { label: 'Captação de Vazamento', data: [2.0, 3.5, 3.0, 6.0, 2.0, 3.0, 6.5, 2.0, 1.7, 1.4], borderColor: '#0099cc', fill: false, tension: 0.0 },
+                         { label: 'Linha delimitadora', data: [6,6,6,6,6,6,6,6,6,6], borderColor: 'red', fill: false, tension: 0.0, pointRadius:0 ,borderWidth: 2,},
+                    ]
+                },
+options:{
+
+      plugins: {
+        legend: {
+            labels:{
+            filter: function(legendItem, chartData){ return legendItem.text !=='Linha delimitadora';},
+             display: false },}
+      },
+    }
+    });
+        }
+
+        const ctx2 = "graficoSetores2"
+        if (ctx2 && window.Chart) {
+            new Chart(ctx2, {
+                type: 'line',
+
+                data: {
+                    labels: ['01/Jan', '02/Jan', '03/Jan', '04/Jan', '05/Jan', '06/Jan', '07/Jan', '08/Jan', '09/Jan', '10/Jan'],
+                    datasets: [
+                        { label: 'Captação de Vazamento', data: [6.3, 5.3, 9.2, 3.8, 7.4, 6.0, 4.6, 2.3, 1.0, 1.4], borderColor: '#ffa500', fill: false, tension: 0.0 },
+                          { label: 'Linha delimitadora', data: [6,6,6,6,6,6,6,6,6,6], borderColor: 'red', fill: false, tension: 0.,  pointRadius:0 , borderWidth: 2,},
+                       
+                    ]
+                },
+                options:{
+
+      plugins: {
+        legend: {
+            labels:{
+            filter: function(legendItem, chartData){ return legendItem.text !=='Linha delimitadora';},
+             display: false },}
+      },
+    }
+            });
+        }
+
+        const ctx3 = "graficoSetores3"
+        if (ctx3 && window.Chart) {
+            new Chart(ctx3, {
+                type: 'line',
+                data: {
+                    labels: ['01/Jan', '02/Jan', '03/Jan', '04/Jan', '05/Jan', '06/Jan', '07/Jan', '08/Jan', '09/Jan', '10/Jan'],
+                    datasets: [
+                        { label: 'Captação de Vazamento', data: [1.5, 1.2, 1.6, 5.0, 7.0, 2.5, 3.0, 4.0, 2.5, 1.7], borderColor: '#008000', fill: false, tension: 0.0 },
+                         { label: 'Linha delimitadora', data: [6,6,6,6,6,6,6,6,6,6,6,6], borderColor: 'red', fill: false, tension: 0.0, pointRadius:0, borderWidth: 2,  },
+                    ]
+                },
+                options:{
+
+      plugins: {
+        legend: {
+            labels:{
+            filter: function(legendItem, chartData){ return legendItem.text !=='Linha delimitadora';},
+             display: false },}
+      },
+    }
+            });
+        }
+
+        const ctx4 = "graficoSetores4"
+        if (ctx4 && window.Chart) {
+            new Chart(ctx4, {
+                type: 'line',
+                data: {
+                    labels: ['01/Jan', '02/Jan', '03/Jan', '04/Jan', '05/Jan', '06/Jan', '07/Jan', '08/Jan', '09/Jan', '10/Jan'],
+                    datasets: [
+                        { label: 'Captação de Vazamento', data: [1.0, 1.2, 1.6, 5.0, 7.9, 2.5, 3.0, 4.0, 2.5, 5.7], borderColor: '#9d9d33', fill: false, tension: 0.0 },
+                         { label: 'Linha delimitadora', data: [6,6,6,6,6,6,6,6,6,6,6], borderColor: 'red', fill: false, tension: 0.0, pointRadius:0, borderWidth: 2 },
+                    ]
+                },
+                options:{
+
+      plugins: {
+        legend: {
+            labels:{
+            filter: function(legendItem, chartData){ return legendItem.text !=='Linha delimitadora';},
+             display: false },}
+      },
+    }
+            });
+        }
+    </script>
+</body>
+
+</html>

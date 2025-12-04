@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/login.css">
     <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
     <script src="../js/login.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Login</title>
 </head>
 
@@ -34,73 +35,78 @@
 
 <script>
 
+  function entrar() {
+    var emailVar = iptEmail.value;
+    var senhaVar = iptSenha.value;
 
-    function entrar() {
-
-
-        var emailVar = iptEmail.value;
-        var senhaVar = iptSenha.value;
-
-        if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/dashboard.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
+    if (emailVar == "" || senhaVar == "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Campos vazios",
+        text: "Preencha todos os campos!"
+      });
+      return;
     }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
 
+    let dadosLogin = {
+      email: emailVar,
+      senha: senhaVar
+    };
+
+    fetch("http://localhost:3333/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dadosLogin)
+    })
+      .then((resposta) => {
+        if (!resposta.ok) {
+          Swal.fire({
+            icon: "error",
+            title: "Login inválido",
+            text: "Email ou senha incorretos."
+          });
+          return null;
+        }
+        return resposta.json();
+      })
+      .then((json) => {
+        if (!json) return;
+
+        // SALVA USUÁRIO NA SESSION
+        sessionStorage.setItem("usuario", JSON.stringify(json));
+
+        Swal.fire({
+          icon: "success",
+          title: "Login efetuado!",
+          text: "Redirecionando...",
+          showConfirmButton: false,
+          timer: 1500
+        });
+
+         setTimeout(() => {
+        if (json.nivelAcesso === "admin") {
+          window.location.href = "./dashboard/admin.html"; 
+          
+        } else if (json.nivelAcesso === "cliente") {
+          window.location.href = "./dashboard/dashboard.html";  
+        } else {
+          // CASO NÃO TENHA NÍVEL DEFINIDO
+          window.location.href = "index.html";
+        }
+      }, 1200);
+
+    })
+      .catch((erro) => {
+        console.error("Erro no login:", erro);
+        Swal.fire({
+          icon: "error",
+          title: "Erro no servidor",
+          text: "Tente novamente mais tarde."
+        });
+      });
+  }
 </script>
+

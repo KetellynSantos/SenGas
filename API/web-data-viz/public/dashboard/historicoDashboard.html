@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Histórico - Sen Gás</title>
+    <link rel="stylesheet" href="../CSS/dashboard.css">
+    <link rel="icon" href="../assets/imgs/logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <img class="logo-img" src="../assets/imgs/logoLetraBranca.png.png" alt="Sen Gás logo">
+        </div>
+
+        <nav class="nav-dashboard">
+            <ul>
+                <li><a href="./dashboard.html">Dashboard </a></li>
+                <li><a href="./setores.html">Setores</a></li>
+                <li><a class="active" href="./historicoDashboard.html">Histórico</a></li>
+            </ul>
+        </nav>
+        <button class="button-sair" onclick="window.location.href='../index.html'">
+            <i class="fa-solid fa-right-from-bracket" style="color: #fcfcfd;"></i> Sair </button>
+        <p class="reserved">© 2025 SenGás All Rights Reserved</p>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+
+                <h1>Histórico</h1>
+            </div>
+            <div class="user">
+                <span> Empresa Xpto </span>
+                <img src="../assets/imgs/iconeUsuario.svg" alt="Usuária" class="avatar">
+            </div>
+        </header>
+
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Data/Hora</th>
+                    <th>Setor</th>
+                    <th>Valor</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="dadosTabela">
+            </tbody>
+        </table>
+    </main>
+
+    <script>
+        const historicoDados = [
+            { data: "30/04/2025 14:30", setor: "Setor Captação", valor: "6,8 %", status: "Estável" },
+            { data: "29/04/2025 07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
+            { data: "28/04/2025 12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
+            { data: "27/04/2025 09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Estável" },
+            { data: "26/04/2025 10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" },
+            { data: "23/09/2024 12:12", setor: "Setor Captação", valor: "3,0 %", status: "Estável" },
+            { data: "30/04/2025 14:30", setor: "Setor Captação", valor: "6,8 %", status: "Instável" },
+            { data: "29/04/2025 07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
+            { data: "28/04/2025 12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
+            { data: "27/04/2025 09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Instável" },
+            { data: "26/04/2025 10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" },
+            { data: "23/09/2024 12:12", setor: "Setor Captação", valor: "3,0 %", status: "Estável" },
+            { data: "30/04/2025 14:30", setor: "Setor Captação", valor: "6,0 %", status: "Estável" },
+            { data: "29/04/2025 07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
+            { data: "28/04/2025 12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
+            { data: "27/04/2025 09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Instável" },
+            { data: "26/04/2025 10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" }
+        ];
+
+        const tbody = dadosTabela;
+
+        tbody.innerHTML = "";
+
+        let contador = 0;
+        while (contador < historicoDados.length) {
+            const dado = historicoDados[contador];
+            let corStatus;
+
+            if (dado.status === "Estável") {
+                corStatus = "green";
+            } else {
+                corStatus = "red";
+            }
+
+
+            tbody.innerHTML += `
+        <tr>
+          <td>${dado.data}</td>
+          <td>${dado.setor}</td>
+          <td>${dado.valor}</td>
+           <td style="color: ${corStatus}; font-weight: bold;">${dado.status}</td>
+        </tr>
+      `;
+            contador++;
+        }
+    </script>
+</body>
+
+</html>
