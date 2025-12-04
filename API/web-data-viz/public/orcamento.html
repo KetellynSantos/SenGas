@@ -2,10 +2,10 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/style.css">
-    <script src="../js/simuladorFinanceiro.js"></script>
+    <script src="../js/orcamento.js"></script>
       <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,8 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
-    <title>SenGás - Simulador Financeiro</title>
 
+    <title> Sen Gás - Orçamento </title>
 </head>
 
 <body>
@@ -43,38 +43,30 @@
         </div>
     </header>
 
-    <main class="caixa-simulador">
-        <div class="simulador">
-            <h1>Simulador Financeiro</h1>
-            <p>
-                <b> Veja como sua produção pode gerar ainda mais lucro! </b> <br> <br>
-            <div class="introducao">
-                Insira seus dados e calcule o potencial financeiro do biometano na sua operação e descubra como otimizar
-                resultados com eficiência e sustentabilidade!
-            </div>
-            </p>
-
-            <div class="input-group">
-                <b>Quantidade de metano (em m³) produzido por dia </b> <br> <br> <input id="iptProdDia">
-                <div id="div_msg"></div>
-            </div>
-            <div class="input-group">
-                <b>Preço médio de venda (R$ / m³)</b> <br> <br> <input id="iptPrecoVenda"> <br><br>
-                <div id="div_msg1"></div>
-            </div>
-
-            <div class="simular-btn">
-                <button onclick="simular()">Simular</button>
-            </div>
+    <main class="caixa-orcamento">
+        <div class="nav-central">
+            <h1>Solicite seu Orçamento </h1>
         </div>
-        <div class="resultado-box">
-            <h2>Resultado da Simulação</h2>
-            <div id="resultado">
-
-            </div>
+        <div class="textos">
+            <p> * Nome: </p> <br>
+            <input type="nome" id="nome"><br><br>
+            <div id="msg"></div><br>
+            <p> * Email: </p><br>
+            <input type="email" id="email"><br><br>
+            <div id="msg1"></div><br>
+            <p>* Texto: </p><br>
+            <textarea type="text" id="texto" rows="10"></textarea><br><br>
+            <div id="msg2"></div><br>
+            <p> Autoriza um contato telefônico? </p><br>
+            <input type="radio" name="contato" value="sim"> Sim
+            <input type="radio" name="contato" value="nao"> Não <br><br><br>
+            <p> Telefone empresarial: </p><br>
+            <input type="tel" id="telefone"><br><br>
+            <p> Celular:</p><br>
+            <input type="celular" id="celular"><br><br><br><br>
         </div>
+        <button class="enviar" onclick="enviar()"> Enviar </button><br><br><br><br>
     </main>
-
      <footer>
         <div class="footer-container">
             <div class="footer-logo">

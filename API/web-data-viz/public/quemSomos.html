@@ -2,23 +2,21 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../CSS/style.css">
-    <script src="../js/simuladorFinanceiro.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-
-    <title>SenGás - Simulador Financeiro</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <title>SenGas - Sobre Nós</title>
 
 </head>
 
-<body>
-    <header>
+<body class="container">
+     <header>
         <div class="logo">
             <img src="./assets/imgs/sengas.png" alt="">
         </div>
@@ -43,39 +41,57 @@
         </div>
     </header>
 
-    <main class="caixa-simulador">
-        <div class="simulador">
-            <h1>Simulador Financeiro</h1>
-            <p>
-                <b> Veja como sua produção pode gerar ainda mais lucro! </b> <br> <br>
-            <div class="introducao">
-                Insira seus dados e calcule o potencial financeiro do biometano na sua operação e descubra como otimizar
-                resultados com eficiência e sustentabilidade!
-            </div>
-            </p>
-
-            <div class="input-group">
-                <b>Quantidade de metano (em m³) produzido por dia </b> <br> <br> <input id="iptProdDia">
-                <div id="div_msg"></div>
-            </div>
-            <div class="input-group">
-                <b>Preço médio de venda (R$ / m³)</b> <br> <br> <input id="iptPrecoVenda"> <br><br>
-                <div id="div_msg1"></div>
-            </div>
-
-            <div class="simular-btn">
-                <button onclick="simular()">Simular</button>
-            </div>
-        </div>
-        <div class="resultado-box">
-            <h2>Resultado da Simulação</h2>
-            <div id="resultado">
-
-            </div>
+    <main class="secao-principal">
+        <img class="primeira-img" src="./assets/imgs/sobreNos-identidade-visual.png" alt="Logo da empresa">
+        <div>
+            <span class="titulo-principal">Quem somos</span>
+            <p class="paragrafo-titulo-principal">Somos uma empresa apaixonada por inovação, <br> sustentabilidade e
+                segurança. Unimos tecnologia, expertise
+                e compromisso ambiental para transformar o setor de biogás e tornar a produção de biometano mais
+                eficiente e limpa.</p>
         </div>
     </main>
 
-     <footer>
+    <section class="secoes">
+        <div>
+            <p class="paragrafo-um">A SenGás nasce com a missão de oferecer soluções tecnológicas para o monitoramento
+                de vazamento de gases no setor de biometano, unindo inovação, sustentabilidade e segurança. O projeto
+                que sustenta essa iniciativa foi desenvolvido com o foco em criar um sistema de monitoramento através de
+                sensores, capaz de detectar falhas durantes os processos de produção e armazenamento, registrando
+                ocorrências e fornecendo dados estratégicos para análises e tomadas de decisão. Nosso propósito é
+                auxiliar na redução substancial do vazamento de gases em empresas, melhorando sua visibilidade social e
+                melhorando sua competitividade frente ao mercado. </p>
+        </div>
+        <div > 
+            <img class="segunda-img" src="./assets/imgs/sobreNos-mulher.jpg" alt="">
+             <p class="frasemulher">Transparência</p>
+        </div>
+    </section>
+    <section>
+        <div class="valores">
+            <h1>Valores e Ideais</h1>
+        </div>
+        <div class="card-container">
+            <div class="cards-sobre-nos">
+                <h2 class="titulo-card">Inovação</h2>
+                <p class="paragrafo-card">Criamos soluções tecnológicas <br> para um futuro sustentável</p>
+            </div>
+            <div class="cards-sobre-nos">
+                <h2 class="titulo-card">Transparência</h2>
+                <p class="paragrafo-card">Atuação clara e confiável <br> com nossos clientes</p>
+            </div>
+            <div class="cards-sobre-nos">
+                <h2 class="titulo-card">Sustentabilidade</h2>
+                <p class="paragrafo-card">Reduzimos impactos e <br> promovemos energia limpa</p>
+            </div>
+            <div class="cards-sobre-nos">
+                <h2 class="titulo-card">Compromisso ambiental</h2>
+                <p class="paragrafo-card">Reduzimos impactos e <br> promovemos energia limpa</p>
+            </div>
+        </div>
+    </section>
+</body>
+  <footer>
         <div class="footer-container">
             <div class="footer-logo">
                 <img class="logobranca" src="./assets/imgs/logofooter.png" alt="SenGás">
@@ -116,7 +132,5 @@
                 <p>© 2025 SenGás All Rights Reserved</p>
             </div>
     </footer>
-
-</body>
 
 </html>

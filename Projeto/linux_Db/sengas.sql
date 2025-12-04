@@ -15,9 +15,9 @@ nome varchar(100) not null,
 email varchar(80) unique not null,
 telefone char(11),
 senha varchar(255) not null,
- fkEmpresaUsuario int,
-nivelAcesso tinyint,
-constraint chkNivel check (nivelAcesso >= 1 and nivelAcesso <= 5),
+fkEmpresaUsuario int,
+nivelAcesso VARCHAR(50),
+constraint chkNivel check (nivelAcesso IN('cliente', 'admin')),
 constraint chkEmpresa_usuario
 foreign key (fkEmpresaUsuario)
 references empresa (idEmpresa)
