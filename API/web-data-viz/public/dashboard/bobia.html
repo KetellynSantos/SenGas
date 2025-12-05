@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="../assets/imgs/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="../CSS/dashboard.css">
+    <link rel="stylesheet" href="../css/bob.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Sengas - BobIA</title>
+</head>
+<body>
+ <aside class="sidebar">
+            <div class="sidebar-top">
+                <img class="logo-img" src="../assets/imgs/logoLetraBranca.png.png" alt="Sen Gás logo">
+            </div>
+
+            <nav class="nav-dashboard">
+                <ul>
+                    <li><a href="./dashboard.html">Dashboard </a></li>
+                    <li><a href="./setores.html">Setores</a></li>
+                    <li><a href="./historicoDashboard.html">Histórico</a></li>
+                    <li><a href="./bobia.html"  class="active">Ajuda</a></li>
+
+                </ul>
+            </nav>
+            <button class="button-sair" onclick="window.location.href='../index.html'">
+                <i class="fa-solid fa-right-from-bracket" style="color: #fcfcfd;"></i> Sair </button>
+            <p class="reserved">© 2025 SenGás All Rights Reserved</p>
+        </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+
+    <div class="cardBob">
+        <h1 class="title">Bob<span class="ia">IA <img src="../assets/imgs/iconRobo.png" style="height: 100px;"></span></h1>
+        <textarea id="pergunta" type="text" placeholder="Digite a pergunta..." ></textarea>
+        <br><br>
+        <button onclick="gerarResposta()" class="gerar">Gerar Resposta</button>
+        <h3>Resposta da IA:</h3>
+        <div id="resposta">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam nesciunt nulla numquam! Illo et in soluta? Qui sint recusandae illum? Molestias eveniet fugit dicta non enim voluptas quisquam nesciunt natus.</div>
+    </div>
+  <script>
+        
+        async function gerarResposta() {
+            const pergunta = document.getElementById('pergunta').value;
+
+            const response = await fetch('/perguntar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pergunta })
+            });
+
+            const data = await response.json();
+
+            resposta.style.display = 'block';
+            document.getElementById('resposta').innerText = data.resultado;
+        }
+    </script>
+    
+</body>
+</html>
