@@ -1,0 +1,209 @@
+
+
+* {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #0b5f43;
+    border-radius: 10px;
+}
+
+body {
+   /* */ margin: 0px;
+   height: 100%;
+   width: 100%;
+   overflow-x: hidden; 
+   flex-direction: column;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f5f1e8;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    padding: 25px;
+    background-color: #f5f1e8;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    background: #004830;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 28px 20px;
+    z-index: 40;
+}
+
+.sidebar-top {
+    text-align: center;
+}
+
+.logo-img {
+    width: 400px;
+    height: auto;
+    display: flex;
+    margin: 0px -100px -73px;
+
+}
+.nav-dashboard {
+    margin-bottom: 100px;
+}
+.nav-dashboard ul {
+    list-style: none;
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-dashboard a {
+    display: block;
+    color: #dfeee8;
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.nav-dashboard a:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: #2da980;
+}
+
+.button-sair {
+    align-items: center;
+    color: #dfeee8;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 19px;
+    border: none;
+    background-color: #004830;
+    font-size: 15px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.button-sair:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: #2da980;
+}
+
+.reserved {
+     text-align: center;
+     font-size: 9px;
+      color: #aee0d7; 
+}
+
+.main-content {
+    margin-left: 260px;
+    padding: 28px;
+    min-height: 100vh;
+}
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.toggle-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: #222;
+    cursor: pointer;
+}
+
+/*CARD DO BOBIA*/
+
+.cardBob {
+    background-color: rgba(121, 221, 74, 0.726);
+    border-radius: 32px;
+    padding: 100px 150px;
+    margin-top: 550px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 150%;
+    box-shadow: 6px 8px 10px #022c1ea8;
+}
+
+.title {
+    margin-bottom: 12px;
+    font-size: 72px;
+    color: #55be2b;
+}
+
+.ia {
+    color: #004830;
+    font-size: 96px;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.gerar {
+    background-color: #004830;
+    color: #f5f1e8;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 32px;
+    margin-bottom: 12px;
+}
+
+.gerar:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+.gerar:active {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+#resposta {
+    margin-top: 8px;
+}
+
+#pergunta {
+    border: 2px solid #004830;
+    border-radius: 10px;
+    width: 55%;
+    height: 40px;
+    padding: 6px;
+}
+
+#pergunta::placeholder {
+    color: #004830;
+    text-align: center;
+}
+
