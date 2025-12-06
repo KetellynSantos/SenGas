@@ -189,6 +189,7 @@ SELECT * FROM sensor;
 -- Select para Captura -- Select para Captura -- Select para Captura -- Select para Captura -- Select para Captura;
 SELECT * FROM captura;
 
+
 -- View- Traz dados das empresas, sensor, informações referente a captura e etc.
 CREATE VIEW vw_capturas_com_limite AS
 SELECT 
@@ -213,6 +214,4 @@ CREATE VIEW vw_capturas_com_limite_quantidade AS
 SELECT count(*) FROM vw_capturas_com_limite;
 
 select * from vw_capturas_com_limite_quantidade;
-
-
 
