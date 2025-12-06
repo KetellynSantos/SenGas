@@ -25,6 +25,7 @@
             <nav class="nav-dashboard">
                 <ul>
                     <li><a class="active" id="admin" href="./admin.html">Gestão de Clientes</a></li>
+                    <li><a href="./bobia.html"  class="active">Ajuda</a></li>
 
                 </ul>
             </nav>
@@ -38,7 +39,7 @@
             <h1>Painel Administrativo</h1>
 
             <div class="top-bar">
-                <input type="text" id="search" placeholder="Busque por usuário...">
+               <input onkeyup="filtrarTabela()" type="text" id="search" placeholder="Busque por usuário...">
                 <button id="addUser">Procurar</button>
             </div>
 
@@ -128,7 +129,7 @@
 
 async function carregarUsuarios() {
     try {
-        const resposta = await fetch("http://localhost:3333/admin/listar");
+        const resposta = await fetch("/admin/listar");
         const usuarios = await resposta.json();
 
         const tbody = document.querySelector("#userTable tbody");
@@ -160,7 +161,7 @@ async function deletarUsuario(id) {
     if (!confirmar) return;
 
     try {
-        await fetch(`http://localhost:3333/admin/deletar/${id}`, {
+        await fetch(`/admin/deletar/${id}`, {
             method: "DELETE"
         });
 
@@ -186,6 +187,25 @@ function filtrarUsuarios() {
     );
 
     renderizarTabela(usuariosFiltrados);
+}
+
+function filtrarTabela() {
+    const termo = document.getElementById("search").value.toLowerCase();
+
+    document.querySelectorAll("#userTable tbody tr").forEach(tr => {
+        const nome = tr.cells[0].textContent.toLowerCase();
+        const email = tr.cells[1].textContent.toLowerCase();
+        const telefone = tr.cells[2].textContent.toLowerCase();
+        const nivel = tr.cells[3].textContent.toLowerCase();
+
+        tr.style.display =
+            nome.includes(termo) ||
+            email.includes(termo) ||
+            telefone.includes(termo) ||
+            nivel.includes(termo)
+                ? ""
+                : "none";
+    });
 }
 
 
