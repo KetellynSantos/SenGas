@@ -43,20 +43,20 @@
 <script>
 
   // Array para armazenar empresas cadastradas para validação de código de ativação 
-let listaEmpresas = [];
+  let listaEmpresas = [];
 
-function listarEmpresas() {
-  fetch("/empresas/listar")
-    .then(r => r.json())
-    .then(empresas => {
-      listaEmpresas = empresas;
-      console.log("Empresas carregadas:", listaEmpresas);
-    })
-    .catch(err => console.error("Erro ao obter empresas:", err));
-}
+  function listarEmpresas() {
+    fetch("/usuarios/listar")
+      .then(r => r.json())
+      .then(empresas => {
+        listaEmpresas = empresas;
+        console.log("Empresas carregadas:", listaEmpresas);
+      })
+      .catch(err => console.error("Erro ao obter empresas:", err));
+  }
 
-// Carrega as empresas ao abrir a página
-listarEmpresas();
+  // Carrega as empresas ao abrir a página
+  listarEmpresas();
 
 
 
@@ -65,15 +65,17 @@ listarEmpresas();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var codigoVar = iptCodigo.value;
-    var nomeVar = iptNome.value;
-    var telefoneVar = iptTelefone.value;
-    var emailVar = iptEmail.value;
+    var codigoVar = iptCodigo.value.trim();
+    var nomeVar = iptNome.value.trim();
+    var telefoneVar = iptTelefone.value.trim();
+    var emailVar = iptEmail.value.trim();
     var senhaVar = iptSenha.value;
     var confirmacaoSenhaVar = iptConfirme.value;
 
+    telefoneVar = telefoneVar.replace(/\D/g, "");
+
     // Verificando se há algum campo em branco
-    if (codigo == "" || nomeVar == "" || telefoneVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+    if (codigoVar == "" || nomeVar == "" || telefoneVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
       Swal.fire({
         icon: "warning",
         title: "Atenção",
@@ -83,7 +85,7 @@ listarEmpresas();
     }
 
     if (senhaVar !== confirmacaoSenhaVar) {
-       Swal.fire({
+      Swal.fire({
         icon: "error",
         title: "Erro",
         text: "As senhas não coincidem!"
@@ -91,16 +93,37 @@ listarEmpresas();
       return;
     }
 
-    
+    // VALIDA CÓDIGO DA EMPRESA 
+    let empresaEncontrada = null;
+
+    for (let i = 0; i < listaEmpresas.length; i++) {
+      if (listaEmpresas[i].codigoEmpresa === codigoVar) {
+        empresaEncontrada = listaEmpresas[i];
+        break;
+      }
+    }
+
+    if (empresaEncontrada == null) {
+      Swal.fire({
+        icon: "error",
+        title: "Código inválido",
+        text: "Este código não está associado a nenhuma empresa registrada."
+      });
+      return;
+    }
+
+    let idEmpresa = empresaEncontrada.idEmpresa; // pega ID correto do banco
+
+
 
     //recebe dados do usuario, fica mais facil de passar pro fetch
     let dadosUsuario = {
-      codigo: codigoVar,
       nome: nomeVar,
       telefone: telefoneVar,
       email: emailVar,
       senha: senhaVar,
-      nivelAcesso: "cliente"
+      nivelAcesso: "cliente",
+      codigoEmpresa: codigoVar,
     };
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -130,19 +153,19 @@ listarEmpresas();
 
         } else {
           Swal.fire({
-          icon: "error",
-          title: "Erro",
-          text: "Não foi possível realizar o cadastro."
-        });
+            icon: "error",
+            title: "Erro",
+            text: "Não foi possível realizar o cadastro."
+          });
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-         Swal.fire({
-        icon: "error",
-        title: "Erro inesperado",
-        text: "Ocorreu um problema na conexão."
-      });
+        Swal.fire({
+          icon: "error",
+          title: "Erro inesperado",
+          text: "Ocorreu um problema na conexão."
+        });
       });
 
     return false;
