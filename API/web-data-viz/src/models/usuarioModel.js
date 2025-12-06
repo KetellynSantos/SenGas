@@ -10,15 +10,23 @@ function autenticar(email, senha) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function cadastrar(nome, telefone, email, senha, nivelAcesso, fkEmpresaUsuario) {
+function cadastrar(codigoEmpresa, nome, telefone, email, senha, nivelAcesso) {
     const sql = `
-        INSERT INTO usuario (nome, telefone, email, senha, nivelAcesso, fkEmpresaUsuario)
-        VALUES ('${nome}', '${telefone}', '${email}', '${senha}', '${nivelAcesso}', ${fkEmpresaUsuario})
+        INSERT INTO usuario (codigoEmpresa, nome, email, telefone, senha, nivelAcesso)
+        VALUES ('${codigoEmpresa}', '${nome}', '${email}', '${telefone}', '${senha}', '${nivelAcesso}');
     `;
     return database.executar(sql);
 }
 
+
+function listar() {
+    const sql = "SELECT * FROM empresa;";
+    return database.executar(sql);
+}
+
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    listar
 };

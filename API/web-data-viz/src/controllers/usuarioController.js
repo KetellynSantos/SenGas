@@ -42,7 +42,7 @@ function cadastrar(req, res) {
     var email = req.body.email;
     var senha = req.body.senha;
     var nivelAcesso = req.body.nivelAcesso;
-    var fkEmpresaUsuario = req.body.fkEmpresaUsuario;
+    var codigoEmpresa = req.body.codigoEmpresa;
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -54,11 +54,11 @@ function cadastrar(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else if (nivelAcesso == undefined) {
         res.status(400).send("O nível de acesso está undefined!");
-    } else if (fkEmpresaUsuario == undefined) {
+    } else if (codigoEmpresa == undefined) {
         res.status(400).send("A empresa vinculada está undefined!");
     } else {
 
-        usuarioModel.cadastrar(nome, telefone, email, senha, nivelAcesso, fkEmpresaUsuario)
+        usuarioModel.cadastrar(codigoEmpresa, nome, telefone, email, senha, nivelAcesso)
             .then(function (resultado) {
                 res.json(resultado);
             })
@@ -69,7 +69,23 @@ function cadastrar(req, res) {
     }
 }
 
+function listar(req, res) {
+    usuarioModel.listar()
+        .then(resultado => {
+            res.status(201).json({
+                mensagem: "Usuário cadastrado com sucesso!",
+                idInserido: resultado.insertId
+            });
+        })
+        .catch(erro => {
+            console.log("Erro ao listar empresas:", erro);
+            res.status(500).json(erro);
+        });
+}
+
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    listar
 };
