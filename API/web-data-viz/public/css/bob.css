@@ -16,7 +16,7 @@
 }
 
 body {
-   /* */ margin: 0px;
+    margin: 0px;
    height: 100%;
    width: 100%;
    overflow-x: hidden; 
@@ -84,6 +84,7 @@ header {
     padding: 10px 12px;
     border-radius: 8px;
     font-weight: 500;
+    font-family:'Montserrat', sans-serif;
 }
 
 .nav-dashboard a:hover {
