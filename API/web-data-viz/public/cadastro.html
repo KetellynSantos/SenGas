@@ -18,7 +18,7 @@
     <br>
     <h1>Crie sua conta</h1>
     <br>
-
+    <input id="iptCodigo" type="text" placeholder="Codigo da Empresa" name="codigo" maxlength="38">
     <input id="iptNome" type="text" placeholder="Nome" name="username" maxlength="38" />
     <input id="iptTelefone" type="text" placeholder="Telefone" name="telefone" maxlength="38" />
     <input id="iptEmail" type="email" placeholder="Email" name="email" maxlength="95" />
@@ -43,6 +43,21 @@
 <script>
 
   // Array para armazenar empresas cadastradas para validação de código de ativação 
+let listaEmpresas = [];
+
+function listarEmpresas() {
+  fetch("/empresas/listar")
+    .then(r => r.json())
+    .then(empresas => {
+      listaEmpresas = empresas;
+      console.log("Empresas carregadas:", listaEmpresas);
+    })
+    .catch(err => console.error("Erro ao obter empresas:", err));
+}
+
+// Carrega as empresas ao abrir a página
+listarEmpresas();
+
 
 
   function cadastrar() {
@@ -50,6 +65,7 @@
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
+    var codigoVar = iptCodigo.value;
     var nomeVar = iptNome.value;
     var telefoneVar = iptTelefone.value;
     var emailVar = iptEmail.value;
@@ -57,27 +73,37 @@
     var confirmacaoSenhaVar = iptConfirme.value;
 
     // Verificando se há algum campo em branco
-    if (nomeVar == "" || telefoneVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-      alert("Preencha todos os campos!")
+    if (codigo == "" || nomeVar == "" || telefoneVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Atenção",
+        text: "Preencha todos os campos!"
+      });
       return;
     }
 
     if (senhaVar !== confirmacaoSenhaVar) {
-      alert("As senhas não coincidem!");
+       Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: "As senhas não coincidem!"
+      });
       return;
     }
 
+    
+
     //recebe dados do usuario, fica mais facil de passar pro fetch
     let dadosUsuario = {
+      codigo: codigoVar,
       nome: nomeVar,
       telefone: telefoneVar,
       email: emailVar,
       senha: senhaVar,
-      nivelAcesso: "cliente",
-      fkEmpresaUsuario: 1
+      nivelAcesso: "cliente"
     };
     // Enviando o valor da nova input
-    fetch("http://localhost:3333/usuarios/cadastrar", {
+    fetch("/usuarios/cadastrar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
