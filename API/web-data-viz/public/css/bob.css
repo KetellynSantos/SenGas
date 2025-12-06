@@ -16,7 +16,7 @@
 }
 
 body {
-   /* */ margin: 0px;
+    margin: 0px;
    height: 100%;
    width: 100%;
    overflow-x: hidden; 
@@ -84,6 +84,7 @@ header {
     padding: 10px 12px;
     border-radius: 8px;
     font-weight: 500;
+    font-family:'Montserrat', sans-serif;
 }
 
 .nav-dashboard a:hover {
@@ -155,6 +156,7 @@ header {
     justify-content: center;
     width: 150%;
     box-shadow: 6px 8px 10px #022c1ea8;
+    
 }
 
 .title {
@@ -192,6 +194,9 @@ header {
 
 #resposta {
     margin-top: 8px;
+    width: 700px;
+    height: 100px;
+    padding: 0px 100px;
 }
 
 #pergunta {

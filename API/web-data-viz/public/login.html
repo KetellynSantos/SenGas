@@ -54,7 +54,7 @@
       senha: senhaVar
     };
 
-    fetch("http://localhost:3333/usuarios/autenticar", {
+    fetch("/usuarios/autenticar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -89,7 +89,7 @@
          setTimeout(() => {
         if (json.nivelAcesso === "admin") {
           window.location.href = "./dashboard/admin.html"; 
-          
+
         } else if (json.nivelAcesso === "cliente") {
           window.location.href = "./dashboard/dashboard.html";  
         } else {
