@@ -213,3 +213,4 @@ CREATE VIEW vw_capturas_com_limite_quantidade AS
 SELECT count(*) FROM vw_capturas_com_limite;
 
 select * from vw_capturas_com_limite_quantidade;
+>>>>>>> 0e3ac15c34a5f2bfef333bf6e9145f6e98e2c330
