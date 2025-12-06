@@ -187,4 +187,32 @@ SELECT * FROM usuario;
 SELECT * FROM sensor;
 
 -- Select para Captura -- Select para Captura -- Select para Captura -- Select para Captura -- Select para Captura;
-SELECT * FROM captura
+SELECT * FROM captura;
+
+-- View- Traz dados das empresas, sensor, informações referente a captura e etc.
+CREATE VIEW vw_capturas_com_limite AS
+SELECT 
+    s.idSensor,
+    s.titulo AS nomeSensor,
+    e.razaoSocial AS empresa,
+    c.valor AS valorCaptado,
+    s.limite AS limite,
+    c.dtRegistro AS 'Data do registro',
+    CASE
+        WHEN c.valor > s.limite THEN 'ALERTA'
+        ELSE 'OK'
+    END AS statusLeitura
+FROM sensor s
+JOIN empresa e ON e.idEmpresa = s.fkEmpresa
+JOIN captura c ON c.fkSensor = s.idSensor;
+
+select * from vw_capturas_com_limite;
+
+-- conta quantas capturas foram realizadas
+CREATE VIEW vw_capturas_com_limite_quantidade AS
+SELECT count(*) FROM vw_capturas_com_limite;
+
+select * from vw_capturas_com_limite_quantidade;
+
+
+
