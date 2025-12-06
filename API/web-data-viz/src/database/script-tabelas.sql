@@ -1,207 +1,215 @@
--- Nesta versão, corrigimos os tipos de entidades, divididos em fortes e fracas.
-
+-- Criação do Banco de dados Sengas -- -- -- -- Criação do Banco de dados Sengas -- -- -- -- Criação do Banco de dados Sengas
+DROP DATABASE sengas; 
 CREATE DATABASE sengas;
 USE sengas;
 
-
+-- Criação de tabelas -- -- -- -- Criação de tabelas -- -- -- -- Criação de tabelas -- -- -- -- Criação de tabelas -- -- -- -- Criação de tabelas
 CREATE TABLE empresa (
-    idEmpresa int primary key auto_increment,
-    razaoSocial varchar(80) not null,
-    nomeFantasia varchar(80) not null,
-    cnpj char(14) unique not null,
-    codigoEmpresa varchar(10)
+idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+razaoSocial VARCHAR(80) NOT NULL,
+cnpj CHAR(14) UNIQUE NOT NULL,
+codigoEmpresa VARCHAR(10) UNIQUE
 );
 
 CREATE TABLE usuario (
-    idUsuario int primary key auto_increment,
-    nome varchar(100) not null,
-    email varchar(80) unique not null,
-    telefone char(11),
-    senha varchar(255) not null,
-    fkEmpresaUsuario int,
-    nivelAcesso varchar(30),
-    constraint chkNivel check (nivelAcesso in('cliente', 'admin')),
-    constraint chkEmpresa_usuario
-     foreign key (fkEmpresaUsuario)
-        references empresa (idEmpresa)
-);
-
-
-CREATE TABLE endereco (
-  idEndereco int primary key auto_increment,
-  logradouro varchar(130) not null, 
-  numero varchar(10) not null,
-  complemento varchar(130),
-  cidade varchar(100) not null,
-  uf char(2) not null,
-  cep char(8) not null,
-   fkEmpresaEndereco int,
-   constraint fk_Endereco_Empresa
-		foreign key (fkEmpresaEndereco)
-			references empresa(idEmpresa)
-  );
-  
-
-CREATE TABLE setor (
-  idSetor int primary key auto_increment,
-  titulo varchar(50),
-  limite DECIMAL(5,2),
-    fkEmpresaSetor int,
-  constraint fk_Setor_Empresa
-	foreign key (fkEmpresaSetor)
-		references empresa(idEmpresa)
+idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+codigoEmpresa VARCHAR(10),
+FOREIGN KEY (codigoEmpresa) REFERENCES empresa(codigoEmpresa),
+nome VARCHAR(100) NOT NULL,
+email VARCHAR(80) UNIQUE NOT NULL,
+telefone CHAR(11),
+senha VARCHAR(255) NOT NULL,
+nivelAcesso VARCHAR(7),
+CONSTRAINT chkNivel CHECK (nivelAcesso IN('cliente', 'admin'))
 );
 
 CREATE TABLE sensor (
-  idSensor int primary key auto_increment,
-  titulo varchar(50), 
-  fkSetorSensor int, 
-  constraint fk_Sensor_Setor
-	foreign key (fkSetorSensor)
-		references setor(idSetor)
+idSensor INT PRIMARY KEY AUTO_INCREMENT,
+titulo VARCHAR(50),
+limite DECIMAL(5,2),
+setor VARCHAR(50),
+fkEmpresa int, 
+FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa)
 );
-
 
 CREATE TABLE captura (
-  idCaptura int auto_increment,
-  fkSensor int,
-  constraint pk_Captura_Sensor
-  primary key (idCaptura, fkSensor),
-  valor decimal(5,2), -- mudamos o valor decimal 
-  dtRegistro datetime default current_timestamp,
-  constraint fk_Captura_Sensor
-	foreign key (fkSensor)
-		references sensor(idSensor)
+idCaptura INT PRIMARY KEY AUTO_INCREMENT,
+fkSensor int,
+FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor),
+valor DECIMAL(5,2),
+dtRegistro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE media (
-    media DECIMAL(5,2),
-    fkCaptura INT,
-    fkSensor INT,
-    constraint pkComposta PRIMARY KEY (fkCaptura, fkSensor),
-    Foreign Key (fkCaptura) REFERENCES captura(idCaptura),
-    Foreign Key (fkSensor) REFERENCES sensor(idSensor)
-);
- 
-    
-INSERT INTO empresa (razaoSocial, nomeFantasia, cnpj, codigoEmpresa) VALUES -- Removido o campo de contratoativo neste insert
-	('Vazamento gasoso LTDA','VazGas', '01001001000101', '#23355A' ),
-	('Gas explosivo SS LTDA', 'XPLOD', '02002002000202', '#32456B' ),
-	('BioGrass Metano LTDA', 'BioGrass', '03003003000303', '#31366C' );
-    
-    select * from empresa;
-    
-     INSERT INTO usuario (nome, telefone, nivelAcesso, email, senha, fkEmpresaUsuario) VALUES
-	('Ketellyn Leticia', '11290020002', 2, 'ketellyn@biograss.com.br', 'senha123#', 1),
-    ('Breno Alves', '11190010001', 2, 'breno@vazgaz.com.br', '@321senha', 2),
-	('Vinicius Antonio', '11190030003', 1, 'vinicius@vazgaz.com.br', '$456senha', 3);
-    
-    select * from usuario;
-    
-    
-    INSERT INTO endereco (logradouro, numero, complemento, cidade, uf, cep, fkEmpresaEndereco) VALUES
-	('Avenida das laranjas', 1000, 'abc', 'São Paulo', 'SP', '01234001', 1),
-	('Avenida das ameixas', 2000, 'abc', 'Minas Gerais', 'MG', '43210100', 2),
-	('Avenida dos limões', 3000, 'abc', 'Rio de Janeiro', 'RJ', '34120010', 3);
-    
-    select * from endereco;
-    
+-- Inserts para as tabelas -- -- -- -- Inserts para as tabelas -- -- -- -- Inserts para as tabelas -- -- -- -- Inserts para as tabelas
 
-INSERT INTO setor (titulo, fkEmpresaSetor) VALUES
-	('Captação', 1),
-	('Extração', 2),
-	('Armazenagem', 3);
-    
-    select * from setor;
+-- Inserts Das empresas;
+INSERT INTO empresa (razaoSocial, cnpj, codigoEmpresa) VALUES 
+    ('Sengas', '32467724000136', '13CD91'),
+    ('Wayne Tech', '81737019000117', '14DE92'),
+    ('LexCorp Industries', '12184134000199', '14DB14'),
+    ('Daily Planet', '61391062000166', '145BED'),
+    ('Star Labs', '51792738000170', 'EDC614'),
+    ('Kord Industries', '44343560000114', '12EBFD');
+
+-- Inset Administradores do sistema;
+INSERT INTO usuario (codigoEmpresa, nome, email, telefone, senha, nivelAcesso) VALUES
+    ('13CD91', 'Vinicius Francelino', 'vinicius@sengas.com.br', '83927164520', '123@ViniciusFrancelino', 'admin'),
+    ('13CD91', 'Davi Jeronimo', 'davi@sengas.com.br', '99271645830', '123@DaviJeronimo', 'admin'),
+    ('13CD91', 'Manuela Prado', 'manuela@sengas.com.br', '91234875620', '123@ManuelaPrado', 'admin'),
+    ('13CD91', 'Gabriela Santana', 'gabriela@sengas.com.br', '99912345876', '123@GabrielaSantana', 'admin'),
+    ('13CD91', 'Ketelyn Santos', 'ketelyn@sengas.com.br', '98765432109', '123@KetelynSantos', 'admin'),
+    ('13CD91', 'Breno Alves', 'breno@sengas.com.br', '98123456789', '123@BrenoAlves', 'admin');
+
+-- Insert de Cliente da Sengas;
+INSERT INTO usuario (codigoEmpresa, nome, email, telefone, senha, nivelAcesso) VALUES
+    ('14DE92', 'Bruce Wayne', 'bruce@waynetech.com', '12345678910', '@Wayne', 'cliente'),
+    ('14DE92', 'Alfred Penyworth', 'alfred@waynetech.com', '10987654321', '@Alfred', 'cliente'),
+    ('14DB14', 'Alexander Luthor', 'Alexander@lexcorp.com', '12378945610', 'LexCorp@', 'cliente'),
+    ('14DB14', 'Lyonel Luthor', 'lyonel@lexcorp.com', '28473652910', '123Lyonel', 'cliente'),
+    ('145BED', 'Louis Lane', 'louis@dailyplanet.com', '46852145971', 'lutando@', 'cliente'),
+    ('145BED', 'Clark Kent', 'clark@dailyplanet.com', '69514387102', '123#', 'cliente'),
+    ('EDC614', 'Cisco Ramom', 'cisco@starlabs.com', '37593826371', 'flash123', 'cliente'),
+    ('EDC614', 'Caitlin Snow', 'caitlin@starlabs.com', '37203945738', 'star1234', 'cliente'),
+    ('12EBFD', 'Ted Kord', 'ted@kordindustries.com', '46372819203', 'ford321', 'cliente'),
+    ('12EBFD', 'Victoria Kord', 'victoria@kordindustries.com', '26153689026', 'kord123', 'cliente');
 
 
+-- Inserts Dos sensores de cada empresa
+INSERT INTO sensor (titulo, limite, setor, fkEmpresa) VALUES
+('Sensor Central SG-1', 10.50, 'Armazenamento', 1),
+('Sensor Linha SG-2', 6.00, 'Estocagem', 1),
+('Sensor Wayne Alpha', 15.00, 'Laboratório', 2),
+('Sensor Wayne Beta', 11.50, 'Subnível 1', 2),
+('Sensor Lex Ultra', 3.00, 'Pesquisa', 3),
+('Sensor Lex Prime', 10.50, 'Armazenamento', 3),-- View para testando
+('Sensor Planet A', 5.00, 'Sala de Impressão', 4),
+('Sensor Planet B', 15.50, 'Subsolo', 4),
+('Sensor Star Quantum', 25.75, 'Laboratório Criogênico', 5),
+('Sensor Star Fusion', 12.90, 'Estocagem de Equipamentos', 5),
+('Sensor Kord Blue-1', 10.40, 'Armazenamento', 6),
+('Sensor Kord Blue-2', 3.00, 'Setor Técnico', 6);
+
+INSERT INTO captura (fkSensor, valor, dtRegistro) VALUES
+-- Sensor 1
+(1, '12.5', '2025-01-10 08:10:15'),
+(1, '14.2', '2025-01-10 08:20:20'),
+(1, '15.8', '2025-01-10 08:30:18'),
+(1, '13.9', '2025-01-10 08:40:10'),
+(1, '16.3', '2025-01-10 08:50:05'),
+
+-- Sensor 2
+(2, '18.1', '2025-01-11 09:05:11'),
+(2, '19.4', '2025-01-11 09:15:30'),
+(2, '20.2', '2025-01-11 09:25:02'),
+(2, '17.9', '2025-01-11 09:35:41'),
+(2, '21.0', '2025-01-11 09:45:55'),
+
+-- Sensor 3
+(3, '10.7', '2025-01-12 10:00:11'),
+(3, '12.3', '2025-01-12 10:10:15'),
+(3, '11.9', '2025-01-12 10:20:05'),
+(3, '13.0', '2025-01-12 10:30:21'),
+(3, '12.8', '2025-01-12 10:40:33'),
+
+-- Sensor 4
+(4, '14.4', '2025-01-13 11:00:01'),
+(4, '15.7', '2025-01-13 11:10:25'),
+(4, '16.0', '2025-01-13 11:20:42'),
+(4, '15.1', '2025-01-13 11:31:10'),
+(4, '17.3', '2025-01-13 11:41:55'),
+
+-- Sensor 5
+(5, '9.9', '2025-01-14 12:00:00'),
+(5, '10.5', '2025-01-14 12:10:13'),
+(5, '11.2', '2025-01-14 12:20:56'),
+(5, '10.9', '2025-01-14 12:30:12'),
+(5, '12.1', '2025-01-14 12:40:44'),
+
+-- Sensor 6
+(6, '11.4', '2025-01-15 13:15:20'),
+(6, '12.7', '2025-01-15 13:25:30'),
+(6, '13.6', '2025-01-15 13:35:05'),
+(6, '12.9', '2025-01-15 13:45:27'),
+(6, '14.1', '2025-01-15 13:55:18'),
+
+-- Sensor 7
+(7, '16.8', '2025-01-16 14:00:10'),
+(7, '17.4', '2025-01-16 14:10:18'),
+(7, '18.2', '2025-01-16 14:20:40'),
+(7, '17.9', '2025-01-16 14:30:11'),
+(7, '19.0', '2025-01-16 14:40:55'),
+
+-- Sensor 8
+(8, '20.7', '2025-01-17 15:05:10'),
+(8, '21.3', '2025-01-17 15:15:41'),
+(8, '22.1', '2025-01-17 15:25:50'),
+(8, '21.9', '2025-01-17 15:35:22'),
+(8, '23.0', '2025-01-17 15:45:30'),
+
+-- Sensor 9
+(9, '8.4', '2025-01-18 16:00:00'),
+(9, '9.1', '2025-01-18 16:10:12'),
+(9, '9.7', '2025-01-18 16:20:25'),
+(9, '10.2', '2025-01-18 16:30:40'),
+(9, '10.9', '2025-01-18 16:40:55'),
+
+-- Sensor 10
+(10, '12.0', '2025-01-19 17:00:13'),
+(10, '12.8', '2025-01-19 17:10:26'),
+(10, '13.4', '2025-01-19 17:20:42'),
+(10, '14.1', '2025-01-19 17:31:10'),
+(10, '14.8', '2025-01-19 17:41:19'),
+
+-- Sensor 11
+(11, '15.4', '2025-01-20 18:00:00'),
+(11, '16.2', '2025-01-20 18:10:30'),
+(11, '17.0', '2025-01-20 18:21:10'),
+(11, '17.6', '2025-01-20 18:31:44'),
+(11, '18.3', '2025-01-20 18:42:15'),
+
+-- Sensor 12
+(12, '13.1', '2025-01-21 19:00:05'),
+(12, '13.8', '2025-01-21 19:10:14'),
+(12, '14.5', '2025-01-21 19:20:33'),
+(12, '15.2', '2025-01-21 19:30:59'),
+(12, '15.9', '2025-01-21 19:41:20');
 
 
+-- Selects das tabelas -- Selects das tabelas -- Selects das tabelas -- Selects das tabelas -- Selects das tabelas 
 
-INSERT INTO sensor (titulo, fkSetorSensor) VALUES
-	('Sensor fabricaçao', 1),
-	('Sensor tubulação', 2),
-	('Sensor armazenagem', 3);
-    
-    select * from sensor;
-    
-INSERT INTO captura (valor, fkSensor) VALUES
-	(10.07, 1),
-	(99.05, 2),
-	(24.62, 3);
-    
-    select * from captura;
-    
-INSERT INTO limite (limiteCliente, fkSensorLimite) VALUES
-(30.00, 1),
-(60.00, 2), 
-(10.00, 3);
+-- Select para Empresa -- Select para Empresa -- Select para Empresa -- Select para Empresa -- Select para Empresa;
+SELECT * FROM empresa;
 
-select * from limite;
+-- Select para Usuario -- Select para Usuario -- Select para Usuario -- Select para Usuario -- Select para Usuario;
+SELECT * FROM usuario;
 
--- select's com join, feitos especificamente para testes (verificar se os dados estavam aparecendo corretamente nas ligações das tabelas)
+-- Select para Sensor -- Select para Sensor -- Select para Sensor -- Select para Sensor -- Select para Sensor;
+SELECT * FROM sensor;
+
+-- Select para Captura -- Select para Captura -- Select para Captura -- Select para Captura -- Select para Captura;
+SELECT * FROM captura;
+
+-- View- Traz dados das empresas, sensor, informações referente a captura e etc.
+CREATE VIEW vw_capturas_com_limite AS
 SELECT 
-    *
-FROM
-    usuario
-        JOIN
-    empresa ON empresa.idEmpresa = usuario.fkEmpresaUsuario
-        JOIN
-    endereco ON empresa.idEmpresa = endereco.fkEmpresaEndereco
-        JOIN
-    setor ON setor.fkEmpresaSetor = empresa.idEmpresa
-        JOIN
-    sensor ON sensor.fkSetorSensor = setor.idSetor
-        JOIN
-    captura ON captura.fkSensor = sensor.idSensor
-        JOIN
-    limite ON limite.fkSensorLimite = sensor.idSensor;
-
-
-    
-
---  SELECT CONCAT COM CASE PARA LIMITE DO SENSOR
--- foi tirada a parte da tabela excluida filial e adicionado uma condição para ter um alerta quando o sensor captar algo acima do limite imposto.
-    
-    SELECT 
-    us.nome AS ' Dados do funcionário (nome completo)',
-    CONCAT(us.telefone, ' ', us.email) AS 'Dados para contato (telefone e e-mail)',
-    us.nivelAcesso AS 'Nível de acesso',
-    e.nomeFantasia AS 'Nome Fantasia',
-    CONCAT(e.razaoSocial, ' ', cnpj) AS 'Razão social e CNPJ',
-    CONCAT(a.logradouro,
-            ', ',
-            a.numero,
-            ' - ',
-            a.cidade,
-            ' - ',
-            a.uf,
-            ' - ',
-            a.cep) AS 'Endereço completo',
-    a.complemento AS Complemento,
-    c.valor AS 'Valor registrado',
-    l.limiteCliente AS 'Limite definido',
-       CASE
-        WHEN c.valor > l.limiteCliente THEN 'ALERTA!'
-        ELSE 'DENTRO DOS CONFORMES'
-    END AS 'STATUS',
+    s.idSensor,
+    s.titulo AS nomeSensor,
+    e.razaoSocial AS empresa,
+    c.valor AS valorCaptado,
+    s.limite AS limite,
     c.dtRegistro AS 'Data do registro',
-    s.titulo AS 'Setor',
-    sn.titulo AS 'Modelo do Sensor',
-    c.dtRegistro AS 'Data e horario da detecção'
-FROM
-    usuario AS us
-        JOIN
-    empresa AS e ON us.fkEmpresaUsuario = e.idEmpresa
-        JOIN
-    endereco AS a ON a.fkEmpresaEndereco = e.idEmpresa
-        JOIN
-    setor AS s ON fkEmpresaSetor = e.idEmpresa
-        JOIN
-    sensor AS sn ON sn.fkSetorSensor = s.idSetor 
-        JOIN
-    captura AS c ON c.fkSensor = sn.idSensor
-        JOIN
-    limite AS l ON l.fkSensorLimite = sn.idSensor ;
-    
-    
+    CASE
+        WHEN c.valor > s.limite THEN 'ALERTA'
+        ELSE 'OK'
+    END AS statusLeitura
+FROM sensor s
+JOIN empresa e ON e.idEmpresa = s.fkEmpresa
+JOIN captura c ON c.fkSensor = s.idSensor;
+
+select * from vw_capturas_com_limite;
+
+-- conta quantas capturas foram realizadas
+CREATE VIEW vw_capturas_com_limite_quantidade AS
+SELECT count(*) FROM vw_capturas_com_limite;
+
+select * from vw_capturas_com_limite_quantidade;
