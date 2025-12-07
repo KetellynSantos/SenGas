@@ -9,71 +9,73 @@
   <link rel="icon" href="../assets/imgs/logo.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-   <aside class="sidebar">
-            <div class="sidebar-top">
-                <img class="logo-img" src="../assets/imgs/logoLetraBranca.png.png" alt="Sen Gás logo">
-            </div>
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <img class="logo-img" src="../assets/imgs/logoLetraBranca.png.png" alt="Sen Gás logo">
+    </div>
 
-            <nav class="nav-dashboard">
-                <ul>
-                    <li><a class="active" href="./dashboard.html">Dashboard </a></li>
-                    <li><a href="./setores.html">Setores</a></li>
-                    <li><a href="./historicoDashboard.html">Histórico</a></li>
-                    <li><a href="https://brenogoal.atlassian.net/jira/software/c/projects/GS/list?jql=project+
+    <nav class="nav-dashboard">
+      <ul>
+        <li><a class="active" href="./dashboard.html">Dashboard </a></li>
+        <li><a href="./setores.html">Setores</a></li>
+        <li><a href="./historicoDashboard.html">Histórico</a></li>
+        <li><a href="https://brenogoal.atlassian.net/jira/software/c/projects/GS/list?jql=project+
 %3D+%22GS%22+ORDER+BY+created+DESC&atlOrigin=eyJpIjoiZmJkMW
 M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a></li>
 
-                </ul>
-            </nav>
-            <button class="button-sair" onclick="window.location.href='../index.html'">
-                <i class="fa-solid fa-right-from-bracket" style="color: #fcfcfd;"></i> Sair </button>
-            <p class="reserved">© 2025 SenGás All Rights Reserved</p>
-        </aside>
+      </ul>
+    </nav>
+    <button class="button-sair" onclick="window.location.href='../index.html'">
+      <i class="fa-solid fa-right-from-bracket" style="color: #fcfcfd;"></i> Sair </button>
+    <p class="reserved">© 2025 SenGás All Rights Reserved</p>
+  </aside>
 
   <main class="main-content">
     <header class="topbar">
       <div class="topbar-left">
-       
+
         <h1>Dashboard</h1>
       </div>
       <div class="user">
-        <span> Empresa Xpto </span>
-        <img src="../assets/imgs/iconeUsuario.svg" alt="Usuária" class="avatar" >
+        <span id="nomeEmpresa"> Empresa </span>
+        <img src="../assets/imgs/iconeUsuario.svg" alt="Usuária" class="avatar">
       </div>
     </header>
 
     <section class="cards">
       <div class="cartao">
-        <p>Maior taxa acima do limite</p>
-        <h2>7.9%</h2>
+        <p>Ultimo Valor Capturado</p>
+        <h2 id="kpiUltimoValor">7.9%</h2>
       </div>
       <div class="cartao">
-        <p>Quantidade de anomalias diárias</p>
-        <h2>6</h2>
+        <p>Total de Capturas</p>
+        <h2 id="kpiCapturas" class="quatro">6</h2>
       </div>
       <div class="cartao">
-        <p>Total de Setores</p>
-        <h2 class="quatro">4</h2>
+        <p>Setores Ativos</p>
+        <h2 id="kpiSensores" class="quatro">4</h2>
       </div>
+      <div id="alertaGas" class="alerta-gas oculto">
+        <span class="icone">⚠️</span>
+        <div>
+          <h3>Alerta de Gás!</h3>
+          <p id="alertaMsg">Valor acima do limite!</p>
+        </div>
+      </div>
+
+
     </section>
 
     <section class="chart-section1">
       <div class="chart-header">
         <h3>Média de Todos os Setores</h3>
-        <div>
-          <select aria-label="Período">
-            <option>Últimos 30 dias</option>
-            <option>7 dias</option>
-            <option>1 ano</option>
-          </select>
-        </div>
       </div>
       <div class="chart-placeholder">
-        <canvas id="graficoSetores" width="800" height="340"></canvas>
+        <canvas id="graficoSetores" width="700" height="240"></canvas>
       </div>
     </section>
   </main>
@@ -81,24 +83,116 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
 
+
+    let LIMITE_SENSOR = null;
     const ctx = document.getElementById('graficoSetores');
-    if (ctx && window.Chart) {
-      new Chart(ctx, {
+    let graficoLinhas;
+
+    const idEmpresa = localStorage.idEmpresa;
+
+    carregarLimite();
+
+    function carregarLimite() {
+      fetch(`/dash/limite/${idEmpresa}`)
+        .then(res => res.json())
+        .then(data => {
+          LIMITE_SENSOR = Number(data.limite);
+          console.log("Limite carregado:", LIMITE_SENSOR);
+
+        
+          obterDadosGrafico();
+          carregarKpis();
+        })
+        .catch(err => console.error("Erro ao buscar limite:", err));
+    }
+
+    function obterDadosGrafico() {
+      fetch(`/dash/grafico/${idEmpresa}`)
+        .then(res => {
+          if (!res.ok) throw "Erro ao buscar dados";
+          return res.json();
+        })
+        .then(data => {
+          console.log("DADOS RECEBIDOS:", data);
+
+          const labels = data.map(item => formatarData(item.dtRegistro));
+          const valores = data.map(item => item.valor);
+
+          // verifica automaticamente se precisa exibir o alerta
+          verificarAlerta(valores);
+
+          plotarGrafico(labels, valores);
+        })
+        .catch(err => console.error(err));
+    }
+
+    function formatarData(data) {
+      const dataHoje = new Date(data);
+      return `${dataHoje.getDate().toString().padStart(2, '0')}/${(dataHoje.getMonth() + 1)
+        .toString().padStart(2, '0')} ${dataHoje.getHours()}:${dataHoje.getMinutes()
+          .toString().padStart(2, '0')}`;
+    }
+
+    function plotarGrafico(labels, valores) {
+      if (graficoLinhas) graficoLinhas.destroy();
+
+      graficoLinhas = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['01/Jan', '02/Jan', '03/Jan', '04/Jan', '05/Jan', '06/Jan', '07/Jan', '08/Jan', '09/Jan', '10/Jan'],
-          datasets: [
-            { label: 'Setor de Captação', data: [2.0, 3.5, 3.0, 4.0, 2.0, 3.0, 3.5, 2.0, 1.7, 1.4], borderColor: '#0099cc', fill: false, tension: 0.0 },
-            { label: 'Setor de Extração', data: [6.3, 5.3, 9.2, 3.8, 7.4, 6.0, 4.6, 2.3, 1.0, 1.4], borderColor: '#ffa500', fill: false, tension: 0.0 },
-            { label: 'Setor de Purificação', data: [1.5, 1.2, 1.6, 5.0, 7.0, 2.5, 3.0, 4.0, 2.5, 1.7], borderColor: '#008000', fill: false, tension: 0.0 },
-            { label: 'Setor de Armazenagem', data: [1.0, 1.2, 1.6, 5.0, 7.9, 2.5, 3.0, 4.0, 2.5, 5.7], borderColor: '#9d9d33', fill: false, tension: 0.0 },
-          ]
-          
-        }, 
+          labels,
+          datasets: [{
+            label: "Valores capturados",
+            data: valores,
+            borderColor: "#0099cc",
+            fill: false,
+            tension: 0.2
+          }]
+        }
       });
     }
 
-  
+    obterDadosGrafico();
+
+    function carregarKpis() {
+      fetch(`/dash/kpis/${idEmpresa}`)
+        .then(res => res.json())
+        .then(kpi => {
+          console.log("KPIs recebidas:", kpi);
+
+          document.getElementById("kpiSensores").innerHTML = kpi.qtdSensores;
+          document.getElementById("kpiCapturas").innerHTML = kpi.totalCapturas;
+          document.getElementById("kpiUltimoValor").innerHTML = kpi.ultimoValor ?? "—";
+        })
+        .catch(e => console.error("Erro nas KPIs", e));
+    }
+
+    carregarKpis();
+
+    function verificarAlerta(valores) {
+
+        if (LIMITE_SENSOR === null) {
+            console.warn("Limite ainda não carregado");
+            return;
+        }
+
+        const ultimo = valores[0];
+        console.log(LIMITE_SENSOR)
+        const divAlerta = document.getElementById("alertaGas");
+        const msg = document.getElementById("alertaMsg");
+
+        if (ultimo > LIMITE_SENSOR) {
+            msg.innerHTML = `Valor atual (${ultimo}) está acima do limite (${LIMITE_SENSOR})!`;
+            divAlerta.classList.remove("oculto");
+            divAlerta.classList.add("alerta-ativo");
+        } else {
+            divAlerta.classList.add("oculto");
+            divAlerta.classList.remove("alerta-ativo");
+        }
+    }
+
+
+
+
   </script>
 </body>
 
