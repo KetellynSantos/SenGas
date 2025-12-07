@@ -1,3 +1,4 @@
+-- Active: 1762987333636@@127.0.0.1@3306@sengas
 -- Criação do Banco de dados Sengas -- -- -- -- Criação do Banco de dados Sengas -- -- -- -- Criação do Banco de dados Sengas
 DROP DATABASE sengas; 
 CREATE DATABASE sengas;
@@ -208,9 +209,13 @@ JOIN captura c ON c.fkSensor = s.idSensor;
 
 select * from vw_capturas_com_limite;
 
--- conta quantas capturas foram realizadas
-CREATE VIEW vw_capturas_com_limite_quantidade AS
-SELECT count(*) FROM vw_capturas_com_limite;
+-- View --conta quantas capturas foram realizadas em status ok ou alerta.
+ALTER VIEW vw_capturas_com_limite_quantidade AS
+SELECT statusLeitura AS 'status',
+COUNT(*) AS quantidade 
+FROM vw_capturas_com_limite   
+GROUP BY statusLeitura;
 
 select * from vw_capturas_com_limite_quantidade;
+
 
