@@ -55,40 +55,35 @@ INSERT INTO empresa (razaoSocial, cnpj, codigoEmpresa) VALUES
 -- Inset Administradores do sistema;
 INSERT INTO usuario (codigoEmpresa, nome, email, telefone, senha, nivelAcesso) VALUES
     ('13CD91', 'Vinicius Francelino', 'vinicius@sengas.com.br', '83927164520', '123@ViniciusFrancelino', 'admin'),
-    ('13CD91', 'Davi Jeronimo', 'davi@sengas.com.br', '99271645830', '123@DaviJeronimo', 'admin'),
-    ('13CD91', 'Manuela Prado', 'manuela@sengas.com.br', '91234875620', '123@ManuelaPrado', 'admin'),
-    ('13CD91', 'Gabriela Santana', 'gabriela@sengas.com.br', '99912345876', '123@GabrielaSantana', 'admin'),
-    ('13CD91', 'Ketelyn Santos', 'ketelyn@sengas.com.br', '98765432109', '123@KetelynSantos', 'admin'),
-    ('13CD91', 'Breno Alves', 'breno@sengas.com.br', '98123456789', '123@BrenoAlves', 'admin');
+    ('13CD91', 'Davi Jeronimo', 'davi@sengas.com.br', '99271645830', '123@', 'admin'),
+    ('13CD91', 'Manuela Prado', 'manuela@sengas.com.br', '91234875620', '123@', 'admin'),
+    ('13CD91', 'Gabriela Santana', 'gabriela@sengas.com.br', '99912345876', '123@', 'admin'),
+    ('13CD91', 'Ketelyn Santos', 'ketelyn@sengas.com.br', '98765432109', '123@', 'admin'),
+    ('13CD91', 'Breno Alves', 'breno@sengas.com.br', '98123456789', '123@', 'admin');
 
 -- Insert de Cliente da Sengas;
 INSERT INTO usuario (codigoEmpresa, nome, email, telefone, senha, nivelAcesso) VALUES
-    ('14DE92', 'Bruce Wayne', 'bruce@waynetech.com', '12345678910', '@Wayne', 'cliente'),
-    ('14DE92', 'Alfred Penyworth', 'alfred@waynetech.com', '10987654321', '@Alfred', 'cliente'),
-    ('14DB14', 'Alexander Luthor', 'Alexander@lexcorp.com', '12378945610', 'LexCorp@', 'cliente'),
-    ('14DB14', 'Lyonel Luthor', 'lyonel@lexcorp.com', '28473652910', '123Lyonel', 'cliente'),
-    ('145BED', 'Louis Lane', 'louis@dailyplanet.com', '46852145971', 'lutando@', 'cliente'),
-    ('145BED', 'Clark Kent', 'clark@dailyplanet.com', '69514387102', '123#', 'cliente'),
-    ('EDC614', 'Cisco Ramom', 'cisco@starlabs.com', '37593826371', 'flash123', 'cliente'),
-    ('EDC614', 'Caitlin Snow', 'caitlin@starlabs.com', '37203945738', 'star1234', 'cliente'),
-    ('12EBFD', 'Ted Kord', 'ted@kordindustries.com', '46372819203', 'ford321', 'cliente'),
-    ('12EBFD', 'Victoria Kord', 'victoria@kordindustries.com', '26153689026', 'kord123', 'cliente');
+    ('14DE92', 'Bruce Wayne', 'bruce@waynetech.com', '12345678910', '123#', 'cliente'),
+    ('14DB14', 'Alexander Luthor', 'Alexander@lexcorp.com', '12378945610', '123#', 'cliente'),
+    ('145BED', 'Louis Lane', 'louis@dailyplanet.com', '46852145971', '123#', 'cliente'),
+    ('EDC614', 'Cisco Ramom', 'cisco@starlabs.com', '37593826371', '123#', 'cliente'),
+    ('12EBFD', 'Victoria Kord', 'victoria@kordindustries.com', '26153689026', '123#', 'cliente');
 
 
 -- Inserts Dos sensores de cada empresa
 INSERT INTO sensor (titulo, limite, setor, fkEmpresa) VALUES
 ('Sensor Central SG-1', 10.50, 'Armazenamento', 1),
 ('Sensor Linha SG-2', 6.00, 'Estocagem', 1),
-('Sensor Wayne Alpha', 15.00, 'Laboratório', 2),
-('Sensor Wayne Beta', 11.50, 'Subnível 1', 2),
-('Sensor Lex Ultra', 3.00, 'Pesquisa', 3),
+('Sensor Wayne Alpha', 15.00, 'Armazenamento', 2),
+('Sensor Wayne Beta', 11.50, 'Purificação', 2),
+('Sensor Lex Ultra', 3.00, 'Extração', 3),
 ('Sensor Lex Prime', 10.50, 'Armazenamento', 3),-- View para testando
-('Sensor Planet A', 5.00, 'Sala de Impressão', 4),
-('Sensor Planet B', 15.50, 'Subsolo', 4),
-('Sensor Star Quantum', 25.75, 'Laboratório Criogênico', 5),
-('Sensor Star Fusion', 12.90, 'Estocagem de Equipamentos', 5),
+('Sensor Planet A', 5.00, 'Captação', 4),
+('Sensor Planet B', 15.50, 'Purificação', 4),
+('Sensor Star Quantum', 25.75, 'Captação', 5),
+('Sensor Star Fusion', 12.90, 'Extração', 5),
 ('Sensor Kord Blue-1', 10.40, 'Armazenamento', 6),
-('Sensor Kord Blue-2', 3.00, 'Setor Técnico', 6);
+('Sensor Kord Blue-2', 3.00, 'Purificação', 6);
 
 INSERT INTO captura (fkSensor, valor, dtRegistro) VALUES
 (1, '12.5', '2025-01-10 08:10:15'),
@@ -152,21 +147,6 @@ INSERT INTO captura (fkSensor, valor, dtRegistro) VALUES
 (12, '15.2', '2025-01-21 19:30:59'),
 (12, '15.9', '2025-01-21 19:41:20');
 
-
--- Selects das tabelas -- Selects das tabelas -- Selects das tabelas -- Selects das tabelas -- Selects das tabelas 
-
--- Select para Empresa -- Select para Empresa -- Select para Empresa -- Select para Empresa -- Select para Empresa;
-SELECT * FROM empresa;
-
--- Select para Usuario -- Select para Usuario -- Select para Usuario -- Select para Usuario -- Select para Usuario;
-SELECT * FROM usuario;
-
--- Select para Sensor -- Select para Sensor -- Select para Sensor -- Select para Sensor -- Select para Sensor;
-SELECT * FROM sensor;
-
--- Select para Captura -- Select para Captura -- Select para Captura -- Select para Captura -- Select para Captura;
-SELECT * FROM captura;
-
 -- View- Traz dados das empresas, sensor, informações referente a captura e etc.
 CREATE VIEW vw_capturas_com_limite AS
 SELECT 
@@ -184,32 +164,16 @@ FROM sensor s
 JOIN empresa e ON e.idEmpresa = s.fkEmpresa
 JOIN captura c ON c.fkSensor = s.idSensor;
 
-SELECT * FROM vw_capturas_com_limite;
 
 -- View --conta quantas capturas foram realizadas em status ok ou alerta.
-ALTER VIEW vw_capturas_com_limite_quantidade AS
+CREATE VIEW vw_capturas_com_limite_quantidade AS
 SELECT statusLeitura AS 'status',
 COUNT(*) AS quantidade 
 FROM vw_capturas_com_limite   
 GROUP BY statusLeitura;
 
-SELECT * FROM vw_capturas_com_limite_quantidade;
-
--- Quantos sensores distintos geraram alerta ou ok.
-SELECT statusLeitura,
-    COUNT(DISTINCT idSensor) AS sensores_distintos
-    FROM vw_capturas_com_limite
-    GROUP BY statusLeitura;
-
-
--- Quantas empresas distintas tiveram alerta ou ok.
-SELECT statusLeitura,
-COUNT(DISTINCT empresa) AS 'Empresas distintas'
-FROM vw_capturas_com_limite 
-GROUP BY statusLeitura;
-
 -- View -- mostrando valores acima, no limite e abaixo do limite.
-ALTER VIEW vw_limite AS SELECT 
+CREATE VIEW vw_limite AS SELECT 
 c.dtRegistro AS 'Data',
 s.setor AS setor,
 c.valor AS valor,
@@ -220,7 +184,37 @@ WHEN c.valor < s.limite THEN 'Abaixo do limite'
 ELSE 'No limite'
 END AS 'status'
 FROM captura c JOIN sensor s ON c.fkSensor = s.idSensor 
-ORDER BY c.dtRegistro DESC LIMIT 20;
+ORDER BY c.dtRegistro DESC;
 
-select * from vw_limite;
+-- View -- das Kpis
+  CREATE VIEW vw_kpis AS SELECT e.idEmpresa,
+            (SELECT c.valor
+                FROM captura c
+                JOIN sensor s ON c.fkSensor = s.idSensor
+                WHERE s.fkEmpresa = e.idEmpresa
+                ORDER BY c.dtRegistro DESC, c.idCaptura DESC
+                LIMIT 1
+            ) AS ultimoValor,
 
+            (SELECT COUNT(*) 
+                FROM sensor s 
+                WHERE s.fkEmpresa = e.idEmpresa
+            ) AS qtdSensores,
+            
+            (SELECT COUNT(*)
+                FROM captura c
+                JOIN sensor s ON c.fkSensor = s.idSensor
+                WHERE s.fkEmpresa = e.idEmpresa
+            ) AS totalCapturas
+        FROM empresa e;
+        
+
+-- View -- Grafico dashboard
+        
+  CREATE VIEW vw_grafico AS SELECT 
+            c.valor,
+            c.dtRegistro,
+            s.fkEmpresa
+        FROM captura c
+        JOIN sensor s ON c.fkSensor = s.idSensor
+        ORDER BY c.dtRegistro DESC, c.idCaptura DESC;
