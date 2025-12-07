@@ -248,3 +248,22 @@ select {
 .tabela tr:hover {
     background-color: #f1f1f1;
 }
+
+.legenda {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.cor {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+
+.no-limite { background: #f0ad4e; }
+.acima { background: #d9534f; }
+.abaixo { background: #5cb85c; }

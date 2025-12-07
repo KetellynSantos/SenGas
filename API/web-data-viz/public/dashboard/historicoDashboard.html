@@ -23,9 +23,8 @@
                 <li><a href="./dashboard.html">Dashboard </a></li>
                 <li><a href="./setores.html">Setores</a></li>
                 <li><a class="active" href="./historicoDashboard.html">Histórico</a></li>
-                    <li><a href="https://brenogoal.atlassian.net/jira/software/c/projects/GS/list?jql=project+
-%3D+%22GS%22+ORDER+BY+created+DESC&atlOrigin=eyJpIjoiZmJkMW
-M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a></li>
+                <li><a href="https://brenogoal.atlassian.net/jira/software/c/projects/GS/list?jql=project+%3D+%22GS%22+ORDER+BY+created+DESC&atlOrigin=eyJpIjoiZmJkMWM4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9"
+                        target="_blank">Suporte</a></li>
 
             </ul>
         </nav>
@@ -46,12 +45,19 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
             </div>
         </header>
 
+        <div class="legenda">
+            <span><span class="cor no-limite"></span>No limite</span>
+            <span><span class="cor acima"></span>Acima do limite</span>
+            <span><span class="cor abaixo"></span>Abaixo do limite</span>
+        </div>
+
         <table class="tabela">
             <thead>
                 <tr>
                     <th>Data/Hora</th>
                     <th>Setor</th>
                     <th>Valor</th>
+                    <th>Limite</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -59,55 +65,56 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
             </tbody>
         </table>
     </main>
-
-    <script>
-        const historicoDados = [
-            { data: "30/04/2025 14:30", setor: "Setor Captação", valor: "6,8 %", status: "Estável" },
-            { data: "29/04/2025 07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
-            { data: "28/04/2025 12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
-            { data: "27/04/2025 09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Estável" },
-            { data: "26/04/2025 10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" },
-            { data: "23/09/2024 12:12", setor: "Setor Captação", valor: "3,0 %", status: "Estável" },
-            { data: "30/04/2025 14:30", setor: "Setor Captação", valor: "6,8 %", status: "Instável" },
-            { data: "29/04/2025 07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
-            { data: "28/04/2025 12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
-            { data: "27/04/2025 09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Instável" },
-            { data: "26/04/2025 10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" },
-            { data: "23/09/2024 12:12", setor: "Setor Captação", valor: "3,0 %", status: "Estável" },
-            { data: "30/04/2025 14:30", setor: "Setor Captação", valor: "6,0 %", status: "Estável" },
-            { data: "29/04/2025 07:45", setor: "Setor Extração", valor: "9,2 %", status: "Instável" },
-            { data: "28/04/2025 12:30", setor: "Setor Purificação", valor: "5,1 %", status: "Estável" },
-            { data: "27/04/2025 09:10", setor: "Setor Armazenagem", valor: "8,5 %", status: "Instável" },
-            { data: "26/04/2025 10:20", setor: "Setor Extração", valor: "7,4 %", status: "Instável" }
-        ];
-
-        const tbody = dadosTabela;
-
-        tbody.innerHTML = "";
-
-        let contador = 0;
-        while (contador < historicoDados.length) {
-            const dado = historicoDados[contador];
-            let corStatus;
-
-            if (dado.status === "Estável") {
-                corStatus = "green";
-            } else {
-                corStatus = "red";
-            }
-
-
-            tbody.innerHTML += `
-        <tr>
-          <td>${dado.data}</td>
-          <td>${dado.setor}</td>
-          <td>${dado.valor}</td>
-           <td style="color: ${corStatus}; font-weight: bold;">${dado.status}</td>
-        </tr>
-      `;
-            contador++;
-        }
-    </script>
 </body>
 
 </html>
+
+<script>
+    async function carregarHistorico() {
+        try {
+            const resposta = await fetch(`/historico/listar`);  // Rota do backend
+
+            if (!resposta.ok) {
+                console.error(`Erro HTTP: ${resposta.status}`);
+            }
+
+            const historicoDados = await resposta.json();
+            const tbody = document.getElementById("dadosTabela");
+
+            tbody.innerHTML = ""; // limpa a tabela
+
+            historicoDados.forEach(dado => {
+
+                const dataFormatada = new Date(dado.data).toLocaleString("pt-BR", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                });
+
+                const corStatus =
+                    dado.status === "No limite" ? "orange" :
+                        dado.status === "Acima do limite" ? "red" : "green";
+
+                tbody.innerHTML += `
+                    <tr>
+                    <td>${dataFormatada}</td>
+                    <td>${dado.setor}</td>
+                    <td>${dado.valor}</td>
+                    <td>${dado.limite}</td>
+                    <td style="color: ${corStatus}; font-weight: bold;">
+                        ${dado.status}
+                    </td>
+                </tr>
+            `;
+            });
+        } catch (erro) {
+            console.error("Erro ao carregar histórico:", erro);
+        }
+    }
+
+    // Carrega assim que a página abrir
+    window.onload = carregarHistorico;
+
+</script>
