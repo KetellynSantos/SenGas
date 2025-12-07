@@ -13,16 +13,8 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var adminRouter = require("./src/routes/admin");
-<<<<<<< HEAD
-
-var historicoRouter = require("./src/routes/historico");
-
-var dashRouter = require("./src/routes/dash");
-
-=======
 var historicoRouter = require("./src/routes/historico");
 var dashRouter = require("./src/routes/dash");
->>>>>>> a0077edd1efd1464062da95fa72812359fda71f5
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,18 +25,9 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/admin", adminRouter);
-<<<<<<< HEAD
-
-app.use("/historico", historicoRouter);
-
-app.use("/dash", dashRouter);
-
-
-=======
 app.use("/historico", historicoRouter);
 app.use("/dash", dashRouter);
 
->>>>>>> a0077edd1efd1464062da95fa72812359fda71f5
 
 app.listen(PORTA_APP, function () {
     console.log(`
