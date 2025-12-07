@@ -208,5 +208,19 @@ COUNT(DISTINCT empresa) AS 'Empresas distintas'
 FROM vw_capturas_com_limite 
 GROUP BY statusLeitura;
 
+-- View -- mostrando valores acima, no limite e abaixo do limite.
+ALTER VIEW vw_limite AS SELECT 
+c.dtRegistro AS 'Data',
+s.setor AS setor,
+c.valor AS valor,
+s.limite AS limite,
+CASE 
+WHEN c.valor > s.limite THEN 'Acima do limite'
+WHEN c.valor < s.limite THEN 'Abaixo do limite'
+ELSE 'No limite'
+END AS 'status'
+FROM captura c JOIN sensor s ON c.fkSensor = s.idSensor 
+ORDER BY c.dtRegistro DESC LIMIT 20;
 
+select * from vw_limite;
 
