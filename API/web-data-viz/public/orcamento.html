@@ -57,12 +57,13 @@
             <textarea type="text" id="texto" rows="10"></textarea><br><br>
             <div id="msg2"></div><br>
             <p> Autoriza um contato telefônico? </p><br>
-            <input type="radio" name="contato" value="sim"> Sim
+            <input type="radio" name="contato" value="sim" id="autorizaraceito"> Sim
             <input type="radio" name="contato" value="nao"> Não <br><br><br>
             <p> Telefone empresarial: </p><br>
             <input type="tel" id="telefone"><br><br>
             <p> Celular:</p><br>
-            <input type="celular" id="celular"><br><br><br><br>
+            <input type="celular" id="celular"><br><br>
+            <br><br>
         </div>
         <button class="enviar" onclick="enviar()"> Enviar </button><br><br><br><br>
     </main>
@@ -150,7 +151,7 @@
                 }
             }
             if (verificar == false || verificarPonto == false) {
-                msg1.innerHTML = `<span style= "color: red;">*E-mail inserido de forma incorreta!`;
+                msg1.innerHTML = `<span style= "color: red;"><b>*E-mail inserido de forma incorreta!</b>`;
                 return;
             } else {
                 alert("Formulário enviado com sucesso!");
