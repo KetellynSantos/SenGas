@@ -71,8 +71,13 @@
 
 <script>
     async function carregarHistorico() {
+
+        // Buscar id da empresa Logada
+        const idEmpresa = localStorage.idEmpresa;
+
+
         try {
-            const resposta = await fetch(`/historico/listar`);  // Rota do backend
+            const resposta = await fetch(`/historico/listar/${idEmpresa}`);  // Rota do backend
 
             if (!resposta.ok) {
                 console.error(`Erro HTTP: ${resposta.status}`);

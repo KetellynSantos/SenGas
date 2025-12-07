@@ -1,7 +1,10 @@
 const historicoModel = require("../models/historicoModel");
 
 function listar(req, res){
-    historicoModel.listar()
+
+    var idEmpresa = req.params.idEmpresa;
+
+    historicoModel.listar(idEmpresa)
         .then(resultado => {
             res.status(200).json(resultado);
         })

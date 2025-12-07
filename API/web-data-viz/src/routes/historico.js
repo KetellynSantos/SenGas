@@ -3,7 +3,7 @@ var router = express.Router();
 
 var historicoController = require("../controllers/historicoController");
 
-router.get("/listar", function (req, res){
+router.get("/listar/:idEmpresa", function (req, res){
     historicoController.listar(req, res);
 });
 
