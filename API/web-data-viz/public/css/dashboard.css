@@ -252,6 +252,7 @@ select {
     background-color: #f1f1f1;
 }
 
+<<<<<<< HEAD
 .alerta-gas {
     position: fixed;
     bottom: 20px;
@@ -292,3 +293,23 @@ select {
 .alerta-gas .icone {
     font-size: 26px;
 }
+=======
+.legenda {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.cor {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+
+.no-limite { background: #f0ad4e; }
+.acima { background: #d9534f; }
+.abaixo { background: #5cb85c; }
+>>>>>>> a0077edd1efd1464062da95fa72812359fda71f5

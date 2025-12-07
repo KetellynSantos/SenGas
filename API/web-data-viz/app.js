@@ -13,6 +13,7 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var adminRouter = require("./src/routes/admin");
+var historicoRouter = require("./src/routes/historico");
 var dashRouter = require("./src/routes/dash");
 
 app.use(express.json());
@@ -24,6 +25,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/admin", adminRouter);
+app.use("/historico", historicoRouter);
 app.use("/dash", dashRouter);
 
 
