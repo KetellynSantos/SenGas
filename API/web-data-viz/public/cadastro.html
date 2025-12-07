@@ -58,7 +58,40 @@
   // Carrega as empresas ao abrir a página
   listarEmpresas();
 
+  
+function validarSenhaSimples(senha){
+    const erros = []
 
+    if(!senha || senha.length < 8) {
+        erros.push("A senha deve ter pelo menos 8 caracteres.");
+    }
+
+    if(!/[A-Z]/.test(senha)) {
+        erros.push("A senha deve ter pelo menos uma letra maiúscula.");
+    }
+
+    if(!/[a-z]/.test(senha)) {
+        erros.push("A senha precisa ter pelo menos uma letra minúscula.");
+    }
+
+    if(!/[0-9]/.test(senha)) {
+        erros.push("A senha precisa ter pelo menos um número.");
+    }
+
+    if(!/[!@#$&*^,.?|<>]/.test(senha)) {
+        erros.push("A senha deve conter pelo menos um caractere especial (ex: ! @ # $).");
+    }
+
+    return {
+        valido: erros.length === 0,
+        erros: erros
+    }; 
+}
+
+function validarEmail(email) {
+  let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email)
+}
 
   function cadastrar() {
     // aguardar();
@@ -84,15 +117,33 @@
       return;
     }
 
-    if (senhaVar !== confirmacaoSenhaVar) {
+    if (!validarEmail(emailVar)) {
       Swal.fire({
         icon: "error",
-        title: "Erro",
-        text: "As senhas não coincidem!"
+        title: "Email inválido",
+        text: "O email deve conter @ e ponto."
       });
       return;
     }
 
+    if (senhaVar !== confirmacaoSenhaVar) {
+      Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: "As senhas estão diferente."
+      });
+      return;
+    }
+
+    const resultadoValidacao = validarSenhaSimples(senhaVar)
+    if(!resultadoValidacao.valido) {
+         Swal.fire({
+        icon: "error",
+        title: "Senha fraca",
+        html: resultadoValidacao.erros.join("<br>")
+      });
+      return false;
+    }
     // VALIDA CÓDIGO DA EMPRESA 
     let empresaEncontrada = null;
 
@@ -112,9 +163,17 @@
       return;
     }
 
+    if(telefoneVar.length < 10) {
+      Swal.fire({
+        icon: "error",
+        title: "Telefone inválido",
+        text: "Digite um telefone válido."
+      });
+      return;
+    }
+ 
+
     let idEmpresa = empresaEncontrada.idEmpresa; // pega ID correto do banco
-
-
 
     //recebe dados do usuario, fica mais facil de passar pro fetch
     let dadosUsuario = {

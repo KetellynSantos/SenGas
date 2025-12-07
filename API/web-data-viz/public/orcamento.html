@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <script src="../js/orcamento.js"></script>
-      <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,7 +51,7 @@
             <input type="nome" id="nome"><br><br>
             <div id="msg"></div><br>
             <p> * Email: </p><br>
-            <input type="email" id="email"><br><br>
+            <input type="text" id="email"><br><br>
             <div id="msg1"></div><br>
             <p>* Texto: </p><br>
             <textarea type="text" id="texto" rows="10"></textarea><br><br>
@@ -67,7 +66,7 @@
         </div>
         <button class="enviar" onclick="enviar()"> Enviar </button><br><br><br><br>
     </main>
-     <footer>
+    <footer>
         <div class="footer-container">
             <div class="footer-logo">
                 <img class="logobranca" src="./assets/imgs/logofooter.png" alt="SenGás">
@@ -112,3 +111,57 @@
 </body>
 
 </html>
+
+<script>
+
+    function enviar() {
+        // Variáveis criadas para validação dos campos
+        let emailVal = email.value;
+        let erro = '';
+        let erro1 = '';
+        let erro2 = '';
+
+        if (nome.value == '')
+            erro += '* Este campo é obrigatório.';
+        if (email.value == '')
+            erro1 += '* Este campo é obrigatório.';
+        if (texto.value == '')
+            erro2 += '* Este campo é obrigatório.';
+        if (erro != '' || erro1 != '' || erro2 != '') {
+            msg.innerHTML = `<b>${erro}</b>`
+            msg1.innerHTML = `<b>${erro1}</b>`
+            msg2.innerHTML = `<b>${erro2}</b>`
+        } else {
+            var vetoremail = [];
+
+            for (var i = 0; i < emailVal.length; i++) {
+                vetoremail[i] = emailVal[i];
+            }
+            var verificar = false;
+            var verificarPonto = false;
+
+            for (var i = 0; i < vetoremail.length; i++) {
+                if (vetoremail[i] == '@') {
+                    verificar = true;
+                }
+
+                if (vetoremail[i] == '.' && verificar == true) {
+                    verificarPonto = true;
+                }
+            }
+            if (verificar == false || verificarPonto == false) {
+                msg1.innerHTML = `<span style= "color: red;">*E-mail inserido de forma incorreta!`;
+                return;
+            } else {
+                alert("Formulário enviado com sucesso!");
+                nome.value = "";
+                email.value = "";
+                texto.value = "";
+
+                msg.innerHTML = '';
+                msg1.innerHTML = '';
+                msg2.innerHTML = '';
+            }
+        }
+    }
+</script>

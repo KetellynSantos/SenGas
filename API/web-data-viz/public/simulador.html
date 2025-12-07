@@ -5,7 +5,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css">
-    <script src="../js/simuladorFinanceiro.js"></script>
       <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,11 +54,11 @@
             </p>
 
             <div class="input-group">
-                <b>Quantidade de metano (em m³) produzido por dia </b> <br> <br> <input id="iptProdDia">
+                <b>Quantidade de metano (em m³) produzido por dia </b> <br> <br> <input id="iptProdDia" type="number">
                 <div id="div_msg"></div>
             </div>
             <div class="input-group">
-                <b>Preço médio de venda (R$ / m³)</b> <br> <br> <input id="iptPrecoVenda"> <br><br>
+                <b>Preço médio de venda (R$ / m³)</b> <br> <br> <input id="iptPrecoVenda" type="number"> <br><br>
                 <div id="div_msg1"></div>
             </div>
 
@@ -120,3 +119,57 @@
 </body>
 
 </html>
+
+<script>
+    function simular() {
+       var ProdDia = Number(iptProdDia.value);
+       var PrecoVenda = Number(iptPrecoVenda.value);
+
+       var ProdAno = ProdDia * 365; // Produção de gas anual
+       var PrecoAno = ProdAno * PrecoVenda; // Quanto ganha por ano 
+
+       var perdaFinanceira = PrecoAno * 0.03; // Perda no armazenamento (em dinheiro)
+       var lucro = PrecoAno * 0.05; // Em toda a produção com a solução (em dinheiro)
+       var multa = ProdAno * 0.05; // valor da multa
+       var economiaComSenGas = perdaFinanceira + multa // economia total se o SenGás for usado
+
+       let erro = '';  // Variável criada para validação dos campos
+       let erro1 = ''; // Variável criada para validação dos campos
+
+       // Validações dos campos
+       if (ProdDia == 0){
+              erro += '* Este campo é obrigatório.';}
+       if (PrecoVenda == 0){
+              erro1 += '* Este campo é obrigatório.';}
+       if (ProdDia < 0){
+              erro += '* Este campo só pode ser preenchido com valores positivos acima de zero.';}
+       if (PrecoVenda < 0){
+              erro1 += '* Este campo só pode ser preenchido com valores positivos acima de zero.'}
+       if (erro != '' || erro1 != '') {
+              div_msg.innerHTML =  `<b style= "color:red;">${erro}</b>`;
+              div_msg1.innerHTML = `<b style= "color:red;">${erro1}</b>`;
+       }
+       else {
+              resultado.innerHTML = `
+              <b>Receita anual:</b> ${PrecoAno.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}<br>
+              <i>(valor produzido por dia * dias no ano * preço de venda)</i><br><br>
+
+              <b>Perdas estimadas em 3%:</b> ${perdaFinanceira.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}<br>
+              <i>Por que 3%? Estima-se que empresas sem controle eficiente percam cerca de 3% da receita devido a vazamentos e desperdício de gás.<br></i><br>
+
+              <b>Multa ambiental de 5%:</b> ${multa.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}<br>
+              <i>Por que 5%? Baseado em penalidades do Sistema Brasileiro de Comércio de Emissões de Gases de Efeito Estufa (SBCE) por emissões não controladas de metano.<br></i><br>
+
+              <b> Economia com SenGás: </b> ${economiaComSenGas.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}<br>
+              <i> Valor que sua empresa deixaria de perder ao adotar o sistema SenGás.</i><br><br>
+              <div class="lucro">
+               <b>Lucro com SenGás: ${lucro.toLocaleString('pt-br', { style: "currency", currency: 'BRL' })}</b><br>
+               <i> Com o sistema SenGás, sua operação reduz perdas, evita multas, otimiza processo de compressão e armazenamento e ainda pode aumenta a eficiência da produção em 5%.</i>
+              <div/>
+               <br>  
+               <div class="simular-orc">
+                <button onclick="window.location.href='./orcamento.html'"> Solicitar Orçamento!</button>
+            </div>`
+              }
+} 
+</script>

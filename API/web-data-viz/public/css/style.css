@@ -43,7 +43,7 @@ header {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  
+
 
 }
 
@@ -101,7 +101,7 @@ header {
     height: 45px;
     border: none;
     border-radius: 8px;
-    
+
     background-color: #7fa72d;
     color: white;
     font-weight: bold;
@@ -541,7 +541,7 @@ header {
 
 }
 
-.frasemulher{
+.frasemulher {
     margin: -70px 50px;
     color: #ffffff;
     font-size: 32px;
@@ -646,6 +646,16 @@ input[type="nome"],
 input[type="email"],
 input[type="tel"],
 input[type="celular"] {
+    width: 1000px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#email {
     width: 1000px;
     padding: 10px;
     border-radius: 20px;
@@ -829,7 +839,7 @@ input[type="radio"] {
     font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.5s ease;
-    animation: pisca 5s linear infinite ;
+    animation: pisca 5s linear infinite;
     transition: all 1s ease;
 
 }
@@ -847,12 +857,12 @@ input[type="radio"] {
     transition: background-color 0.5s ease;
 }
 
-#resultado .lucro i{
+#resultado .lucro i {
     color: #004830;
     margin-top: 500px;
 }
 
-.lucro{
+.lucro {
     background-color: #9ad02c;
     width: 96%;
     height: 15%;
@@ -860,25 +870,39 @@ input[type="radio"] {
     padding: 10px;
 }
 
-@keyframes pisca{
-    0%{opacity: 0;}
-    25%{opacity: 1;}
-    50%{opacity: 0;}
-    75%{opacity: 1;}
-    100%{opacity: 1;}
+@keyframes pisca {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 
 
 .simular-btn button:hover {
     background-color: #004830;
-    
+
 }
 
 .simular-orc button:hover {
     transform: scale(1.2);
     background-color: #004830;
-     animation: none ;
+    animation: none;
 }
 
 
