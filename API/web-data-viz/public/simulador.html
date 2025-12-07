@@ -54,11 +54,11 @@
             </p>
 
             <div class="input-group">
-                <b>Quantidade de metano (em m³) produzido por dia </b> <br> <br> <input id="iptProdDia">
+                <b>Quantidade de metano (em m³) produzido por dia </b> <br> <br> <input id="iptProdDia" type="number">
                 <div id="div_msg"></div>
             </div>
             <div class="input-group">
-                <b>Preço médio de venda (R$ / m³)</b> <br> <br> <input id="iptPrecoVenda"> <br><br>
+                <b>Preço médio de venda (R$ / m³)</b> <br> <br> <input id="iptPrecoVenda" type="number"> <br><br>
                 <div id="div_msg1"></div>
             </div>
 
@@ -146,8 +146,8 @@
        if (PrecoVenda < 0){
               erro1 += '* Este campo só pode ser preenchido com valores positivos acima de zero.'}
        if (erro != '' || erro1 != '') {
-              div_msg.innerHTML =  `${erro}`;
-              div_msg1.innerHTML = `${erro1}`;
+              div_msg.innerHTML =  `<b style= "color:red;">${erro}</b>`;
+              div_msg1.innerHTML = `<b style= "color:red;">${erro1}</b>`;
        }
        else {
               resultado.innerHTML = `
