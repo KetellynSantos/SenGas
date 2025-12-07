@@ -178,6 +178,7 @@ c.dtRegistro AS 'Data',
 s.setor AS setor,
 c.valor AS valor,
 s.limite AS limite,
+s.fkEmpresa AS sensor,
 CASE 
 WHEN c.valor > s.limite THEN 'Acima do limite'
 WHEN c.valor < s.limite THEN 'Abaixo do limite'
@@ -200,7 +201,7 @@ ORDER BY c.dtRegistro DESC;
                 FROM sensor s 
                 WHERE s.fkEmpresa = e.idEmpresa
             ) AS qtdSensores,
-            
+
             (SELECT COUNT(*)
                 FROM captura c
                 JOIN sensor s ON c.fkSensor = s.idSensor
