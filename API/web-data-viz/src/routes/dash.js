@@ -17,4 +17,8 @@ router.get("/limite/:idEmpresa", function(req, res) {
     dashControllers.obterLimite(req, res);
 });
 
+router.get("/dados/:idEmpresa/:setor", function (req, res) {
+    dashController.buscarPorSetor(req, res);
+});
+
 module.exports = router;

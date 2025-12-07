@@ -43,8 +43,24 @@ function obterLimite(req, res) {
         });
 }
 
+
+function buscarPorSetor(req, res) {
+    const idEmpresa = req.params.idEmpresa;
+    const setor = req.params.setor;
+
+    dashModel.buscarSetor(idEmpresa, setor)
+        .then((resultado) => {
+            res.status(200).json(resultado);
+        })
+        .catch((erro) => {
+            res.status(500).json(erro);
+        });
+}
+
+
 module.exports = {
     MedidasKpi,
     MedidasGrafico,
-    obterLimite
+    obterLimite,
+    buscarPorSetor
 };
