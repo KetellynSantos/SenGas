@@ -14,7 +14,7 @@ function autenticar(email, senha) {
         JOIN empresa 
             ON usuario.codigoEmpresa = empresa.codigoEmpresa
         WHERE usuario.email = '${email}' 
-          AND usuario.senha = '${senha}';
+          AND BINARY usuario.senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
