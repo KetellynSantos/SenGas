@@ -1,7 +1,7 @@
 var database = require("../database/config");
 
-function listar(){
-    const consultaSql = `SELECT * FROM vw_limite;
+function listar(idEmpresa){
+    const consultaSql = `SELECT * FROM vw_limite where sensor = ${idEmpresa};
  `;
     
     return database.executar(consultaSql);
