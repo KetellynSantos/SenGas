@@ -52,9 +52,11 @@ body {
     margin: 0px -100px -73px;
 
 }
+
 .nav-dashboard {
     margin-bottom: 100px;
 }
+
 .nav-dashboard ul {
     list-style: none;
     margin-top: 22px;
@@ -97,9 +99,9 @@ body {
 }
 
 .reserved {
-     text-align: center;
-     font-size: 9px;
-      color: #aee0d7; 
+    text-align: center;
+    font-size: 9px;
+    color: #aee0d7;
 }
 
 .main-content {
@@ -143,8 +145,8 @@ body {
     object-fit: cover;
 }
 
-.active{
-     background: rgba(255, 255, 255, 0.193);
+.active {
+    background: rgba(255, 255, 255, 0.193);
     color: #2da980;
 }
 
@@ -180,7 +182,7 @@ body {
 }
 
 .chart-section1 {
-   
+
     margin-top: 20px;
     background: #fff;
     padding: 18px;
@@ -210,10 +212,11 @@ body {
     margin-left: 7px;
 }
 
-.central{
-     display: flex;
+.central {
+    display: flex;
 }
-.central2{
+
+.central2 {
     display: flex;
 }
 
@@ -249,6 +252,48 @@ select {
     background-color: #f1f1f1;
 }
 
+<<<<<<< HEAD
+.alerta-gas {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    background: #ff4d4d;
+    color: white;
+    padding: 18px 22px;
+    border-radius: 12px;
+
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    font-family: "Montserrat", sans-serif;
+
+    z-index: 9999;
+    width: 300px;
+
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Começa escondido */
+.oculto {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+}
+
+/* Mostrando */
+.alerta-ativo {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+.alerta-gas .icone {
+    font-size: 26px;
+}
+=======
 .legenda {
   display: flex;
   gap: 20px;
@@ -267,3 +312,4 @@ select {
 .no-limite { background: #f0ad4e; }
 .acima { background: #d9534f; }
 .abaixo { background: #5cb85c; }
+>>>>>>> a0077edd1efd1464062da95fa72812359fda71f5

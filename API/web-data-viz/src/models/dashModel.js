@@ -1,52 +1,68 @@
 var database = require("../database/config");
 
-function MedidasKpi(idUsuario) {
-
+function MedidasKpi(idEmpresa) {
     var instrucaoSql = `
-    SELECT
-    e.idEmpresa,
-    (
-        SELECT COUNT(*)
-        FROM sensor s2
-        WHERE s2.fkEmpresa = e.idEmpresa
-    ) AS qtdSensores,
+        SELECT
+            e.idEmpresa,
 
-    COUNT(CASE WHEN c.valor > s.limite THEN 1 END) AS totalCapturasAcimaLimite,
-    
-    MAX(CASE WHEN c.valor > s.limite THEN c.valor END) AS maiorValorAcimaLimite,
+            -- Último valor registrado
+            (SELECT c.valor
+                FROM captura c
+                JOIN sensor s ON c.fkSensor = s.idSensor
+                WHERE s.fkEmpresa = e.idEmpresa
+                ORDER BY c.dtRegistro DESC, c.idCaptura DESC
+                LIMIT 1
+            ) AS ultimoValor,
 
-    MAX(CASE WHEN c.valor > s.limite THEN c.dtRegistro END) AS ultimaCapturaAcimaLimite
+            -- Quantidade de sensores ativos da empresa
+            (SELECT COUNT(*) 
+                FROM sensor s 
+                WHERE s.fkEmpresa = e.idEmpresa
+            ) AS qtdSensores,
 
-FROM empresa e
-JOIN sensor s ON s.fkEmpresa = e.idEmpresa
-LEFT JOIN captura c ON c.fkSensor = s.idSensor
-WHERE e.idEmpresa = ${idUsuario}
-GROUP BY e.idEmpresa;
+            -- Total de capturas registradas pela empresa
+            (SELECT COUNT(*)
+                FROM captura c
+                JOIN sensor s ON c.fkSensor = s.idSensor
+                WHERE s.fkEmpresa = e.idEmpresa
+            ) AS totalCapturas
+
+
+        FROM empresa e
+        WHERE e.idEmpresa = ${idEmpresa};
     `;
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function  MedidasGrafico(idUsuario) {
 
+
+function MedidasGrafico(idEmpresa) {
     var instrucaoSql = `
-   SELECT 
-    e.idEmpresa,
-    s.idSensor,
-    c.valor,
-    c.dtRegistro
-FROM captura c
-JOIN sensor s ON c.fkSensor = s.idSensor
-JOIN empresa e ON s.fkEmpresa = e.idEmpresa
-WHERE e.idEmpresa = ${idUsuario};
- `;
+        SELECT 
+            c.valor,
+            c.dtRegistro
+        FROM captura c
+        JOIN sensor s ON c.fkSensor = s.idSensor
+        WHERE s.fkEmpresa = ${idEmpresa}
+        ORDER BY c.dtRegistro DESC, c.idCaptura DESC
 
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+        LIMIT 50;
+    `;
     return database.executar(instrucaoSql);
+}
+
+function buscarLimite(idEmpresa) {
+    const sql = `
+        SELECT limite
+        FROM sensor
+        WHERE fkEmpresa = ${idEmpresa}
+        LIMIT 1;
+    `;
+    return database.executar(sql);
 }
 
 module.exports = {
     MedidasGrafico,
-    MedidasKpi
-}
+    MedidasKpi,
+    buscarLimite
+};
