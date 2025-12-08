@@ -74,17 +74,13 @@ function cadastrar(req, res) {
 function listar(req, res) {
     usuarioModel.listar()
         .then(resultado => {
-            res.status(201).json({
-                mensagem: "Usuário cadastrado com sucesso!",
-                idInserido: resultado.insertId
-            });
+            res.status(200).json(resultado);
         })
         .catch(erro => {
             console.log("Erro ao listar empresas:", erro);
             res.status(500).json(erro);
         });
 }
-
 
 module.exports = {
     autenticar,
