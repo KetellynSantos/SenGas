@@ -251,7 +251,7 @@ CREATE VIEW vw_capturas_com_limite_quantidade AS
 SELECT statusLeitura AS 'status',
 COUNT(*) AS quantidade 
 FROM vw_capturas_com_limite   
-=======
+
 SELECT * FROM vw_capturas_com_limite;
 
 ALTER VIEW vw_capturas_com_limite_quantidade AS
