@@ -2,9 +2,8 @@ var setorModel = require("../models/setorModel");
 
 function buscarPorSetor(req, res) {
     const idEmpresa = req.params.idEmpresa;
-    const setor = req.params.setor;
 
-    dashModel.buscarSetor(idEmpresa, setor)
+    setorModel.buscarSetor(idEmpresa)
         .then((resultado) => {
             res.status(200).json(resultado);
         })
