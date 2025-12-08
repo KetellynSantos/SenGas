@@ -165,6 +165,7 @@ JOIN empresa e ON e.idEmpresa = s.fkEmpresa
 JOIN captura c ON c.fkSensor = s.idSensor;
 
 
+
 -- View --conta quantas capturas foram realizadas em status ok ou alerta.
 CREATE VIEW vw_capturas_com_limite_quantidade AS
 SELECT statusLeitura AS 'status',
@@ -219,3 +220,10 @@ ORDER BY c.dtRegistro DESC;
         FROM captura c
         JOIN sensor s ON c.fkSensor = s.idSensor
         ORDER BY c.dtRegistro DESC, c.idCaptura DESC;
+
+
+        SELECT * FROM usuario;
+ `;
+
+
+  

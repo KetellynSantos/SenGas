@@ -92,98 +92,77 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-const setor1 = document.getElementById('graficoSetores1');
-const setor2 = document.getElementById('graficoSetores2');
-const setor3 = document.getElementById('graficoSetores3');
-const setor4 = document.getElementById('graficoSetores4');
+const setoresConfig = [
+    { canvasId: 'graficoSetores1', titulo: 'Setor de Captação', aliases: ['captacao'] },
+    { canvasId: 'graficoSetores2', titulo: 'Setor de Extração', aliases: ['extracao'] },
+    { canvasId: 'graficoSetores3', titulo: 'Setor de Purificação', aliases: ['purificacao'] },
+    { canvasId: 'graficoSetores4', titulo: 'Setor de Armazenagem', aliases: ['armazenagem', 'armazenamento', 'estocagem'] }
+];
 
-let grafico1, grafico2, grafico3, grafico4; // <--- corrigido
 const idEmpresa = localStorage.idEmpresa;
-const idsetor = localStorage.setor
 
-// função que faltava (corrigido)
+if (!idEmpresa) {
+    window.location.href = '../login.html';
+    throw new Error('Usuário sem empresa definida, redirecionando para login.');
+}
+
+const charts = {};
+
 function formatarData(data) {
     const d = new Date(data);
-    if (isNaN(d)) return data;
-    return d.toLocaleDateString("pt-BR") + " " + d.toLocaleTimeString("pt-BR", {hour: "2-digit", minute: "2-digit"});
+    if (Number.isNaN(d.getTime())) return data;
+    return d.toLocaleDateString('pt-BR') + ' ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 }
 
-obterGrafico();
+function normalizarSetor(nome) {
+    if (!nome) return '';
+    return nome
+        .normalize('NFD').replace(/[^a-zA-Z\s]/g, '')
+        .toLowerCase()
+        .replace(/^setor\s+de\s+/, '')
+        .trim();
+}
 
-function obterGrafico() {
-    fetch(`/setor/dados/${idEmpresa}`)
+function carregarGraficos() {
+    buscarDadosEmpresa()
+        .then(dados => {
+            setoresConfig.forEach(({ canvasId, aliases, titulo }) => {
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) return;
+                const dadosSetor = dados.filter(item => {
+                    const chave = normalizarSetor(item.setor);
+                    return aliases.includes(chave);
+                });
+                const labels = dadosSetor.map(item => formatarData(item.data));
+                const valores = dadosSetor.map(item => Number(item.valor));
+                plotarGrafico(canvas, canvasId, labels, valores, titulo);
+            });
+        })
+        .catch(err => {
+            console.error('Erro ao carregar dados dos setores:', err);
+            alert('Não foi possível carregar os gráficos. Faça login novamente.');
+        });
+}
+
+function buscarDadosEmpresa() {
+    return fetch(`/setor/dados/${idEmpresa}`)
         .then(res => {
-            if (!res.ok) throw "Erro ao buscar dados";
+            if (!res.ok) throw new Error('Erro ao buscar dados');
             return res.json();
-        })
-        .then(data => {
-            console.log("DADOS RECEBIDOS:", data);
-
-            const labels = data.map(item => formatarData(item.data));
-            const valores = data.map(item => item.valor);
-
-            plotarGrafico(labels, valores);
-        })
-        .catch(err => console.error(err));
+        });
 }
 
-function plotarGrafico(labels, valores) {
+function plotarGrafico(canvas, chartKey, labels, valores, titulo) {
+    if (charts[chartKey]) charts[chartKey].destroy();
 
-    if (grafico1) grafico1.destroy();
-    if (grafico2) grafico2.destroy();
-    if (grafico3) grafico3.destroy();
-    if (grafico4) grafico4.destroy();
-
-    grafico1 = new Chart(setor1, {
+    charts[chartKey] = new Chart(canvas, {
         type: 'line',
         data: {
             labels,
             datasets: [{
-                label: "Valores capturados",
+                label: titulo,
                 data: valores,
-                borderColor: "#0099cc",
-                fill: false,
-                tension: 0.2
-            }]
-        }
-    });
-
-    grafico2 = new Chart(setor2, {
-        type: 'line',
-        data: {
-            labels,
-            datasets: [{
-                label: "Valores capturados",
-                data: valores,
-                borderColor: "#0099cc",
-                fill: false,
-                tension: 0.2
-            }]
-        }
-    });
-
-    grafico3 = new Chart(setor3, {
-        type: 'line',
-        data: {
-            labels,
-            datasets: [{
-                label: "Valores capturados",
-                data: valores,
-                borderColor: "#0099cc",
-                fill: false,
-                tension: 0.2
-            }]
-        }
-    });
-
-    grafico4 = new Chart(setor4, {
-        type: 'line',
-        data: {
-            labels,
-            datasets: [{
-                label: "Valores capturados",
-                data: valores,
-                borderColor: "#0099cc",
+                borderColor: '#0099cc',
                 fill: false,
                 tension: 0.2
             }]
@@ -191,7 +170,7 @@ function plotarGrafico(labels, valores) {
     });
 }
 
-
+carregarGraficos();
     </script>
 </body>
 
