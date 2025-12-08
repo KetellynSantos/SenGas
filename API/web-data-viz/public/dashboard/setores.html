@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-<body>
+<body ondblclick="buscarDadosSetor">
   <aside class="sidebar">
             <div class="sidebar-top">
                 <img class="logo-img" src="../assets/imgs/logoLetraBranca.png.png" alt="Sen Gás logo">
@@ -49,13 +49,7 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
             <section class="chart-section">
                 <div class="chart-header">
                     <h3> Setor de Captação</h3>
-                    <div>
-                        <select aria-label="Período">
-                            <option>Últimos 30 dias</option>
-                            <option>7 dias</option>
-                            <option>1 ano</option>
-                        </select>
-                    </div>
+                    
                 </div>
                 <div class="chart-placeholder">
                     <canvas id="graficoSetores1" width="800" height="340"></canvas>
@@ -65,13 +59,7 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
             <section class="chart-section">
                 <div class="chart-header">
                     <h3> Setor de Extração</h3>
-                    <div>
-                        <select aria-label="Período">
-                            <option>Últimos 30 dias</option>
-                            <option>7 dias</option>
-                            <option>1 ano</option>
-                        </select>
-                    </div>
+                
                 </div>      
                 <div class="chart-placeholder">
                     <canvas id="graficoSetores2" width="800" height="340"></canvas>
@@ -82,13 +70,7 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
             <section class="chart-section">
                 <div class="chart-header">
                     <h3> Setor de Purificação</h3>
-                    <div>
-                        <select aria-label="Período">
-                            <option>Últimos 30 dias</option>
-                            <option>7 dias</option>
-                            <option>1 ano</option>
-                        </select>
-                    </div>
+                   
                 </div>
                 <div class="chart-placeholder">
                     <canvas id="graficoSetores3" width="800" height="340"></canvas>
@@ -98,13 +80,7 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
             <section class="chart-section">
                 <div class="chart-header">
                     <h3> Setor de Armazenagem</h3>
-                    <div>
-                        <select aria-label="Período">
-                            <option>Últimos 30 dias</option>
-                            <option>7 dias</option>
-                            <option>1 ano</option>
-                        </select>
-                    </div>
+                    
                 </div>
                 <div class="chart-placeholder">
                     <canvas id="graficoSetores4" width="800" height="340"></canvas>
@@ -115,102 +91,107 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const setor1 = document.getElementById('graficoSetores1');
+const setor2 = document.getElementById('graficoSetores2');
+const setor3 = document.getElementById('graficoSetores3');
+const setor4 = document.getElementById('graficoSetores4');
 
-    <script>
+let grafico1, grafico2, grafico3, grafico4; // <--- corrigido
+const idEmpresa = localStorage.idEmpresa;
+const idsetor = localStorage.setor
 
-        const ctx1 = "graficoSetores1"
-        if (ctx1 && window.Chart) {
-            new Chart(ctx1, {
-                type: 'line',
-                data: {
-                    labels: ['01/Jan', '02/Jan', '03/Jan', '04/Jan', '05/Jan', '06/Jan', '07/Jan', '08/Jan', '09/Jan', '10/Jan'],
-                    datasets: [
-                        { label: 'Captação de Vazamento', data: [2.0, 3.5, 3.0, 6.0, 2.0, 3.0, 6.5, 2.0, 1.7, 1.4], borderColor: '#0099cc', fill: false, tension: 0.0 },
-                         { label: 'Linha delimitadora', data: [6,6,6,6,6,6,6,6,6,6], borderColor: 'red', fill: false, tension: 0.0, pointRadius:0 ,borderWidth: 2,},
-                    ]
-                },
-options:{
+// função que faltava (corrigido)
+function formatarData(data) {
+    const d = new Date(data);
+    if (isNaN(d)) return data;
+    return d.toLocaleDateString("pt-BR") + " " + d.toLocaleTimeString("pt-BR", {hour: "2-digit", minute: "2-digit"});
+}
 
-      plugins: {
-        legend: {
-            labels:{
-            filter: function(legendItem, chartData){ return legendItem.text !=='Linha delimitadora';},
-             display: false },}
-      },
-    }
+obterGrafico();
+
+function obterGrafico() {
+    fetch(`/setor/dados/${idEmpresa}`)
+        .then(res => {
+            if (!res.ok) throw "Erro ao buscar dados";
+            return res.json();
+        })
+        .then(data => {
+            console.log("DADOS RECEBIDOS:", data);
+
+            const labels = data.map(item => formatarData(item.data));
+            const valores = data.map(item => item.valor);
+
+            plotarGrafico(labels, valores);
+        })
+        .catch(err => console.error(err));
+}
+
+function plotarGrafico(labels, valores) {
+
+    if (grafico1) grafico1.destroy();
+    if (grafico2) grafico2.destroy();
+    if (grafico3) grafico3.destroy();
+    if (grafico4) grafico4.destroy();
+
+    grafico1 = new Chart(setor1, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                label: "Valores capturados",
+                data: valores,
+                borderColor: "#0099cc",
+                fill: false,
+                tension: 0.2
+            }]
+        }
     });
+
+    grafico2 = new Chart(setor2, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                label: "Valores capturados",
+                data: valores,
+                borderColor: "#0099cc",
+                fill: false,
+                tension: 0.2
+            }]
         }
+    });
 
-        const ctx2 = "graficoSetores2"
-        if (ctx2 && window.Chart) {
-            new Chart(ctx2, {
-                type: 'line',
-
-                data: {
-                    labels: ['01/Jan', '02/Jan', '03/Jan', '04/Jan', '05/Jan', '06/Jan', '07/Jan', '08/Jan', '09/Jan', '10/Jan'],
-                    datasets: [
-                        { label: 'Captação de Vazamento', data: [6.3, 5.3, 9.2, 3.8, 7.4, 6.0, 4.6, 2.3, 1.0, 1.4], borderColor: '#ffa500', fill: false, tension: 0.0 },
-                          { label: 'Linha delimitadora', data: [6,6,6,6,6,6,6,6,6,6], borderColor: 'red', fill: false, tension: 0.,  pointRadius:0 , borderWidth: 2,},
-                       
-                    ]
-                },
-                options:{
-
-      plugins: {
-        legend: {
-            labels:{
-            filter: function(legendItem, chartData){ return legendItem.text !=='Linha delimitadora';},
-             display: false },}
-      },
-    }
-            });
+    grafico3 = new Chart(setor3, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                label: "Valores capturados",
+                data: valores,
+                borderColor: "#0099cc",
+                fill: false,
+                tension: 0.2
+            }]
         }
+    });
 
-        const ctx3 = "graficoSetores3"
-        if (ctx3 && window.Chart) {
-            new Chart(ctx3, {
-                type: 'line',
-                data: {
-                    labels: ['01/Jan', '02/Jan', '03/Jan', '04/Jan', '05/Jan', '06/Jan', '07/Jan', '08/Jan', '09/Jan', '10/Jan'],
-                    datasets: [
-                        { label: 'Captação de Vazamento', data: [1.5, 1.2, 1.6, 5.0, 7.0, 2.5, 3.0, 4.0, 2.5, 1.7], borderColor: '#008000', fill: false, tension: 0.0 },
-                         { label: 'Linha delimitadora', data: [6,6,6,6,6,6,6,6,6,6,6,6], borderColor: 'red', fill: false, tension: 0.0, pointRadius:0, borderWidth: 2,  },
-                    ]
-                },
-                options:{
-
-      plugins: {
-        legend: {
-            labels:{
-            filter: function(legendItem, chartData){ return legendItem.text !=='Linha delimitadora';},
-             display: false },}
-      },
-    }
-            });
+    grafico4 = new Chart(setor4, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                label: "Valores capturados",
+                data: valores,
+                borderColor: "#0099cc",
+                fill: false,
+                tension: 0.2
+            }]
         }
+    });
+}
 
-        const ctx4 = "graficoSetores4"
-        if (ctx4 && window.Chart) {
-            new Chart(ctx4, {
-                type: 'line',
-                data: {
-                    labels: ['01/Jan', '02/Jan', '03/Jan', '04/Jan', '05/Jan', '06/Jan', '07/Jan', '08/Jan', '09/Jan', '10/Jan'],
-                    datasets: [
-                        { label: 'Captação de Vazamento', data: [1.0, 1.2, 1.6, 5.0, 7.9, 2.5, 3.0, 4.0, 2.5, 5.7], borderColor: '#9d9d33', fill: false, tension: 0.0 },
-                         { label: 'Linha delimitadora', data: [6,6,6,6,6,6,6,6,6,6,6], borderColor: 'red', fill: false, tension: 0.0, pointRadius:0, borderWidth: 2 },
-                    ]
-                },
-                options:{
 
-      plugins: {
-        legend: {
-            labels:{
-            filter: function(legendItem, chartData){ return legendItem.text !=='Linha delimitadora';},
-             display: false },}
-      },
-    }
-            });
-        }
     </script>
 </body>
 
