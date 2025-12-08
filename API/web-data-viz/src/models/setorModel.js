@@ -1,12 +1,16 @@
 var database = require("../database/config");
 
-function buscarSetor(idEmpresa, setor) {
+function buscarSetor(idEmpresa) {
     const sql = `
-        SELECT valor, momento
-        FROM medida
-        WHERE fkEmpresa = ${idEmpresa}
-        AND setor = '${setor}'
-        ORDER BY momento DESC;
+SELECT valor AS valor, 
+ dtRegistro AS data, 
+ setor AS setor
+  FROM captura 
+  JOIN sensor 
+  ON fkSensor = idSensor
+   WHERE fkEmpresa = ${idEmpresa} 
+   AND setor = 'Laboratório Criogênico' 
+   ORDER BY dtRegistro;
     `;
     return database.executar(sql);
 }
@@ -14,3 +18,5 @@ function buscarSetor(idEmpresa, setor) {
 module.exports = {
     buscarSetor
 };
+
+
