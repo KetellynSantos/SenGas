@@ -13,27 +13,27 @@
 </head>
 
 <body ondblclick="buscarDadosSetor">
-  <aside class="sidebar">
-            <div class="sidebar-top">
-                <img class="logo-img" src="../assets/imgs/logoLetraBranca.png.png" alt="Sen Gás logo">
-            </div>
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <img class="logo-img" src="../assets/imgs/logoLetraBranca.png.png" alt="Sen Gás logo">
+        </div>
 
-            <nav class="nav-dashboard">
-                <ul>
-                    <li><a  href="./dashboard.html">Dashboard </a></li>
-                    <li><a class="active" href="./setores.html">Setores</a></li>
-                    <li><a href="./historicoDashboard.html">Histórico</a></li>
-                        <li><a href="https://brenogoal.atlassian.net/jira/software/c/projects/GS/list?jql=project+
+        <nav class="nav-dashboard">
+            <ul>
+                <li><a href="./dashboard.html">Dashboard </a></li>
+                <li><a class="active" href="./setores.html">Setores</a></li>
+                <li><a href="./historicoDashboard.html">Histórico</a></li>
+                <li><a href="https://brenogoal.atlassian.net/jira/software/c/projects/GS/list?jql=project+
 %3D+%22GS%22+ORDER+BY+created+DESC&atlOrigin=eyJpIjoiZmJkMW
 M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a></li>
 
 
-                </ul>
-            </nav>
-            <button class="button-sair" onclick="window.location.href='../index.html'">
-                <i class="fa-solid fa-right-from-bracket" style="color: #fcfcfd;"></i> Sair </button>
-            <p class="reserved">© 2025 SenGás All Rights Reserved</p>
-        </aside>
+            </ul>
+        </nav>
+        <button class="button-sair" onclick="window.location.href='../index.html'">
+            <i class="fa-solid fa-right-from-bracket" style="color: #fcfcfd;"></i> Sair </button>
+        <p class="reserved">© 2025 SenGás All Rights Reserved</p>
+    </aside>
 
     <main class="main-content">
         <header class="topbar">
@@ -42,14 +42,21 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
             </div>
             <div class="user">
                 <span> Empresa Xpto </span>
-                <img src="../assets/imgs/iconeUsuario.svg" alt="Usuária" class="avatar" onclick="window.location.href='admin.html'">
+                <img src="../assets/imgs/iconeUsuario.svg" alt="Usuária" class="avatar"
+                    onclick="window.location.href='admin.html'">
             </div>
         </header>
         <div class=" central">
             <section class="chart-section">
                 <div class="chart-header">
                     <h3> Setor de Captação</h3>
-                    
+                    <div id="alerta_captacao" class="alerta-gas1 oculto setor-alerta">
+                        <span class="icone">⚠️</span>
+                        <div>
+                            <h3>Alerta - Captação</h3>
+                            <p id="msg_captacao">Valor acima do limite!</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="chart-placeholder">
                     <canvas id="graficoSetores1" width="800" height="340"></canvas>
@@ -59,18 +66,31 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
             <section class="chart-section">
                 <div class="chart-header">
                     <h3> Setor de Extração</h3>
-                
-                </div>      
+                    <div id="alerta_extracao" class="alerta-gas2 oculto setor-alerta">
+                        <span class="icone">⚠️</span>
+                        <div>
+                            <h3>Alerta - Extração</h3>
+                            <p id="msg_extracao">Valor acima do limite!</p>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="chart-placeholder">
                     <canvas id="graficoSetores2" width="800" height="340"></canvas>
                 </div>
             </section>
-        </div>    
+        </div>
         <div class=" central2">
             <section class="chart-section">
                 <div class="chart-header">
                     <h3> Setor de Purificação</h3>
-                   
+                    <div id="alerta_purificacao" class="alerta-gas3 oculto setor-alerta">
+                        <span class="icone">⚠️</span>
+                        <div>
+                            <h3>Alerta - Purificação</h3>
+                            <p id="msg_purificacao">Valor acima do limite!</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="chart-placeholder">
                     <canvas id="graficoSetores3" width="800" height="340"></canvas>
@@ -80,7 +100,13 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
             <section class="chart-section">
                 <div class="chart-header">
                     <h3> Setor de Armazenagem</h3>
-                    
+                    <div id="alerta_armazenagem" class="alerta-gas4 oculto setor-alerta">
+                        <span class="icone">⚠️</span>
+                        <div>
+                            <h3 class="chart">Alerta - Armazenagem</h3>
+                            <p id="msg_armazenagem">Valor acima do limite!</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="chart-placeholder">
                     <canvas id="graficoSetores4" width="800" height="340"></canvas>
@@ -91,86 +117,154 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-const setoresConfig = [
-    { canvasId: 'graficoSetores1', titulo: 'Setor de Captação', aliases: ['captacao'] },
-    { canvasId: 'graficoSetores2', titulo: 'Setor de Extração', aliases: ['extracao'] },
-    { canvasId: 'graficoSetores3', titulo: 'Setor de Purificação', aliases: ['purificacao'] },
-    { canvasId: 'graficoSetores4', titulo: 'Setor de Armazenagem', aliases: ['armazenagem', 'armazenamento', 'estocagem'] }
-];
+    <script>
+        window.onload = carregarGraficos;
+        const setoresConfig = [
+            { canvasId: 'graficoSetores1', titulo: 'Setor de Captação', aliases: ['captacao'] },
+            { canvasId: 'graficoSetores2', titulo: 'Setor de Extração', aliases: ['extracao'] },
+            { canvasId: 'graficoSetores3', titulo: 'Setor de Purificação', aliases: ['purificacao'] },
+            { canvasId: 'graficoSetores4', titulo: 'Setor de Armazenagem', aliases: ['armazenagem', 'armazenamento', 'estocagem'] }
+        ];
 
-const idEmpresa = localStorage.idEmpresa;
+        const idEmpresa = localStorage.idEmpresa;
 
-if (!idEmpresa) {
-    window.location.href = '../login.html';
-    throw new Error('Usuário sem empresa definida, redirecionando para login.');
-}
-
-const charts = {};
-
-function formatarData(data) {
-    const d = new Date(data);
-    if (Number.isNaN(d.getTime())) return data;
-    return d.toLocaleDateString('pt-BR') + ' ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-}
-
-function normalizarSetor(nome) {
-    if (!nome) return '';
-    return nome
-        .normalize('NFD').replace(/[^a-zA-Z\s]/g, '')
-        .toLowerCase()
-        .replace(/^setor\s+de\s+/, '')
-        .trim();
-}
-
-function carregarGraficos() {
-    buscarDadosEmpresa()
-        .then(dados => {
-            setoresConfig.forEach(({ canvasId, aliases, titulo }) => {
-                const canvas = document.getElementById(canvasId);
-                if (!canvas) return;
-                const dadosSetor = dados.filter(item => {
-                    const chave = normalizarSetor(item.setor);
-                    return aliases.includes(chave);
-                });
-                const labels = dadosSetor.map(item => formatarData(item.data));
-                const valores = dadosSetor.map(item => Number(item.valor));
-                plotarGrafico(canvas, canvasId, labels, valores, titulo);
-            });
-        })
-        .catch(err => {
-            console.error('Erro ao carregar dados dos setores:', err);
-            alert('Não foi possível carregar os gráficos. Faça login novamente.');
-        });
-}
-
-function buscarDadosEmpresa() {
-    return fetch(`/setor/dados/${idEmpresa}`)
-        .then(res => {
-            if (!res.ok) throw new Error('Erro ao buscar dados');
-            return res.json();
-        });
-}
-
-function plotarGrafico(canvas, chartKey, labels, valores, titulo) {
-    if (charts[chartKey]) charts[chartKey].destroy();
-
-    charts[chartKey] = new Chart(canvas, {
-        type: 'line',
-        data: {
-            labels,
-            datasets: [{
-                label: titulo,
-                data: valores,
-                borderColor: '#0099cc',
-                fill: false,
-                tension: 0.2
-            }]
+        if (!idEmpresa) {
+            window.location.href = '../login.html';
+            throw new Error('Usuário sem empresa definida, redirecionando para login.');
         }
-    });
-}
 
-carregarGraficos();
+        const charts = {};
+
+        function formatarData(data) {
+            const d = new Date(data);
+            if (Number.isNaN(d.getTime())) return data;
+            return d.toLocaleDateString('pt-BR') + ' ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function normalizarSetor(nome) {
+            if (!nome) return '';
+            return nome
+                .normalize('NFD').replace(/[^a-zA-Z\s]/g, '')
+                .toLowerCase()
+                .replace(/^setor\s+de\s+/, '')
+                .trim();
+        }
+
+        let LIMITE_SETOR = null;
+
+        // Carrega limite
+        fetch(`/dash/limite/${idEmpresa}`)
+            .then(res => res.json())
+            .then(data => LIMITE_SETOR = Number(data.limite))
+            .catch(err => console.error("Erro ao buscar limite:", err));
+
+
+        function carregarGraficos() {
+            buscarDadosEmpresa()
+                .then(dados => {
+                    setoresConfig.forEach(({ canvasId, aliases, titulo }) => {
+                        const canvas = document.getElementById(canvasId);
+                        if (!canvas) return;
+                        const dadosSetor = dados.filter(item => {
+                            const chave = normalizarSetor(item.setor);
+                            return aliases.includes(chave);
+                        });
+                        // Ordenar por data do mais antigo -> mais recente
+                        dadosSetor.sort((a, b) => new Date(a.data) - new Date(b.data));
+
+                        // Agora sim gera labels e valores na ordem correta
+                        let labels = dadosSetor.map(item => formatarData(item.data));
+                        let valores = dadosSetor.map(item => Number(item.valor));
+
+                        // Mantém só os 5 mais recentes
+                        labels = labels.slice(-5);
+                        valores = valores.slice(-5);
+
+
+                        plotarGrafico(canvas, canvasId, labels, valores, titulo);
+
+                    });
+                })
+                .catch(err => {
+                    console.error('Erro ao carregar dados dos setores:', err);
+                    alert('Não foi possível carregar os gráficos. Faça login novamente.');
+                });
+        }
+
+        function buscarDadosEmpresa() {
+            return fetch(`/setor/dados/${idEmpresa}`)
+                .then(res => {
+                    if (!res.ok) throw new Error('Erro ao buscar dados');
+                    return res.json();
+                });
+        }
+
+        function plotarGrafico(canvas, chartKey, labels, valores, titulo) {
+            if (charts[chartKey]) charts[chartKey].destroy();
+
+            charts[chartKey] = new Chart(canvas, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: titulo,
+                        data: valores,
+                        borderColor: '#0099cc',
+                        fill: false,
+                        tension: 0.2
+                    }]
+                }
+            });
+
+            // >>> CHAMADA DO ALERTA POR SETOR (faltava isso!)
+            verificarAlertaSetor(chartKey, valores);
+        }
+
+
+        function verificarAlertaSetor(chartKey, valores) {
+            if (LIMITE_SETOR === null) return;
+
+            const ultimo = valores[valores.length - 1]; // Último valor capturado
+            let alertaId = "";
+            let msgId = "";
+
+            switch (chartKey) {
+                case "graficoSetores1":
+                    alertaId = "alerta_captacao";
+                    msgId = "msg_captacao";
+                    break;
+
+                case "graficoSetores2":
+                    alertaId = "alerta_extracao";
+                    msgId = "msg_extracao";
+                    break;
+
+                case "graficoSetores3":
+                    alertaId = "alerta_purificacao";
+                    msgId = "msg_purificacao";
+                    break;
+
+                case "graficoSetores4":
+                    alertaId = "alerta_armazenagem";
+                    msgId = "msg_armazenagem";
+                    break;
+            }
+
+            const divAlerta = document.getElementById(alertaId);
+            const msg = document.getElementById(msgId);
+
+            if (!divAlerta) return;
+
+            if (ultimo > LIMITE_SETOR) {
+                msg.innerHTML = `Valor atual <b>${ultimo}%</b> está acima do limite ${LIMITE_SETOR}%!`;
+                divAlerta.classList.remove("oculto");
+                divAlerta.classList.add("alerta-ativo");
+            } else {
+                divAlerta.classList.add("oculto");
+                divAlerta.classList.remove("alerta-ativo");
+            }
+        }
+
     </script>
 </body>
 

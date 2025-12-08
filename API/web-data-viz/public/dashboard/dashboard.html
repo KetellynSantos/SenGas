@@ -49,7 +49,7 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
     <section class="cards">
       <div class="cartao">
         <p>Ultimo Valor Capturado</p>
-        <h2 id="kpiUltimoValor">7.9%</h2>
+        <h2 id="kpiUltimoValor" class="quatro">7.9%</h2>
       </div>
       <div class="cartao">
         <p>Total de Capturas</p>
@@ -59,7 +59,7 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
         <p>Setores Ativos</p>
         <h2 id="kpiSensores" class="quatro">4</h2>
       </div>
-      <div id="alertaGas" class="alerta-gas oculto">
+      <div id="alertaGas" class="alerta-gas0 oculto">
         <span class="icone">⚠️</span>
         <div>
           <h3>Alerta de Gás!</h3>
@@ -72,7 +72,7 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
 
     <section class="chart-section1">
       <div class="chart-header">
-        <h3>Média de Todos os Setores</h3>
+        <h3>Valores de Todos os Setores</h3>
       </div>
       <div class="chart-placeholder">
         <canvas id="graficoSetores" width="700" height="240"></canvas>
@@ -99,7 +99,7 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
           LIMITE_SENSOR = Number(data.limite);
           console.log("Limite carregado:", LIMITE_SENSOR);
 
-        
+
           obterDadosGrafico();
           carregarKpis();
         })
@@ -118,10 +118,18 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
           const labels = data.map(item => formatarData(item.dtRegistro));
           const valores = data.map(item => item.valor);
 
-          // verifica automaticamente se precisa exibir o alerta
-          verificarAlerta(valores);
+          // Mantém somente os últimos 10 registros
+          const maxPontos = 10;
+          const labels10 = labels.slice(-maxPontos);
+          const valores10 = valores.slice(-maxPontos);
 
-          plotarGrafico(labels, valores);
+          // verifica automaticamente se precisa exibir o alerta
+          verificarAlerta(valores10);
+
+          // plota só os 10 últimos
+          plotarGrafico(labels10, valores10);
+
+
         })
         .catch(err => console.error(err));
     }
@@ -152,6 +160,8 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
     }
 
     obterDadosGrafico();
+    setInterval(obterDadosGrafico, 3000);
+
 
     function carregarKpis() {
       fetch(`/dash/kpis/${idEmpresa}`)
@@ -170,24 +180,24 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
 
     function verificarAlerta(valores) {
 
-        if (LIMITE_SENSOR === null) {
-            console.warn("Limite ainda não carregado");
-            return;
-        }
+      if (LIMITE_SENSOR === null) {
+        console.warn("Limite ainda não carregado");
+        return;
+      }
 
-        const ultimo = valores[0];
-        console.log(LIMITE_SENSOR)
-        const divAlerta = document.getElementById("alertaGas");
-        const msg = document.getElementById("alertaMsg");
+      const ultimo = valores[valores.length - 1];
+      console.log(LIMITE_SENSOR)
+      const divAlerta = document.getElementById("alertaGas");
+      const msg = document.getElementById("alertaMsg");
 
-        if (ultimo > LIMITE_SENSOR) {
-            msg.innerHTML = `Valor atual (${ultimo}) está acima do limite (${LIMITE_SENSOR})!`;
-            divAlerta.classList.remove("oculto");
-            divAlerta.classList.add("alerta-ativo");
-        } else {
-            divAlerta.classList.add("oculto");
-            divAlerta.classList.remove("alerta-ativo");
-        }
+      if (ultimo > LIMITE_SENSOR) {
+        msg.innerHTML = `Valor atual <b>${ultimo}%</b> está acima do limite ${LIMITE_SENSOR}%!`;
+        divAlerta.classList.remove("oculto");
+        divAlerta.classList.add("alerta-ativo");
+      } else {
+        divAlerta.classList.add("oculto");
+        divAlerta.classList.remove("alerta-ativo");
+      }
     }
 
 

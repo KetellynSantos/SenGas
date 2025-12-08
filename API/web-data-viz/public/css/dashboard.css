@@ -177,7 +177,7 @@ body {
 }
 
 .cartao .quatro {
-    color: #00796b;
+    color: black;
     font-size: 28px;
 }
 
@@ -192,8 +192,7 @@ body {
 
 .chart-section {
     width: 40%;
-    margin-top: 20px;
-    margin: 4% 0% 0% 6%;
+    margin: 0% 5% 1% 4%;
     background: #fff;
     padding: 18px;
     border-radius: 10px;
@@ -252,14 +251,110 @@ select {
     background-color: #f1f1f1;
 }
 
-.alerta-gas {
+.alerta-gas0 {
     position: fixed;
-    bottom: 20px;
+    bottom: 410px;
     right: 20px;
 
     background: #ff4d4d;
     color: white;
     padding: 18px 22px;
+    border-radius: 12px;
+
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    font-family: "Montserrat", sans-serif;
+
+    z-index: 9999;
+    width: 300px;
+
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.chart{
+ font-size: 18px;
+}
+
+.alerta-gas1 {
+    position: fixed;
+    bottom: 20px;
+    right: 18px;
+
+    background: #ff4d4d;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 12px;
+
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    font-family: "Montserrat", sans-serif;
+
+    z-index: 9999;
+    width: 300px;
+
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.alerta-gas2 {
+    position: fixed;
+    bottom: 20px;
+    right: 327px;
+
+    background: #ff4d4d;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 12px;
+
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    font-family: "Montserrat", sans-serif;
+
+    z-index: 9999;
+    width: 300px;
+
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.alerta-gas3 {
+    position: fixed;
+    bottom: 20px;
+    right: 637px;
+
+    background: #ff4d4d;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 12px;
+
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    font-family: "Montserrat", sans-serif;
+
+    z-index: 9999;
+    width: 300px;
+
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.alerta-gas4 {
+    position: fixed;
+    bottom: 20px;
+    right: 946px;
+
+    background: #ff4d4d;
+    color: white;
+    padding: 10px 22px;
     border-radius: 12px;
 
     display: flex;
