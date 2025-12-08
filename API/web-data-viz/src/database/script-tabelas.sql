@@ -1,11 +1,7 @@
--- Active: 1762987333636@@127.0.0.1@3306@sengas
 -- Criação do Banco de dados Sengas -- -- -- -- Criação do Banco de dados Sengas -- -- -- -- Criação do Banco de dados Sengas
 DROP DATABASE sengas;
 CREATE DATABASE sengas;
-USE sengas;
-
--- Criação de tabelas -- -- -- -- Criação de tabelas -- -- -- -- Criação de tabelas -- -- -- -- Criação de tabelas -- -- -- -- Criação de tabelas
-CREATE TABLE empresa (
+USE sengas;CREATE TABLE empresa (
 idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
 razaoSocial VARCHAR(80) NOT NULL,
 cnpj CHAR(14) UNIQUE NOT NULL,
@@ -40,10 +36,6 @@ FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor),
 valor DECIMAL(5,2),
 dtRegistro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-
--- Inserts para as tabelas -- -- -- -- Inserts para as tabelas -- -- -- -- Inserts para as tabelas -- -- -- -- Inserts para as tabelas
-
--- Inserts Das empresas;
 INSERT INTO empresa (razaoSocial, cnpj, codigoEmpresa) VALUES 
     ('Sengas', '32467724000136', '13CD91'),
     ('Wayne Tech', '81737019000117', '14DE92'),
@@ -52,7 +44,6 @@ INSERT INTO empresa (razaoSocial, cnpj, codigoEmpresa) VALUES
     ('Star Labs', '51792738000170', 'EDC614'),
     ('Kord Industries', '44343560000114', '12EBFD');
 
--- Inset Administradores do sistema;
 INSERT INTO usuario (codigoEmpresa, nome, email, telefone, senha, nivelAcesso) VALUES
     ('13CD91', 'Vinicius Francelino', 'vinicius@sengas.com.br', '83927164520', '123@ViniciusFrancelino', 'admin'),
     ('13CD91', 'Davi Jeronimo', 'davi@sengas.com.br', '99271645830', '123@', 'admin'),
@@ -61,7 +52,6 @@ INSERT INTO usuario (codigoEmpresa, nome, email, telefone, senha, nivelAcesso) V
     ('13CD91', 'Ketelyn Santos', 'ketelyn@sengas.com.br', '98765432109', '123@', 'admin'),
     ('13CD91', 'Breno Alves', 'breno@sengas.com.br', '98123456789', '123@', 'admin');
 
--- Insert de Cliente da Sengas;
 INSERT INTO usuario (codigoEmpresa, nome, email, telefone, senha, nivelAcesso) VALUES
     ('14DE92', 'Bruce Wayne', 'bruce@waynetech.com', '12345678910', '123#', 'cliente'),
     ('14DB14', 'Alexander Luthor', 'Alexander@lexcorp.com', '12378945610', '123#', 'cliente'),
@@ -70,7 +60,6 @@ INSERT INTO usuario (codigoEmpresa, nome, email, telefone, senha, nivelAcesso) V
     ('12EBFD', 'Victoria Kord', 'victoria@kordindustries.com', '26153689026', '123#', 'cliente');
 
 
--- Inserts Dos sensores de cada empresa
 INSERT INTO sensor (titulo, limite, setor, fkEmpresa) VALUES
 ('Sensor Central SG-1', 10.50, 'Armazenamento', 1),
 ('Sensor Linha SG-2', 6.00, 'Estocagem', 1),
@@ -147,7 +136,101 @@ INSERT INTO captura (fkSensor, valor, dtRegistro) VALUES
 (12, '15.2', '2025-01-21 19:30:59'),
 (12, '15.9', '2025-01-21 19:41:20');
 
--- View- Traz dados das empresas, sensor, informações referente a captura e etc.
+CREATE VIEW vw_capturas_com_limite AS
+SELECT 
+    s.idSensor,
+    s.titulo AS nomeSensor,
+    e.razaoSocial AS empresa,
+    c.valor AS valorCaptado,
+    s.limite AS limite,
+    c.dtRegistro AS 'Data do registro',
+    CASE
+        WHEN c.valor > s.limite THEN 'ALERTA'
+        ELSE 'OK'
+    END AS statusLeitura
+FROM sensor s
+JOIN empresa e ON e.idEmpresa = s.fkEmpresa
+JOIN captura c ON c.fkSensor = s.idSensor;
+
+SELECT * FROM vw_capturas_com_limite;
+
+ALTER VIEW vw_capturas_com_limite_quantidade AS
+SELECT statusLeitura AS 'status',
+COUNT(*) AS quantidade 
+FROM vw_capturas_com_limite   
+GROUP BY statusLeitura;
+
+SELECT * FROM vw_capturas_com_limite_quantidade;
+
+SELECT statusLeitura,
+    COUNT(DISTINCT idSensor) AS sensores_distintos
+    FROM vw_capturas_com_limite
+    GROUP BY statusLeitura;
+
+SELECT statusLeitura,
+COUNT(DISTINCT empresa) AS 'Empresas distintas'
+FROM vw_capturas_com_limite 
+GROUP BY statusLeitura;
+
+CREATE VIEW vw_limite AS SELECT 
+c.dtRegistro AS 'Data',
+s.setor AS setor,
+c.valor AS valor,
+s.limite AS limite,
+s.idSensor AS sensor,
+CASE 
+WHEN c.valor > s.limite THEN 'Acima do limite'
+WHEN c.valor < s.limite THEN 'Abaixo do limite'
+ELSE 'No limite'
+END AS 'status'
+FROM captura c JOIN sensor s ON c.fkSensor = s.idSensor 
+ORDER BY c.dtRegistro DESC;
+
+  CREATE VIEW vw_kpis AS SELECT e.idEmpresa,
+            (SELECT c.valor
+                FROM captura c
+                JOIN sensor s ON c.fkSensor = s.idSensor
+                WHERE s.fkEmpresa = e.idEmpresa
+                ORDER BY c.dtRegistro DESC, c.idCaptura DESC
+                LIMIT 1
+            ) AS ultimoValor,
+
+            (SELECT COUNT(*) 
+                FROM sensor s 
+                WHERE s.fkEmpresa = e.idEmpresa
+            ) AS qtdSensores,
+            
+            (SELECT COUNT(*)
+                FROM captura c
+                JOIN sensor s ON c.fkSensor = s.idSensor
+                WHERE s.fkEmpresa = e.idEmpresa
+            ) AS totalCapturas
+        FROM empresa e;
+
+        
+  CREATE VIEW vw_grafico AS SELECT 
+            c.valor,
+            c.dtRegistro,
+            s.fkEmpresa
+        FROM captura c
+        JOIN sensor s ON c.fkSensor = s.idSensor
+        ORDER BY c.dtRegistro ASC, c.idCaptura ASC;
+
+INSERT INTO captura (fkSensor, valor) VALUES
+(9, '30.54');
+
+
+INSERT INTO sensor (titulo, limite, setor, fkEmpresa) VALUES
+('Sensor Planet A', 5.00, 'Armazenagem', 4),
+('Sensor Planet B', 15.50, 'Extração', 4);
+
+INSERT INTO captura (fkSensor, valor) VALUES
+(7, 5.50),
+(8, 9.30),
+(13, 14.50),
+(14, 8.50);
+
+
 CREATE VIEW vw_capturas_com_limite AS
 SELECT 
     s.idSensor,
@@ -165,65 +248,8 @@ JOIN empresa e ON e.idEmpresa = s.fkEmpresa
 JOIN captura c ON c.fkSensor = s.idSensor;
 
 
-
--- View --conta quantas capturas foram realizadas em status ok ou alerta.
 CREATE VIEW vw_capturas_com_limite_quantidade AS
 SELECT statusLeitura AS 'status',
 COUNT(*) AS quantidade 
 FROM vw_capturas_com_limite   
 GROUP BY statusLeitura;
-
--- View -- mostrando valores acima, no limite e abaixo do limite.
-CREATE VIEW vw_limite AS SELECT 
-c.dtRegistro AS 'Data',
-s.setor AS setor,
-c.valor AS valor,
-s.limite AS limite,
-s.fkEmpresa AS sensor,
-CASE 
-WHEN c.valor > s.limite THEN 'Acima do limite'
-WHEN c.valor < s.limite THEN 'Abaixo do limite'
-ELSE 'No limite'
-END AS 'status'
-FROM captura c JOIN sensor s ON c.fkSensor = s.idSensor 
-ORDER BY c.dtRegistro DESC;
-
--- View -- das Kpis
-  CREATE VIEW vw_kpis AS SELECT e.idEmpresa,
-            (SELECT c.valor
-                FROM captura c
-                JOIN sensor s ON c.fkSensor = s.idSensor
-                WHERE s.fkEmpresa = e.idEmpresa
-                ORDER BY c.dtRegistro DESC, c.idCaptura DESC
-                LIMIT 1
-            ) AS ultimoValor,
-
-            (SELECT COUNT(*) 
-                FROM sensor s 
-                WHERE s.fkEmpresa = e.idEmpresa
-            ) AS qtdSensores,
-
-            (SELECT COUNT(*)
-                FROM captura c
-                JOIN sensor s ON c.fkSensor = s.idSensor
-                WHERE s.fkEmpresa = e.idEmpresa
-            ) AS totalCapturas
-        FROM empresa e;
-        
-
--- View -- Grafico dashboard
-        
-  CREATE VIEW vw_grafico AS SELECT 
-            c.valor,
-            c.dtRegistro,
-            s.fkEmpresa
-        FROM captura c
-        JOIN sensor s ON c.fkSensor = s.idSensor
-        ORDER BY c.dtRegistro DESC, c.idCaptura DESC;
-
-
-        SELECT * FROM usuario;
- `;
-
-
-  

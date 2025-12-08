@@ -19,10 +19,10 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'apinsert',
-            password: '2024@Ap_Insert',
+            user: 'root',
+            password: '123@Root123',
             database: 'sengas',
-            port: 3307
+            port: 3306
         }
     ).promise();
 
@@ -60,26 +60,33 @@ const serial = async (
 
             // Insert do sensor primario na tabela "captura"
             await poolBancoDados.execute(
-                'INSERT INTO captura (valor, fkSensor) VALUES (?, 1)',
+                'INSERT INTO captura (valor, fkSensor) VALUES (?, 7)',
                 [sensorAnalogico]
             );
             console.log("valores inseridos no banco: ", sensorAnalogico);
 
             // Insert do "segundo" sensor na tabela "captura"
             await poolBancoDados.execute(
-                'INSERT INTO captura (valor, fkSensor) VALUES (?, 2)',
-                [sensorAnalogico + 2.00]
+                'INSERT INTO captura (valor, fkSensor) VALUES (?, 8)',
+                [sensorAnalogico + 6.00]
             );
             console.log("valores inseridos no banco: ", sensorAnalogico + 2);
 
             // Insert do "terceiro" sensor na tabela "captura"
             await poolBancoDados.execute(
-                'INSERT INTO captura (valor, fkSensor) VALUES (?, 3)',
-                [sensorAnalogico + 4.00]
+                'INSERT INTO captura (valor, fkSensor) VALUES (?, 13)',
+                [sensorAnalogico + 9.00]
             );
             console.log("valores inseridos no banco: ", sensorAnalogico - 2);
+            
+            // Insert do "terceiro" sensor na tabela "captura"
+            await poolBancoDados.execute(
+                'INSERT INTO captura (valor, fkSensor) VALUES (?, 14)',
+                [sensorAnalogico + 4.00]
+            );
+            console.log("valores inseridos no banco: ", sensorAnalogico + 3);
         }
-
+        
     });
 
     // evento para lidar com erros na comunicação serial

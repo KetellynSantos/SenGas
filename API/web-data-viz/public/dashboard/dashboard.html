@@ -171,7 +171,7 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
 
           document.getElementById("kpiSensores").innerHTML = kpi.qtdSensores;
           document.getElementById("kpiCapturas").innerHTML = kpi.totalCapturas;
-          document.getElementById("kpiUltimoValor").innerHTML = kpi.ultimoValor ?? "—";
+          document.getElementById("kpiUltimoValor").innerHTML = `${kpi.ultimoValor}%` ?? "—";
         })
         .catch(e => console.error("Erro nas KPIs", e));
     }
@@ -199,9 +199,6 @@ M4NDNmM2NjNDk0NGEwODYyN2NhOTViNjNhYTEiLCJwIjoiaiJ9" target="_blank">Suporte</a><
         divAlerta.classList.remove("alerta-ativo");
       }
     }
-
-
-
 
   </script>
 </body>
