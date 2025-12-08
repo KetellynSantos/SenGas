@@ -178,13 +178,14 @@ s.setor AS setor,
 c.valor AS valor,
 s.limite AS limite,
 s.idSensor AS sensor,
+s.fkEmpresa AS empresa,
 CASE 
 WHEN c.valor > s.limite THEN 'Acima do limite'
 WHEN c.valor < s.limite THEN 'Abaixo do limite'
 ELSE 'No limite'
 END AS 'status'
 FROM captura c JOIN sensor s ON c.fkSensor = s.idSensor 
-ORDER BY c.dtRegistro DESC;
+ORDER BY c.dtRegistro DESC limit 500;
 
   CREATE VIEW vw_kpis AS SELECT e.idEmpresa,
             (SELECT c.valor
@@ -230,6 +231,101 @@ INSERT INTO captura (fkSensor, valor) VALUES
 (13, 14.50),
 (14, 8.50);
 
+CREATE VIEW vw_capturas_com_limite AS
+SELECT 
+    s.idSensor,
+    s.titulo AS nomeSensor,
+    e.razaoSocial AS empresa,
+    c.valor AS valorCaptado,
+    s.limite AS limite,
+    c.dtRegistro AS 'Data do registro',
+    CASE
+        WHEN c.valor > s.limite THEN 'ALERTA'
+        ELSE 'OK'
+    END AS statusLeitura
+FROM sensor s
+JOIN empresa e ON e.idEmpresa = s.fkEmpresa
+JOIN captura c ON c.fkSensor = s.idSensor;
+
+CREATE VIEW vw_capturas_com_limite_quantidade AS
+SELECT statusLeitura AS 'status',
+COUNT(*) AS quantidade 
+FROM vw_capturas_com_limite   
+=======
+SELECT * FROM vw_capturas_com_limite;
+
+ALTER VIEW vw_capturas_com_limite_quantidade AS
+SELECT statusLeitura AS 'status',
+COUNT(*) AS quantidade 
+FROM vw_capturas_com_limite   
+GROUP BY statusLeitura;
+
+SELECT statusLeitura,
+    COUNT(DISTINCT idSensor) AS sensores_distintos
+    FROM vw_capturas_com_limite
+    GROUP BY statusLeitura;
+
+SELECT statusLeitura,
+COUNT(DISTINCT empresa) AS 'Empresas distintas'
+FROM vw_capturas_com_limite 
+GROUP BY statusLeitura;
+
+CREATE VIEW vw_limite AS SELECT 
+c.dtRegistro AS 'Data',
+s.setor AS setor,
+c.valor AS valor,
+s.limite AS limite,
+CASE 
+WHEN c.valor > s.limite THEN 'Acima do limite'
+WHEN c.valor < s.limite THEN 'Abaixo do limite'
+ELSE 'No limite'
+END AS 'status'
+FROM captura c JOIN sensor s ON c.fkSensor = s.idSensor 
+ORDER BY c.dtRegistro DESC;
+
+  CREATE VIEW vw_kpis AS SELECT e.idEmpresa,
+            (SELECT c.valor
+                FROM captura c
+                JOIN sensor s ON c.fkSensor = s.idSensor
+                WHERE s.fkEmpresa = e.idEmpresa
+                ORDER BY c.dtRegistro DESC, c.idCaptura DESC
+                LIMIT 1
+            ) AS ultimoValor,
+
+            (SELECT COUNT(*) 
+                FROM sensor s 
+                WHERE s.fkEmpresa = e.idEmpresa
+            ) AS qtdSensores,
+            
+            (SELECT COUNT(*)
+                FROM captura c
+                JOIN sensor s ON c.fkSensor = s.idSensor
+                WHERE s.fkEmpresa = e.idEmpresa
+            ) AS totalCapturas
+        FROM empresa e;
+        
+  CREATE VIEW vw_grafico AS SELECT 
+            c.valor,
+            c.dtRegistro,
+            s.fkEmpresa
+        FROM captura c
+        JOIN sensor s ON c.fkSensor = s.idSensor
+        ORDER BY c.dtRegistro ASC, c.idCaptura ASC;
+
+INSERT INTO captura (fkSensor, valor) VALUES
+(9, '30.54');
+
+
+INSERT INTO sensor (titulo, limite, setor, fkEmpresa) VALUES
+('Sensor Planet A', 5.00, 'Armazenagem', 4),
+('Sensor Planet B', 15.50, 'Extração', 4);
+
+INSERT INTO captura (fkSensor, valor) VALUES
+(7, 5.50),
+(8, 9.30),
+(13, 14.50),
+(14, 8.50);
+
 
 CREATE VIEW vw_capturas_com_limite AS
 SELECT 
@@ -252,4 +348,5 @@ CREATE VIEW vw_capturas_com_limite_quantidade AS
 SELECT statusLeitura AS 'status',
 COUNT(*) AS quantidade 
 FROM vw_capturas_com_limite   
+>>>>>>> 27f96b96ba7cbd68ea79230f9eb7a71b2ef9e8e6
 GROUP BY statusLeitura;
