@@ -15,6 +15,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var adminRouter = require("./src/routes/admin");
 var historicoRouter = require("./src/routes/historico");
 var dashRouter = require("./src/routes/dash");
+var setorRouter = require("./src/routes/setor");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,6 +28,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/admin", adminRouter);
 app.use("/historico", historicoRouter);
 app.use("/dash", dashRouter);
+app.use("/setor", setorRouter);
 
 
 app.listen(PORTA_APP, function () {
